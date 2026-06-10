@@ -1,0 +1,11 @@
+/target
+
+# Local secrets and machine-specific config.
+seven_eleven_key
+*.key
+*.secret
+.env
+.env.*
+
+# Generated speech files can be regenerated from the vocabulary data.
+data/audio/

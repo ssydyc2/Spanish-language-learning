@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "hola",
+      "kind": "word",
+      "spanish": "hola",
+      "english": ["hello", "hi"],
+      "audio": null
+    }
+  ]
+}
