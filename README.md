@@ -14,7 +14,7 @@ Open the interactive menu:
 cargo run --
 ```
 
-From the menu, choose quiz, generate audio, or exit.
+From the menu, choose quiz, list words, generate audio, or exit.
 The menu uses arrow-key selection, color, and short descriptions for each action.
 
 List vocabulary:
@@ -23,7 +23,7 @@ List vocabulary:
 cargo run -- list
 ```
 
-For each prompt, the quiz first chooses a random word or sentence, then chooses one random drill mode available for that item: Spanish to English, English to Spanish, or audio to Spanish when audio exists.
+For each prompt, the quiz first chooses a random word or sentence, then chooses one random drill mode available for that item: Spanish to English, English to Spanish, or audio to Spanish when audio exists. Quiz mode keeps going until you press Ctrl+D.
 
 ```sh
 cargo run -- quiz
