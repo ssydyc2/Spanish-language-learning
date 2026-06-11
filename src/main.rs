@@ -12,6 +12,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 const DEFAULT_DATA_PATH: &str = "data/vocabulary.json";
+const DEFAULT_API_KEY_FILE: &str = "seven_eleven_key";
 const DEFAULT_VOICE_ID: &str = "JBFqnCBsd6RMkjVDRZzb";
 const DEFAULT_MODEL_ID: &str = "eleven_multilingual_v2";
 const DEFAULT_OUTPUT_FORMAT: &str = "mp3_44100_128";
@@ -78,6 +79,13 @@ struct QuizPrompt<'a> {
     mode: DrillMode,
 }
 
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+enum MenuChoice {
+    Quiz,
+    GenerateAudio,
+    Exit,
+}
+
 #[derive(Debug, Deserialize, Serialize)]
 struct Vocabulary {
     version: u32,
@@ -110,9 +118,16 @@ struct SpeechRequest<'a> {
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    match cli.command.unwrap_or(Commands::Quiz) {
-        Commands::Quiz => run_quiz(&cli.data),
-        Commands::List => list_items(&cli.data),
+    match cli.command {
+        Some(command) => run_command(command, &cli.data),
+        None => run_interactive(&cli.data),
+    }
+}
+
+fn run_command(command: Commands, data_path: &Path) -> Result<()> {
+    match command {
+        Commands::Quiz => run_quiz(data_path),
+        Commands::List => list_items(data_path),
         Commands::GenerateAudio {
             api_key_file,
             voice_id,
@@ -121,7 +136,7 @@ fn main() -> Result<()> {
             output_dir,
             overwrite,
         } => generate_audio(
-            &cli.data,
+            data_path,
             &api_key_file,
             &voice_id,
             &model_id,
@@ -129,6 +144,77 @@ fn main() -> Result<()> {
             &output_dir,
             overwrite,
         ),
+    }
+}
+
+fn prompt(label: &str) -> Result<String> {
+    print!("{label}");
+    io::stdout().flush().context("failed to flush prompt")?;
+
+    let mut input = String::new();
+    let bytes = io::stdin()
+        .read_line(&mut input)
+        .context("failed to read input")?;
+
+    if bytes == 0 {
+        return Ok("exit".to_string());
+    }
+
+    Ok(input.trim().to_string())
+}
+
+fn prompt_with_default(label: &str, default: &str) -> Result<String> {
+    let input = prompt(&format!("{label} [{default}]: "))?;
+    if input.is_empty() {
+        Ok(default.to_string())
+    } else {
+        Ok(input)
+    }
+}
+
+fn parse_menu_choice(input: &str) -> Option<MenuChoice> {
+    match input.trim().to_lowercase().as_str() {
+        "1" | "quiz" | "practice" => Some(MenuChoice::Quiz),
+        "2" | "audio" | "generate" | "generate audio" | "generate-audio" => {
+            Some(MenuChoice::GenerateAudio)
+        }
+        "3" | "q" | "quit" | "exit" => Some(MenuChoice::Exit),
+        _ => None,
+    }
+}
+
+fn run_interactive(data_path: &Path) -> Result<()> {
+    println!("Spanish Learning");
+    println!("Data: {}", data_path.display());
+
+    loop {
+        println!();
+        println!("What would you like to do?");
+        println!("  1) Quiz");
+        println!("  2) Generate audio");
+        println!("  3) Exit");
+
+        let choice = prompt("Choice: ")?;
+        match parse_menu_choice(&choice) {
+            Some(MenuChoice::Quiz) => run_quiz(data_path)?,
+            Some(MenuChoice::GenerateAudio) => {
+                let api_key_file = prompt_with_default("API key file", DEFAULT_API_KEY_FILE)?;
+                generate_audio(
+                    data_path,
+                    Path::new(&api_key_file),
+                    DEFAULT_VOICE_ID,
+                    DEFAULT_MODEL_ID,
+                    DEFAULT_OUTPUT_FORMAT,
+                    Path::new("data/audio"),
+                    false,
+                )?;
+            }
+            Some(MenuChoice::Exit) => {
+                println!("Hasta luego.");
+                return Ok(());
+            }
+            None => println!("Choose 1, 2, or 3."),
+        }
     }
 }
 
@@ -541,5 +627,19 @@ mod tests {
                 DrillMode::AudioToSpanish
             ]
         );
+    }
+
+    #[test]
+    fn menu_choices_accept_numbers_and_names() {
+        assert_eq!(parse_menu_choice("1"), Some(MenuChoice::Quiz));
+        assert_eq!(parse_menu_choice("quiz"), Some(MenuChoice::Quiz));
+        assert_eq!(parse_menu_choice("2"), Some(MenuChoice::GenerateAudio));
+        assert_eq!(
+            parse_menu_choice("generate audio"),
+            Some(MenuChoice::GenerateAudio)
+        );
+        assert_eq!(parse_menu_choice("3"), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("exit"), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("wat"), None);
     }
 }
