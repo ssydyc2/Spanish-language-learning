@@ -227,18 +227,34 @@ fn generate_audio(
     overwrite: bool,
 ) -> Result<()> {
     let mut vocabulary = read_vocabulary(data_path)?;
-    let api_key = read_api_key(api_key_file)?;
-    fs::create_dir_all(output_dir)
-        .with_context(|| format!("failed to create {}", output_dir.display()))?;
 
     let mut generated = 0usize;
+    let mut reused = 0usize;
+    let mut updated_metadata = false;
+    let mut api_key = None;
+
     for item in &mut vocabulary.items {
-        let output_file = output_dir.join(format!("{}.mp3", safe_file_stem(&item.id)));
+        let output_file = audio_output_path(data_path, output_dir, item);
         let audio_for_data = relative_to_data_file(data_path, &output_file);
 
-        if !overwrite && item.audio.is_some() && output_file.exists() {
+        if !overwrite && output_file.exists() {
+            if item.audio.as_ref() != Some(&audio_for_data) {
+                item.audio = Some(audio_for_data);
+                updated_metadata = true;
+            }
+            reused += 1;
             continue;
         }
+
+        if let Some(parent) = output_file.parent() {
+            fs::create_dir_all(parent)
+                .with_context(|| format!("failed to create {}", parent.display()))?;
+        }
+
+        let api_key = match &api_key {
+            Some(api_key) => api_key,
+            None => api_key.insert(read_api_key(api_key_file)?),
+        };
 
         println!("Generating audio for {}", item.spanish);
         let bytes = request_speech(&api_key, voice_id, model_id, output_format, &item.spanish)?;
@@ -246,14 +262,15 @@ fn generate_audio(
         fs::write(&output_file, bytes)
             .with_context(|| format!("failed to write {}", output_file.display()))?;
         item.audio = Some(audio_for_data);
+        updated_metadata = true;
         generated += 1;
     }
 
-    if generated > 0 {
+    if updated_metadata {
         write_vocabulary(data_path, &vocabulary)?;
     }
 
-    println!("Generated {generated} audio file(s).");
+    println!("Generated {generated} audio file(s). Reused {reused} existing file(s).");
     Ok(())
 }
 
@@ -427,6 +444,13 @@ fn safe_file_stem(input: &str) -> String {
     output.trim_matches('-').to_string()
 }
 
+fn audio_output_path(data_path: &Path, output_dir: &Path, item: &VocabItem) -> PathBuf {
+    item.audio
+        .as_ref()
+        .map(|audio| resolve_from_data_file(data_path, audio))
+        .unwrap_or_else(|| output_dir.join(format!("{}.mp3", safe_file_stem(&item.id))))
+}
+
 fn relative_to_data_file(data_path: &Path, output_file: &Path) -> PathBuf {
     let data_dir = data_path.parent().unwrap_or_else(|| Path::new("."));
     pathdiff::diff_paths(output_file, data_dir).unwrap_or_else(|| output_file.to_path_buf())
@@ -464,6 +488,26 @@ mod tests {
         assert_eq!(
             curl_quote("a \"quoted\" value"),
             "\"a \\\"quoted\\\" value\""
+        );
+    }
+
+    #[test]
+    fn audio_target_uses_existing_metadata_path() {
+        let item = VocabItem {
+            id: "hola".to_string(),
+            kind: ItemKind::Word,
+            spanish: "hola".to_string(),
+            english: vec!["hello".to_string()],
+            audio: Some(PathBuf::from("audio/custom-hola.mp3")),
+        };
+
+        assert_eq!(
+            audio_output_path(
+                Path::new("data/vocabulary.json"),
+                Path::new("data/audio"),
+                &item
+            ),
+            PathBuf::from("data/audio/custom-hola.mp3")
         );
     }
 }

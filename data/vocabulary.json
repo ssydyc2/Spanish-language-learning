@@ -5,8 +5,11 @@
       "id": "hola",
       "kind": "word",
       "spanish": "hola",
-      "english": ["hello", "hi"],
-      "audio": null
+      "english": [
+        "hello",
+        "hi"
+      ],
+      "audio": "audio/hola.mp3"
     }
   ]
 }
