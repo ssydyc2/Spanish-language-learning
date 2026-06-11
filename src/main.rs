@@ -6,8 +6,9 @@ use std::{
 };
 
 use anyhow::{anyhow, bail, Context, Result};
-use clap::{Parser, Subcommand, ValueEnum};
+use clap::{Parser, Subcommand};
 use rand::seq::SliceRandom;
+use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 const DEFAULT_DATA_PATH: &str = "data/vocabulary.json";
@@ -34,11 +35,7 @@ struct Cli {
 #[derive(Subcommand, Debug)]
 enum Commands {
     /// Start a random quiz prompt.
-    Quiz {
-        /// Choose a specific drill mode instead of random.
-        #[arg(short, long, value_enum, default_value_t = DrillMode::Random)]
-        mode: DrillMode,
-    },
+    Quiz,
     /// Show the current vocabulary data.
     List,
     /// Generate missing Spanish audio files with ElevenLabs.
@@ -69,12 +66,16 @@ enum Commands {
     },
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, ValueEnum)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum DrillMode {
-    Random,
     SpanishToEnglish,
     EnglishToSpanish,
     AudioToSpanish,
+}
+
+struct QuizPrompt<'a> {
+    item: &'a VocabItem,
+    mode: DrillMode,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -109,10 +110,8 @@ struct SpeechRequest<'a> {
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    match cli.command.unwrap_or(Commands::Quiz {
-        mode: DrillMode::Random,
-    }) {
-        Commands::Quiz { mode } => run_quiz(&cli.data, mode),
+    match cli.command.unwrap_or(Commands::Quiz) {
+        Commands::Quiz => run_quiz(&cli.data),
         Commands::List => list_items(&cli.data),
         Commands::GenerateAudio {
             api_key_file,
@@ -133,18 +132,17 @@ fn main() -> Result<()> {
     }
 }
 
-fn run_quiz(data_path: &Path, mode: DrillMode) -> Result<()> {
+fn run_quiz(data_path: &Path) -> Result<()> {
     let vocabulary = read_vocabulary(data_path)?;
-    let item = vocabulary
-        .items
-        .choose(&mut rand::thread_rng())
+    let mut rng = rand::thread_rng();
+    let prompt = pick_prompt(&vocabulary, &mut rng)
         .ok_or_else(|| anyhow!("no vocabulary items found in {}", data_path.display()))?;
-    let mode = pick_mode(mode, item);
+    let item = prompt.item;
 
     println!("Spanish practice");
     println!("----------------");
 
-    let expected_answers = match mode {
+    let expected_answers = match prompt.mode {
         DrillMode::SpanishToEnglish => {
             println!("Translate to English:");
             println!();
@@ -168,7 +166,6 @@ fn run_quiz(data_path: &Path, mode: DrillMode) -> Result<()> {
             play_item_audio(data_path, item)?;
             vec![item.spanish.as_str()]
         }
-        DrillMode::Random => unreachable!("random mode should be resolved before prompting"),
     };
 
     print!("\nAnswer: ");
@@ -348,19 +345,27 @@ fn read_api_key(path: &Path) -> Result<String> {
     Ok(key)
 }
 
-fn pick_mode(requested: DrillMode, item: &VocabItem) -> DrillMode {
-    if requested != DrillMode::Random {
-        return requested;
-    }
+fn pick_prompt<'a, R: Rng + ?Sized>(
+    vocabulary: &'a Vocabulary,
+    rng: &mut R,
+) -> Option<QuizPrompt<'a>> {
+    let item = vocabulary.items.choose(rng)?;
+    let mode = pick_mode_for_item(item, rng);
+    Some(QuizPrompt { item, mode })
+}
 
+fn pick_mode_for_item<R: Rng + ?Sized>(item: &VocabItem, rng: &mut R) -> DrillMode {
+    *available_drill_modes(item)
+        .choose(rng)
+        .expect("mode list is never empty")
+}
+
+fn available_drill_modes(item: &VocabItem) -> Vec<DrillMode> {
     let mut modes = vec![DrillMode::SpanishToEnglish, DrillMode::EnglishToSpanish];
     if item.audio.is_some() {
         modes.push(DrillMode::AudioToSpanish);
     }
-
-    *modes
-        .choose(&mut rand::thread_rng())
-        .expect("mode list is never empty")
+    modes
 }
 
 fn play_item_audio(data_path: &Path, item: &VocabItem) -> Result<()> {
@@ -508,6 +513,33 @@ mod tests {
                 &item
             ),
             PathBuf::from("data/audio/custom-hola.mp3")
+        );
+    }
+
+    #[test]
+    fn audio_drill_is_only_available_when_item_has_audio() {
+        let mut item = VocabItem {
+            id: "hola".to_string(),
+            kind: ItemKind::Word,
+            spanish: "hola".to_string(),
+            english: vec!["hello".to_string()],
+            audio: None,
+        };
+
+        assert_eq!(
+            available_drill_modes(&item),
+            vec![DrillMode::SpanishToEnglish, DrillMode::EnglishToSpanish]
+        );
+
+        item.audio = Some(PathBuf::from("audio/hola.mp3"));
+
+        assert_eq!(
+            available_drill_modes(&item),
+            vec![
+                DrillMode::SpanishToEnglish,
+                DrillMode::EnglishToSpanish,
+                DrillMode::AudioToSpanish
+            ]
         );
     }
 }

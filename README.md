@@ -20,12 +20,10 @@ List vocabulary:
 cargo run -- list
 ```
 
-Choose a drill mode:
+For each prompt, the quiz first chooses a random word or sentence, then chooses one random drill mode available for that item: Spanish to English, English to Spanish, or audio to Spanish when audio exists.
 
 ```sh
-cargo run -- quiz --mode spanish-to-english
-cargo run -- quiz --mode english-to-spanish
-cargo run -- quiz --mode audio-to-spanish
+cargo run -- quiz
 ```
 
 Generate ElevenLabs audio:
