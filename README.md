@@ -15,6 +15,7 @@ cargo run --
 ```
 
 From the menu, choose quiz, generate audio, or exit.
+The menu uses arrow-key selection, color, and short descriptions for each action.
 
 List vocabulary:
 
