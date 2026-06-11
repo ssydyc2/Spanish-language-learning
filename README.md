@@ -8,11 +8,14 @@ The first data file lives at `data/vocabulary.json` and currently contains:
 
 ## Commands
 
-Run a random practice prompt:
+Open the interactive menu:
 
 ```sh
 cargo run --
 ```
+
+From the menu, choose quiz, generate audio, or exit.
+The menu uses arrow-key selection, color, and short descriptions for each action.
 
 List vocabulary:
 

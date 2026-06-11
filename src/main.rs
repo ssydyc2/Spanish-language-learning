@@ -1,17 +1,20 @@
 use std::{
     fs,
-    io::{self, Write},
+    io::{self, IsTerminal, Write},
     path::{Path, PathBuf},
     process::{Command, Stdio},
 };
 
 use anyhow::{anyhow, bail, Context, Result};
 use clap::{Parser, Subcommand};
+use console::style;
+use dialoguer::{theme::ColorfulTheme, Input, Select};
 use rand::seq::SliceRandom;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 const DEFAULT_DATA_PATH: &str = "data/vocabulary.json";
+const DEFAULT_API_KEY_FILE: &str = "seven_eleven_key";
 const DEFAULT_VOICE_ID: &str = "JBFqnCBsd6RMkjVDRZzb";
 const DEFAULT_MODEL_ID: &str = "eleven_multilingual_v2";
 const DEFAULT_OUTPUT_FORMAT: &str = "mp3_44100_128";
@@ -78,6 +81,20 @@ struct QuizPrompt<'a> {
     mode: DrillMode,
 }
 
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+enum MenuChoice {
+    Quiz,
+    GenerateAudio,
+    Exit,
+}
+
+struct MenuOption {
+    choice: MenuChoice,
+    icon: &'static str,
+    title: &'static str,
+    description: &'static str,
+}
+
 #[derive(Debug, Deserialize, Serialize)]
 struct Vocabulary {
     version: u32,
@@ -110,9 +127,16 @@ struct SpeechRequest<'a> {
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    match cli.command.unwrap_or(Commands::Quiz) {
-        Commands::Quiz => run_quiz(&cli.data),
-        Commands::List => list_items(&cli.data),
+    match cli.command {
+        Some(command) => run_command(command, &cli.data),
+        None => run_interactive(&cli.data),
+    }
+}
+
+fn run_command(command: Commands, data_path: &Path) -> Result<()> {
+    match command {
+        Commands::Quiz => run_quiz(data_path),
+        Commands::List => list_items(data_path),
         Commands::GenerateAudio {
             api_key_file,
             voice_id,
@@ -121,7 +145,7 @@ fn main() -> Result<()> {
             output_dir,
             overwrite,
         } => generate_audio(
-            &cli.data,
+            data_path,
             &api_key_file,
             &voice_id,
             &model_id,
@@ -130,6 +154,183 @@ fn main() -> Result<()> {
             overwrite,
         ),
     }
+}
+
+fn run_interactive(data_path: &Path) -> Result<()> {
+    print_interactive_header(data_path);
+
+    loop {
+        match select_menu_choice()? {
+            MenuChoice::Quiz => run_quiz(data_path)?,
+            MenuChoice::GenerateAudio => {
+                let api_key_file = prompt_api_key_file()?;
+                generate_audio(
+                    data_path,
+                    Path::new(&api_key_file),
+                    DEFAULT_VOICE_ID,
+                    DEFAULT_MODEL_ID,
+                    DEFAULT_OUTPUT_FORMAT,
+                    Path::new("data/audio"),
+                    false,
+                )?;
+            }
+            MenuChoice::Exit => {
+                println!("Hasta luego.");
+                return Ok(());
+            }
+        }
+    }
+}
+
+fn print_interactive_header(data_path: &Path) {
+    println!();
+    println!("{}", style("  █▀▀ █▀█ ▄▀█ █▄░█ █ █▀ █░█").cyan().bold());
+    println!("{}", style("  ▄██ ██▄ █▀█ █░▀█ █ ▄█ █▀█").blue().bold());
+    println!();
+    println!("{}", style("Spanish Learning").bold().underlined());
+    println!(
+        "{} {}",
+        style("Data:").dim(),
+        style(data_path.display()).green()
+    );
+    println!(
+        "{}",
+        style("Choose a path below. Each quiz prompt randomizes both the item and drill type.")
+            .dim()
+    );
+}
+
+fn select_menu_choice() -> Result<MenuChoice> {
+    let options = menu_options();
+
+    if !io::stdin().is_terminal() {
+        return select_menu_choice_from_stdin(&options);
+    }
+
+    let labels = options.iter().map(format_menu_option).collect::<Vec<_>>();
+
+    let selection = Select::with_theme(&menu_theme())
+        .with_prompt("What would you like to do?")
+        .items(&labels)
+        .default(0)
+        .interact_opt()
+        .context("failed to read menu choice")?;
+
+    Ok(selection
+        .map(|index| options[index].choice)
+        .unwrap_or(MenuChoice::Exit))
+}
+
+fn select_menu_choice_from_stdin(options: &[MenuOption]) -> Result<MenuChoice> {
+    println!();
+    println!("What would you like to do?");
+    for (index, option) in options.iter().enumerate() {
+        println!("  {}) {} - {}", index + 1, option.title, option.description);
+    }
+
+    let input = read_line("Choice: ")?;
+    Ok(parse_menu_choice(&input, options).unwrap_or(MenuChoice::Exit))
+}
+
+fn prompt_api_key_file() -> Result<String> {
+    if !io::stdin().is_terminal() {
+        let input = read_line(&format!("API key file [{DEFAULT_API_KEY_FILE}]: "))?;
+        return Ok(if input.is_empty() {
+            DEFAULT_API_KEY_FILE.to_string()
+        } else {
+            input
+        });
+    }
+
+    Input::with_theme(&menu_theme())
+        .with_prompt("API key file")
+        .default(DEFAULT_API_KEY_FILE.to_string())
+        .interact_text()
+        .context("failed to read API key file")
+}
+
+fn menu_options() -> Vec<MenuOption> {
+    vec![
+        MenuOption {
+            choice: MenuChoice::Quiz,
+            icon: "▣",
+            title: "Quiz",
+            description: "Practice one random item with one random drill mode",
+        },
+        MenuOption {
+            choice: MenuChoice::GenerateAudio,
+            icon: "◈",
+            title: "Generate audio",
+            description: "Create missing ElevenLabs MP3s using your local key file",
+        },
+        MenuOption {
+            choice: MenuChoice::Exit,
+            icon: "□",
+            title: "Exit",
+            description: "Leave the study session",
+        },
+    ]
+}
+
+fn format_menu_option(option: &MenuOption) -> String {
+    format!(
+        "{}  {:<15} {}",
+        style(option.icon).cyan().bold(),
+        style(option.title).bold(),
+        style(option.description).dim()
+    )
+}
+
+fn menu_theme() -> ColorfulTheme {
+    ColorfulTheme {
+        prompt_prefix: style("▸".to_string()).cyan().bold(),
+        active_item_prefix: style("▸".to_string()).cyan().bold(),
+        inactive_item_prefix: style(" ".to_string()).dim(),
+        checked_item_prefix: style("✓".to_string()).green().bold(),
+        unchecked_item_prefix: style(" ".to_string()).dim(),
+        defaults_style: console::Style::new().yellow(),
+        ..ColorfulTheme::default()
+    }
+}
+
+fn read_line(label: &str) -> Result<String> {
+    print!("{label}");
+    io::stdout().flush().context("failed to flush prompt")?;
+
+    let mut input = String::new();
+    let bytes = io::stdin()
+        .read_line(&mut input)
+        .context("failed to read input")?;
+
+    if bytes == 0 {
+        return Ok("exit".to_string());
+    }
+
+    Ok(input.trim().to_string())
+}
+
+fn parse_menu_choice(input: &str, options: &[MenuOption]) -> Option<MenuChoice> {
+    let input = input.trim().to_lowercase();
+
+    if let Ok(index) = input.parse::<usize>() {
+        return options
+            .get(index.checked_sub(1)?)
+            .map(|option| option.choice);
+    }
+
+    options
+        .iter()
+        .find(|option| {
+            input == option.title.to_lowercase()
+                || input == option.title.to_lowercase().replace(' ', "-")
+        })
+        .map(|option| option.choice)
+        .or_else(|| match input.as_str() {
+            "practice" => Some(MenuChoice::Quiz),
+            "audio" | "generate" => Some(MenuChoice::GenerateAudio),
+            "q" | "quit" => Some(MenuChoice::Exit),
+            _ => None,
+        })
 }
 
 fn run_quiz(data_path: &Path) -> Result<()> {
@@ -541,5 +742,41 @@ mod tests {
                 DrillMode::AudioToSpanish
             ]
         );
+    }
+
+    #[test]
+    fn menu_labels_explain_each_action() {
+        let labels = menu_options()
+            .iter()
+            .map(format_menu_option)
+            .collect::<Vec<_>>();
+
+        assert!(labels.iter().any(|label| label.contains("Quiz")));
+        assert!(labels.iter().any(|label| label.contains("Generate audio")));
+        assert!(labels.iter().any(|label| label.contains("Exit")));
+        assert!(labels.iter().any(|label| label.contains("random drill")));
+    }
+
+    #[test]
+    fn menu_choices_accept_numbers_and_action_names() {
+        let options = menu_options();
+
+        assert_eq!(parse_menu_choice("1", &options), Some(MenuChoice::Quiz));
+        assert_eq!(parse_menu_choice("quiz", &options), Some(MenuChoice::Quiz));
+        assert_eq!(
+            parse_menu_choice("practice", &options),
+            Some(MenuChoice::Quiz)
+        );
+        assert_eq!(
+            parse_menu_choice("2", &options),
+            Some(MenuChoice::GenerateAudio)
+        );
+        assert_eq!(
+            parse_menu_choice("generate-audio", &options),
+            Some(MenuChoice::GenerateAudio)
+        );
+        assert_eq!(parse_menu_choice("3", &options), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("quit", &options), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("wat", &options), None);
     }
 }
