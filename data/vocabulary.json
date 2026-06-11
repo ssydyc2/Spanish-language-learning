@@ -10,6 +10,52 @@
         "hi"
       ],
       "audio": "audio/hola.mp3"
+    },
+    {
+      "id": "hasta_luego",
+      "kind": "sentence",
+      "spanish": "hasta luego",
+      "english": [
+        "see you later",
+        "goodbye"
+      ],
+      "audio": "audio/hasta-luego.mp3"
+    },
+    {
+      "id": "bienvenidos",
+      "kind": "word",
+      "spanish": "bienvenidos",
+      "english": [
+        "welcome"
+      ],
+      "audio": "audio/bienvenidos.mp3"
+    },
+    {
+      "id": "buenos_dias",
+      "kind": "sentence",
+      "spanish": "buenos días",
+      "english": [
+        "good morning"
+      ],
+      "audio": "audio/buenos-dias.mp3"
+    },
+    {
+      "id": "quiero",
+      "kind": "word",
+      "spanish": "quiero",
+      "english": [
+        "I want"
+      ],
+      "audio": "audio/quiero.mp3"
+    },
+    {
+      "id": "quieres",
+      "kind": "word",
+      "spanish": "quieres",
+      "english": [
+        "you want"
+      ],
+      "audio": "audio/quieres.mp3"
     }
   ]
 }
