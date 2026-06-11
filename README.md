@@ -20,7 +20,7 @@ List vocabulary:
 cargo run -- list
 ```
 
-The quiz randomly chooses one of the available drill modes for the selected vocabulary item: Spanish to English, English to Spanish, or audio to Spanish when audio exists.
+For each prompt, the quiz first chooses a random word or sentence, then chooses one random drill mode available for that item: Spanish to English, English to Spanish, or audio to Spanish when audio exists.
 
 ```sh
 cargo run -- quiz

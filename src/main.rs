@@ -8,6 +8,7 @@ use std::{
 use anyhow::{anyhow, bail, Context, Result};
 use clap::{Parser, Subcommand};
 use rand::seq::SliceRandom;
+use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 const DEFAULT_DATA_PATH: &str = "data/vocabulary.json";
@@ -72,6 +73,11 @@ enum DrillMode {
     AudioToSpanish,
 }
 
+struct QuizPrompt<'a> {
+    item: &'a VocabItem,
+    mode: DrillMode,
+}
+
 #[derive(Debug, Deserialize, Serialize)]
 struct Vocabulary {
     version: u32,
@@ -128,16 +134,15 @@ fn main() -> Result<()> {
 
 fn run_quiz(data_path: &Path) -> Result<()> {
     let vocabulary = read_vocabulary(data_path)?;
-    let item = vocabulary
-        .items
-        .choose(&mut rand::thread_rng())
+    let mut rng = rand::thread_rng();
+    let prompt = pick_prompt(&vocabulary, &mut rng)
         .ok_or_else(|| anyhow!("no vocabulary items found in {}", data_path.display()))?;
-    let mode = pick_mode(item);
+    let item = prompt.item;
 
     println!("Spanish practice");
     println!("----------------");
 
-    let expected_answers = match mode {
+    let expected_answers = match prompt.mode {
         DrillMode::SpanishToEnglish => {
             println!("Translate to English:");
             println!();
@@ -340,9 +345,18 @@ fn read_api_key(path: &Path) -> Result<String> {
     Ok(key)
 }
 
-fn pick_mode(item: &VocabItem) -> DrillMode {
+fn pick_prompt<'a, R: Rng + ?Sized>(
+    vocabulary: &'a Vocabulary,
+    rng: &mut R,
+) -> Option<QuizPrompt<'a>> {
+    let item = vocabulary.items.choose(rng)?;
+    let mode = pick_mode_for_item(item, rng);
+    Some(QuizPrompt { item, mode })
+}
+
+fn pick_mode_for_item<R: Rng + ?Sized>(item: &VocabItem, rng: &mut R) -> DrillMode {
     *available_drill_modes(item)
-        .choose(&mut rand::thread_rng())
+        .choose(rng)
         .expect("mode list is never empty")
 }
 
