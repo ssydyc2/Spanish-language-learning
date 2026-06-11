@@ -84,6 +84,7 @@ struct QuizPrompt<'a> {
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum MenuChoice {
     Quiz,
+    ListWords,
     GenerateAudio,
     Exit,
 }
@@ -135,7 +136,7 @@ fn main() -> Result<()> {
 
 fn run_command(command: Commands, data_path: &Path) -> Result<()> {
     match command {
-        Commands::Quiz => run_quiz(data_path),
+        Commands::Quiz => run_quiz_session(data_path),
         Commands::List => list_items(data_path),
         Commands::GenerateAudio {
             api_key_file,
@@ -161,7 +162,8 @@ fn run_interactive(data_path: &Path) -> Result<()> {
 
     loop {
         match select_menu_choice()? {
-            MenuChoice::Quiz => run_quiz(data_path)?,
+            MenuChoice::Quiz => run_quiz_session(data_path)?,
+            MenuChoice::ListWords => list_items(data_path)?,
             MenuChoice::GenerateAudio => {
                 let api_key_file = prompt_api_key_file()?;
                 generate_audio(
@@ -255,7 +257,13 @@ fn menu_options() -> Vec<MenuOption> {
             choice: MenuChoice::Quiz,
             icon: "▣",
             title: "Quiz",
-            description: "Practice one random item with one random drill mode",
+            description: "Keep practicing random prompts until Ctrl+D",
+        },
+        MenuOption {
+            choice: MenuChoice::ListWords,
+            icon: "▤",
+            title: "List words",
+            description: "Review every saved word and sentence",
         },
         MenuOption {
             choice: MenuChoice::GenerateAudio,
@@ -327,13 +335,36 @@ fn parse_menu_choice(input: &str, options: &[MenuOption]) -> Option<MenuChoice> 
         .map(|option| option.choice)
         .or_else(|| match input.as_str() {
             "practice" => Some(MenuChoice::Quiz),
+            "list" | "words" | "vocabulary" => Some(MenuChoice::ListWords),
             "audio" | "generate" => Some(MenuChoice::GenerateAudio),
             "q" | "quit" => Some(MenuChoice::Exit),
             _ => None,
         })
 }
 
-fn run_quiz(data_path: &Path) -> Result<()> {
+fn run_quiz_session(data_path: &Path) -> Result<()> {
+    println!();
+    println!("{}", style("Quiz session").bold().cyan());
+    println!("{}", style("Press Ctrl+D to return to the menu.").dim());
+
+    loop {
+        match run_quiz_prompt(data_path)? {
+            QuizOutcome::Answered => println!(),
+            QuizOutcome::Interrupted => {
+                println!();
+                println!("{}", style("Returning to menu.").dim());
+                return Ok(());
+            }
+        }
+    }
+}
+
+enum QuizOutcome {
+    Answered,
+    Interrupted,
+}
+
+fn run_quiz_prompt(data_path: &Path) -> Result<QuizOutcome> {
     let vocabulary = read_vocabulary(data_path)?;
     let mut rng = rand::thread_rng();
     let prompt = pick_prompt(&vocabulary, &mut rng)
@@ -369,13 +400,9 @@ fn run_quiz(data_path: &Path) -> Result<()> {
         }
     };
 
-    print!("\nAnswer: ");
-    io::stdout().flush().context("failed to flush prompt")?;
-
-    let mut answer = String::new();
-    io::stdin()
-        .read_line(&mut answer)
-        .context("failed to read answer")?;
+    let Some(answer) = read_quiz_answer()? else {
+        return Ok(QuizOutcome::Interrupted);
+    };
 
     if is_correct(&answer, &expected_answers) {
         println!("Correct.");
@@ -385,7 +412,19 @@ fn run_quiz(data_path: &Path) -> Result<()> {
         println!("English: {}", item.english.join(" / "));
     }
 
-    Ok(())
+    Ok(QuizOutcome::Answered)
+}
+
+fn read_quiz_answer() -> Result<Option<String>> {
+    print!("\nAnswer: ");
+    io::stdout().flush().context("failed to flush prompt")?;
+
+    let mut answer = String::new();
+    match io::stdin().read_line(&mut answer) {
+        Ok(0) => Ok(None),
+        Ok(_) => Ok(Some(answer)),
+        Err(error) => Err(error).context("failed to read answer"),
+    }
 }
 
 fn list_items(data_path: &Path) -> Result<()> {
@@ -752,9 +791,10 @@ mod tests {
             .collect::<Vec<_>>();
 
         assert!(labels.iter().any(|label| label.contains("Quiz")));
+        assert!(labels.iter().any(|label| label.contains("List words")));
         assert!(labels.iter().any(|label| label.contains("Generate audio")));
         assert!(labels.iter().any(|label| label.contains("Exit")));
-        assert!(labels.iter().any(|label| label.contains("random drill")));
+        assert!(labels.iter().any(|label| label.contains("Ctrl+D")));
     }
 
     #[test]
@@ -769,13 +809,21 @@ mod tests {
         );
         assert_eq!(
             parse_menu_choice("2", &options),
+            Some(MenuChoice::ListWords)
+        );
+        assert_eq!(
+            parse_menu_choice("list", &options),
+            Some(MenuChoice::ListWords)
+        );
+        assert_eq!(
+            parse_menu_choice("3", &options),
             Some(MenuChoice::GenerateAudio)
         );
         assert_eq!(
             parse_menu_choice("generate-audio", &options),
             Some(MenuChoice::GenerateAudio)
         );
-        assert_eq!(parse_menu_choice("3", &options), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("4", &options), Some(MenuChoice::Exit));
         assert_eq!(parse_menu_choice("quit", &options), Some(MenuChoice::Exit));
         assert_eq!(parse_menu_choice("wat", &options), None);
     }
