@@ -18,6 +18,7 @@ const DEFAULT_API_KEY_FILE: &str = "seven_eleven_key";
 const DEFAULT_VOICE_ID: &str = "JBFqnCBsd6RMkjVDRZzb";
 const DEFAULT_MODEL_ID: &str = "eleven_multilingual_v2";
 const DEFAULT_OUTPUT_FORMAT: &str = "mp3_44100_128";
+const QUIZ_RULE_WIDTH: usize = 56;
 
 #[derive(Parser, Debug)]
 #[command(
@@ -87,6 +88,13 @@ enum MenuChoice {
     ListWords,
     GenerateAudio,
     Exit,
+}
+
+#[derive(Copy, Clone)]
+enum PromptAccent {
+    Spanish,
+    English,
+    Audio,
 }
 
 struct MenuOption {
@@ -371,30 +379,28 @@ fn run_quiz_prompt(data_path: &Path) -> Result<QuizOutcome> {
         .ok_or_else(|| anyhow!("no vocabulary items found in {}", data_path.display()))?;
     let item = prompt.item;
 
-    println!("Spanish practice");
-    println!("----------------");
+    print_quiz_header();
 
     let expected_answers = match prompt.mode {
         DrillMode::SpanishToEnglish => {
-            println!("Translate to English:");
-            println!();
-            println!("  {}", item.spanish);
+            print_drill_instruction("Translate to English", "Read the Spanish prompt below.");
+            print_quiz_prompt("Spanish", &item.spanish, PromptAccent::Spanish);
             item.english.iter().map(String::as_str).collect::<Vec<_>>()
         }
         DrillMode::EnglishToSpanish => {
-            println!("Translate to Spanish:");
-            println!();
-            println!(
-                "  {}",
+            print_drill_instruction("Translate to Spanish", "Use the English meaning below.");
+            print_quiz_prompt(
+                "English",
                 item.english
                     .first()
-                    .context("item has no English translation")?
+                    .context("item has no English translation")?,
+                PromptAccent::English,
             );
             vec![item.spanish.as_str()]
         }
         DrillMode::AudioToSpanish => {
-            println!("Listen and type the Spanish:");
-            println!();
+            print_drill_instruction("Listen and type the Spanish", "Audio will play now.");
+            print_quiz_prompt("Audio", "Playing Spanish audio...", PromptAccent::Audio);
             play_item_audio(data_path, item)?;
             vec![item.spanish.as_str()]
         }
@@ -405,18 +411,28 @@ fn run_quiz_prompt(data_path: &Path) -> Result<QuizOutcome> {
     };
 
     if is_correct(&answer, &expected_answers) {
-        println!("Correct.");
+        println!();
+        println!("{}", style("Correct!").green().bold());
     } else {
-        println!("Not quite.");
-        println!("Spanish: {}", item.spanish);
-        println!("English: {}", item.english.join(" / "));
+        println!();
+        println!("{}", style("Not quite.").red().bold());
+        println!(
+            "{} {}",
+            style("Spanish:").yellow().bold(),
+            style(&item.spanish).yellow().bold()
+        );
+        println!(
+            "{} {}",
+            style("English:").blue().bold(),
+            style(item.english.join(" / ")).blue().bold()
+        );
     }
 
     Ok(QuizOutcome::Answered)
 }
 
 fn read_quiz_answer() -> Result<Option<String>> {
-    print!("\nAnswer: ");
+    print!("\n{} ", style("Your answer:").cyan().bold());
     io::stdout().flush().context("failed to flush prompt")?;
 
     let mut answer = String::new();
@@ -424,6 +440,46 @@ fn read_quiz_answer() -> Result<Option<String>> {
         Ok(0) => Ok(None),
         Ok(_) => Ok(Some(answer)),
         Err(error) => Err(error).context("failed to read answer"),
+    }
+}
+
+fn print_quiz_header() {
+    println!();
+    println!("{}", style("SPANISH PRACTICE").cyan().bold());
+    println!("{}", style("=".repeat(QUIZ_RULE_WIDTH)).cyan().bold());
+}
+
+fn print_drill_instruction(title: &str, hint: &str) {
+    println!();
+    println!("{}", style(title.to_uppercase()).magenta().bold());
+    println!("{}", style(hint).dim());
+}
+
+fn print_quiz_prompt(label: &str, text: &str, accent: PromptAccent) {
+    println!();
+    println!("{}", style(format!("{} prompt", label)).bold());
+    println!("{}", style("-".repeat(QUIZ_RULE_WIDTH)).dim());
+    println!();
+    for line in emphasized_prompt_lines(text) {
+        println!("  {}", style_prompt_line(&line, accent));
+    }
+    println!();
+    println!("{}", style("-".repeat(QUIZ_RULE_WIDTH)).dim());
+}
+
+fn emphasized_prompt_lines(text: &str) -> Vec<String> {
+    text.split_whitespace()
+        .collect::<Vec<_>>()
+        .chunks(4)
+        .map(|chunk| chunk.join(" "))
+        .collect()
+}
+
+fn style_prompt_line(line: &str, accent: PromptAccent) -> console::StyledObject<&str> {
+    match accent {
+        PromptAccent::Spanish => style(line).yellow().bold(),
+        PromptAccent::English => style(line).blue().bold(),
+        PromptAccent::Audio => style(line).green().bold(),
     }
 }
 
