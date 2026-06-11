@@ -34,4 +34,6 @@ Generate ElevenLabs audio:
 cargo run -- generate-audio --api-key-file seven_eleven_key
 ```
 
-The API key file is passed in explicitly and is ignored by Git. Generated audio is written to `data/audio/`, which is also ignored because it can be regenerated from the vocabulary data.
+The API key file is passed in explicitly and is ignored by Git. Audio files are written to `data/audio/` and committed with the vocabulary so audio drills work without regenerating everything on each checkout.
+
+By default, `generate-audio` reuses existing audio files. Pass `--overwrite` when you intentionally want to regenerate them.

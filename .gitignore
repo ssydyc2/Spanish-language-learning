@@ -6,6 +6,3 @@ seven_eleven_key
 *.secret
 .env
 .env.*
-
-# Generated speech files can be regenerated from the vocabulary data.
-data/audio/
