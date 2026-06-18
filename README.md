@@ -38,3 +38,28 @@ cargo run -- generate-audio --api-key-file seven_eleven_key
 The API key file is passed in explicitly and is ignored by Git. Audio files are written to `data/audio/` and committed with the vocabulary so audio drills work without regenerating everything on each checkout.
 
 By default, `generate-audio` reuses existing audio files. Pass `--overwrite` when you intentionally want to regenerate them.
+
+## iOS game prototype
+
+The first native iOS prototype lives in `ios/SpanishQuest`.
+
+It is a SwiftUI + SpriteKit battle quiz:
+
+- the top area renders a 2D JRPG-style hero, monster, and forest arena
+- the bottom area shows Spanish quiz prompts with typed answers
+- first correct answer gives a full result
+- second correct answer gives a half result
+- wrong twice fails the current attack or dodge
+- player and monster HP bars animate as answers resolve
+
+Build it from the repo root:
+
+```sh
+xcodebuild -project ios/SpanishQuest/SpanishQuest.xcodeproj \
+  -scheme SpanishQuest \
+  -destination 'generic/platform=iOS Simulator' \
+  -derivedDataPath ios/SpanishQuest/DerivedData \
+  build
+```
+
+The app currently bundles a snapshot of `data/vocabulary.json`, `data/audio/`, and the generated art assets under `ios/SpanishQuest/SpanishQuest/Resources/`.

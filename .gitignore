@@ -1,4 +1,9 @@
 /target
+ios/**/DerivedData/
+ios/**/*.xcuserdata/
+xcuserdata/
+*.xcuserstate
+.DS_Store
 
 # Local secrets and machine-specific config.
 seven_eleven_key
