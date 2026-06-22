@@ -19,6 +19,7 @@
 		1A000001000000000000000A /* Views/HPBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010A /* Views/HPBarView.swift */; };
 		1A000001000000000000000B /* Views/BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010B /* Views/BattleView.swift */; };
 		1A000001000000000000000C /* Views/QuizPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010C /* Views/QuizPanelView.swift */; };
+		1A0000010000000000000014 /* Views/WorldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010D /* Views/WorldMapView.swift */; };
 		1A000001000000000000000D /* Resources/vocabulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000201 /* Resources/vocabulary.json */; };
 		1A000001000000000000000E /* Resources/audio in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000202 /* Resources/audio */; };
 		1A000001000000000000000F /* Resources/Art/hero_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000203 /* Resources/Art/hero_spritesheet.png */; };
@@ -26,6 +27,9 @@
 		1A0000010000000000000011 /* Resources/Art/forest_arena.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000205 /* Resources/Art/forest_arena.png */; };
 		1A0000010000000000000012 /* Resources/Art/hp_hud_reference.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000206 /* Resources/Art/hp_hud_reference.png */; };
 		1A0000010000000000000013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000207 /* Assets.xcassets */; };
+		1A0000010000000000000015 /* Resources/Art/world_map_storybook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000208 /* Resources/Art/world_map_storybook.png */; };
+		1A0000010000000000000016 /* Resources/Art/shadow_dragon_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000209 /* Resources/Art/shadow_dragon_portrait.png */; };
+		1A0000010000000000000017 /* Resources/Art/princess_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020A /* Resources/Art/princess_portrait.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,7 @@
 		1A000001000000000000010A /* Views/HPBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HPBarView.swift; sourceTree = "<group>"; };
 		1A000001000000000000010B /* Views/BattleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/BattleView.swift; sourceTree = "<group>"; };
 		1A000001000000000000010C /* Views/QuizPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/QuizPanelView.swift; sourceTree = "<group>"; };
+		1A000001000000000000010D /* Views/WorldMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/WorldMapView.swift; sourceTree = "<group>"; };
 		1A0000010000000000000201 /* Resources/vocabulary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Resources/vocabulary.json; sourceTree = "<group>"; };
 		1A0000010000000000000202 /* Resources/audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources/audio; sourceTree = "<group>"; };
 		1A0000010000000000000203 /* Resources/Art/hero_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/hero_spritesheet.png; sourceTree = "<group>"; };
@@ -49,6 +54,9 @@
 		1A0000010000000000000205 /* Resources/Art/forest_arena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/forest_arena.png; sourceTree = "<group>"; };
 		1A0000010000000000000206 /* Resources/Art/hp_hud_reference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/hp_hud_reference.png; sourceTree = "<group>"; };
 		1A0000010000000000000207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A0000010000000000000208 /* Resources/Art/world_map_storybook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/world_map_storybook.png; sourceTree = "<group>"; };
+		1A0000010000000000000209 /* Resources/Art/shadow_dragon_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/shadow_dragon_portrait.png; sourceTree = "<group>"; };
+		1A000001000000000000020A /* Resources/Art/princess_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/princess_portrait.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +143,7 @@
 				1A000001000000000000010A /* Views/HPBarView.swift */,
 				1A000001000000000000010B /* Views/BattleView.swift */,
 				1A000001000000000000010C /* Views/QuizPanelView.swift */,
+				1A000001000000000000010D /* Views/WorldMapView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -156,6 +165,9 @@
 				1A0000010000000000000204 /* Resources/Art/monster_spritesheet.png */,
 				1A0000010000000000000205 /* Resources/Art/forest_arena.png */,
 				1A0000010000000000000206 /* Resources/Art/hp_hud_reference.png */,
+				1A0000010000000000000208 /* Resources/Art/world_map_storybook.png */,
+				1A0000010000000000000209 /* Resources/Art/shadow_dragon_portrait.png */,
+				1A000001000000000000020A /* Resources/Art/princess_portrait.png */,
 			);
 			name = Art;
 			sourceTree = "<group>";
@@ -225,6 +237,9 @@
 				1A0000010000000000000011 /* Resources/Art/forest_arena.png in Resources */,
 				1A0000010000000000000012 /* Resources/Art/hp_hud_reference.png in Resources */,
 				1A0000010000000000000013 /* Assets.xcassets in Resources */,
+				1A0000010000000000000015 /* Resources/Art/world_map_storybook.png in Resources */,
+				1A0000010000000000000016 /* Resources/Art/shadow_dragon_portrait.png in Resources */,
+				1A0000010000000000000017 /* Resources/Art/princess_portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +262,7 @@
 				1A000001000000000000000A /* Views/HPBarView.swift in Sources */,
 				1A000001000000000000000B /* Views/BattleView.swift in Sources */,
 				1A000001000000000000000C /* Views/QuizPanelView.swift in Sources */,
+				1A0000010000000000000014 /* Views/WorldMapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

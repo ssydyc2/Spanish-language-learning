@@ -39,7 +39,7 @@ struct BattleView: View {
                     HStack(alignment: .top, spacing: 14) {
                         HPBarView(title: "Hero", hp: viewModel.playerHP, maxHP: 100, alignment: .leading)
                         Spacer(minLength: 8)
-                        HPBarView(title: "Imp", hp: viewModel.monsterHP, maxHP: 100, alignment: .trailing)
+                        HPBarView(title: "Forest Imp", hp: viewModel.monsterHP, maxHP: 100, alignment: .trailing)
                     }
                     .padding(.top, 14)
                     .padding(.horizontal, 14)
@@ -57,6 +57,8 @@ struct BattleView: View {
             }
             .background(Color(red: 0.10, green: 0.08, blue: 0.07))
         }
+        .navigationTitle("Whisperwood")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

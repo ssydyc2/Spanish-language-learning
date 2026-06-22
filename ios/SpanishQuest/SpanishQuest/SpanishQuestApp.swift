@@ -4,7 +4,7 @@ import SwiftUI
 struct SpanishQuestApp: App {
     var body: some Scene {
         WindowGroup {
-            BattleView()
+            WorldMapView()
         }
     }
 }
