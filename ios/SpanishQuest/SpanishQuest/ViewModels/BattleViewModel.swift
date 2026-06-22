@@ -9,7 +9,7 @@ final class BattleViewModel: ObservableObject {
     @Published private(set) var attempt = 1
     @Published private(set) var status: BattleStatus = .fighting
     @Published private(set) var prompt: QuizPrompt
-    @Published var feedback = "Answer correctly to strike first."
+    @Published var feedback = "The forest imp blocks the rescue trail. Answer correctly to strike first."
     @Published var animationEvent: BattleAnimationEvent?
 
     private let quizEngine: QuizEngine
@@ -52,7 +52,7 @@ final class BattleViewModel: ObservableObject {
         actor = .player
         attempt = 1
         status = .fighting
-        feedback = "Answer correctly to strike first."
+        feedback = "The forest imp blocks the rescue trail. Answer correctly to strike first."
         prompt = quizEngine.nextPrompt()
         emit(.resetBattle)
 
@@ -74,7 +74,7 @@ final class BattleViewModel: ObservableObject {
 
             if monsterHP == 0 {
                 status = .won
-                feedback = "Victory! The forest imp is down."
+                feedback = "Victory! The forest imp falls, and the trail toward the princess opens."
                 emit(.monsterDefeated)
                 return
             }
