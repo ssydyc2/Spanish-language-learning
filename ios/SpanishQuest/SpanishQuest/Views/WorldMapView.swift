@@ -80,6 +80,15 @@ enum StageStatus {
 
 struct WorldMapView: View {
     private let stages = QuestStage.journey
+    private let minimumMapScale = CGFloat(0.5)
+    private let maximumMapScale = CGFloat(2.6)
+
+    @State private var mapScale = CGFloat(1)
+    @GestureState private var gestureScale = CGFloat(1)
+
+    private var activeMapScale: CGFloat {
+        clampedMapScale(mapScale * gestureScale)
+    }
 
     var body: some View {
         NavigationStack {
@@ -101,14 +110,11 @@ struct WorldMapView: View {
                 )
                 .ignoresSafeArea()
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 12) {
-                        storyHeader
-                        mapPanel
-                    }
-                    .padding(.horizontal, 18)
-                    .padding(.top, 16)
-                    .padding(.bottom, 30)
+                GeometryReader { screenProxy in
+                    mapPanel(height: max(CGFloat(620), screenProxy.size.height - 56))
+                        .padding(.horizontal, 12)
+                        .padding(.top, 8)
+                        .padding(.bottom, 18)
                 }
             }
             .navigationTitle("Spanish Quest")
@@ -116,48 +122,18 @@ struct WorldMapView: View {
         }
     }
 
-    private var storyHeader: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("Spanish Quest")
-                .font(.system(size: 12, weight: .black, design: .rounded))
-                .foregroundStyle(Color(red: 1.0, green: 0.79, blue: 0.36))
-                .textCase(.uppercase)
-
-            Text("World Map")
-                .font(.system(size: 28, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Text("Scroll the map")
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
-                .foregroundStyle(.white.opacity(0.82))
-        }
-        .frame(maxWidth: .infinity, alignment: .center)
-        .multilineTextAlignment(.center)
-        .padding(.top, 6)
-    }
-
-    private var mapPanel: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Spacer()
-
-                Text("Stage 1")
-                    .font(.system(size: 13, weight: .black, design: .rounded))
-                    .foregroundStyle(Color(red: 0.16, green: 0.10, blue: 0.05))
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 6)
-                    .background(Capsule().fill(Color(red: 1.0, green: 0.78, blue: 0.35)))
-
-                Spacer()
-            }
-
+    private func mapPanel(height: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
             GeometryReader { proxy in
-                let mapSide = max(proxy.size.width * 1.75, CGFloat(700))
+                let baseMapSide = max(proxy.size.width * 1.75, CGFloat(700))
+                let mapSide = baseMapSide * activeMapScale
+                let edgeInset = max(CGFloat(96), CGFloat(120) * activeMapScale)
 
                 ScrollView([.horizontal, .vertical], showsIndicators: true) {
                     MapCanvas(stages: stages, side: mapSide)
+                        .padding(edgeInset)
                 }
+                .simultaneousGesture(mapMagnificationGesture)
                 .defaultScrollAnchor(.bottomLeading)
                 .frame(width: proxy.size.width, height: proxy.size.height)
                 .background(Color.black.opacity(0.22))
@@ -167,9 +143,9 @@ struct WorldMapView: View {
                         .stroke(Color(red: 1.0, green: 0.78, blue: 0.38).opacity(0.42), lineWidth: 2)
                 )
             }
-            .frame(height: 560)
+            .frame(height: height)
         }
-        .padding(12)
+        .padding(6)
         .background(
             RoundedRectangle(cornerRadius: 14)
                 .fill(Color.black.opacity(0.34))
@@ -180,6 +156,20 @@ struct WorldMapView: View {
         )
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Painted world map with forest, river, mountain, and castle stages")
+    }
+
+    private var mapMagnificationGesture: some Gesture {
+        MagnificationGesture()
+            .updating($gestureScale) { value, state, _ in
+                state = value
+            }
+            .onEnded { value in
+                mapScale = clampedMapScale(mapScale * value)
+            }
+    }
+
+    private func clampedMapScale(_ scale: CGFloat) -> CGFloat {
+        min(max(scale, minimumMapScale), maximumMapScale)
     }
 }
 
