@@ -5,6 +5,8 @@ xcuserdata/
 *.xcuserstate
 .DS_Store
 godot/.godot/
+godot/build/
+godot/export_presets.cfg
 
 # Local secrets and machine-specific config.
 seven_eleven_key
