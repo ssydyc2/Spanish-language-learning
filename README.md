@@ -39,11 +39,45 @@ The API key file is passed in explicitly and is ignored by Git. Audio files are 
 
 By default, `generate-audio` reuses existing audio files. Pass `--overwrite` when you intentionally want to regenerate them.
 
+## Godot village prototype
+
+The new game-first prototype lives in `godot/` and is intended to become the main implementation for the village learning experience.
+
+It currently includes:
+
+- a Godot 4 project with `res://scenes/Main.tscn` as the entry scene
+- HD 2D village, school, cafe, and library backgrounds copied from the iOS prototype
+- a normal player character and scholar NPC sprite
+- free player movement with keyboard, tap-to-move, and a circular mobile joystick
+- camera follow and zoom controls
+- data-driven walkable areas so the player stays on roads/open floor regions
+- enterable school, cafe, and library scenes
+- a scholar inside the library who opens a simple Spanish quiz
+- vocabulary and audio copied from `data/vocabulary.json` and `data/audio/`
+
+Open it with Godot 4:
+
+```sh
+godot4 --path godot
+```
+
+If your Godot binary is named `godot`, use:
+
+```sh
+godot --path godot
+```
+
+The app logic is intentionally small and data-driven:
+
+- `godot/scripts/Main.gd`: village maps, player movement, camera, portals, NPC interaction
+- `godot/scripts/VirtualJoystick.gd`: mobile movement control
+- `godot/scripts/QuizPanel.gd`: scholar quiz UI and vocabulary loading
+
 ## iOS village prototype
 
 The first native iOS prototype lives in `ios/SpanishQuest`.
 
-It is now a SwiftUI village-learning prototype:
+It is now a legacy native prototype kept as a reference while the game layer moves to Godot:
 
 - the root screen is a generated HD 2D Spanish village map
 - the player can move freely by dragging, tapping, or using a circular phone movement pad
