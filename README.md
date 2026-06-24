@@ -67,6 +67,12 @@ If your Godot binary is named `godot`, use:
 godot --path godot
 ```
 
+Run a headless smoke test:
+
+```sh
+godot --headless --path godot --quit-after 2
+```
+
 The app logic is intentionally small and data-driven:
 
 - `godot/scripts/Main.gd`: village maps, player movement, camera, portals, NPC interaction
