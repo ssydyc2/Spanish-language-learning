@@ -2,8 +2,9 @@ extends Node2D
 
 const PLAYER_TEXTURE := "res://assets/art/player_avatar.png"
 const SCHOLAR_TEXTURE := "res://assets/art/scholar_npc.png"
-const DEFAULT_SCENE_SCALE := 1.55
+const DEFAULT_SCENE_SCALE := 1.35
 const CAMERA_EDGE_PADDING := 12.0
+const MIN_CAMERA_ZOOM := 0.58
 
 var scenes: Dictionary = {}
 var scene_id := "village"
@@ -277,7 +278,7 @@ func _load_scene(next_scene_id: String, spawn: Vector2) -> void:
 	player_position = _clamp_to_scene(_to_world_point(spawn))
 	joystick_vector = Vector2.ZERO
 	tap_target = null
-	camera_zoom = 1.32 if scene_id != "village" else 1.22
+	camera_zoom = 1.0 if scene_id != "village" else 0.9
 	camera_zoom = max(camera_zoom, _minimum_camera_zoom())
 
 	for child in scene_content.get_children():
@@ -506,10 +507,10 @@ func _to_world_rect(rect: Rect2) -> Rect2:
 
 func _minimum_camera_zoom() -> float:
 	if scene_data.is_empty():
-		return 0.72
+		return MIN_CAMERA_ZOOM
 	var map_size := _scene_size()
 	var viewport_size := get_viewport_rect().size + Vector2.ONE * CAMERA_EDGE_PADDING
-	return max(viewport_size.x / map_size.x, viewport_size.y / map_size.y, 0.72)
+	return max(viewport_size.x / map_size.x, viewport_size.y / map_size.y, MIN_CAMERA_ZOOM)
 
 
 func _fit_sprite_height(sprite: Sprite2D, height: float) -> void:

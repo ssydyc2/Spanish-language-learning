@@ -21,9 +21,9 @@ config/icon="res://icons/app_1024x1024.png"
 
 [display]
 
-window/size/viewport_width=390
-window/size/viewport_height=844
-window/handheld/orientation=1
+window/size/viewport_width=844
+window/size/viewport_height=390
+window/handheld/orientation=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
