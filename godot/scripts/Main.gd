@@ -24,7 +24,7 @@ var scene_content: Node2D
 var title_label: Label
 var status_label: Label
 var interact_button: Button
-var quiz_panel: QuizPanel
+var quiz_panel: Control
 
 @export var player_speed := 210.0
 @export var portal_range := 105.0
@@ -163,7 +163,7 @@ func _build_ui() -> void:
     root.add_child(bottom)
 
     var joystick_script := load("res://scripts/VirtualJoystick.gd")
-    var joystick: VirtualJoystick = joystick_script.new()
+    var joystick: Control = joystick_script.new()
     joystick.vector_changed.connect(_on_joystick_vector_changed)
     bottom.add_child(joystick)
 

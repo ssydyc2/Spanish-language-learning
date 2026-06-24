@@ -139,7 +139,7 @@ func _next_prompt() -> void:
     if current_item.has("audio"):
         modes.append("audio_to_spanish")
 
-    var mode := modes.pick_random()
+    var mode: String = modes.pick_random()
     current_answers.clear()
 
     match mode:
