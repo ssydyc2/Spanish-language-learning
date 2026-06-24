@@ -1,4 +1,5 @@
 import SwiftUI
+import SpriteKit
 import UIKit
 
 enum VillageSceneID: String {
@@ -214,235 +215,13 @@ struct VillageCharacter: Identifiable, Equatable {
     }
 }
 
-@MainActor
-final class VillageGameModel: ObservableObject {
-    @Published private(set) var sceneID: VillageSceneID = .village
-    @Published var playerPosition = VillageScene.village.spawnPoint
-    @Published private(set) var isPlayerMoving = false
-    @Published private(set) var playerFacing: CGFloat = 1
-    @Published var activeConversation: VillageCharacter?
-    @Published var statusText = "Use the circular pad, drag, or tap anywhere to move."
-
-    private let movementStep: CGFloat = 34
-    private let portalRange: CGFloat = 105
-    private let characterRange: CGFloat = 105
-    private var movementTick = 0
-
-    var scene: VillageScene {
-        VillageScene.scene(for: sceneID)
-    }
-
-    var nearbyPortal: VillagePortal? {
-        scene.portals.first { portal in
-            portal.frame.insetBy(dx: -portalRange, dy: -portalRange).contains(playerPosition)
-        }
-    }
-
-    var nearbyCharacter: VillageCharacter? {
-        scene.characters.first { character in
-            distance(from: playerPosition, to: character.position) <= characterRange
-        }
-    }
-
-    var primaryActionTitle: String {
-        if nearbyCharacter != nil {
-            return "Talk"
-        }
-
-        return nearbyPortal?.actionTitle ?? "Explore"
-    }
-
-    var canUsePrimaryAction: Bool {
-        nearbyCharacter != nil || nearbyPortal != nil
-    }
-
-    func move(_ direction: VillageDirection) {
-        let proposed = CGPoint(
-            x: playerPosition.x + direction.delta.width * movementStep,
-            y: playerPosition.y + direction.delta.height * movementStep
-        )
-        movePlayer(to: proposed)
-    }
-
-    func move(vector: CGSize) {
-        guard vector != .zero else {
-            return
-        }
-
-        let proposed = CGPoint(
-            x: playerPosition.x + vector.width * movementStep,
-            y: playerPosition.y + vector.height * movementStep
-        )
-        movePlayer(to: proposed)
-    }
-
-    func movePlayer(to destination: CGPoint) {
-        let nextPosition = clamp(destination)
-        if isWalkable(nextPosition, in: scene) {
-            move(to: nextPosition)
-            return
-        }
-
-        guard let fallbackPosition = stepTowardWalkable(destination) else {
-            statusText = scene.id == .village
-                ? "Stay on the paths to explore the village."
-                : "Walk through the open floor area."
-            return
-        }
-
-        move(to: fallbackPosition)
-    }
-
-    func usePrimaryAction() {
-        if let nearbyCharacter {
-            activeConversation = nearbyCharacter
-            return
-        }
-
-        guard let nearbyPortal else {
-            statusText = "Move near a door or character first."
-            return
-        }
-
-        enter(nearbyPortal)
-    }
-
-    private func enter(_ portal: VillagePortal) {
-        sceneID = portal.destination
-        playerPosition = clamp(portal.destinationSpawn, in: VillageScene.scene(for: portal.destination))
-        isPlayerMoving = false
-        statusText = "Entered \(scene.title). Drag or tap to move around this scene."
-        updateStatus()
-    }
-
-    private func updateStatus() {
-        if let nearbyCharacter {
-            statusText = "You are near \(nearbyCharacter.name). Tap Talk to practice Spanish."
-        } else if let nearbyPortal {
-            statusText = "You are near \(nearbyPortal.title). Tap \(nearbyPortal.actionTitle)."
-        } else {
-            switch sceneID {
-            case .village:
-                statusText = "Explore the village. School, cafe, and library are enterable."
-            case .school:
-                statusText = "This classroom can host future lessons. Exit near the bottom door."
-            case .cafe:
-                statusText = "Cafe conversations can be added here later. Exit through the open door."
-            case .library:
-                statusText = "Walk close to the scholar to start Spanish practice. Exit near the bottom."
-            }
-        }
-    }
-
-    private func clamp(_ point: CGPoint) -> CGPoint {
-        clamp(point, in: scene)
-    }
-
-    private func clamp(_ point: CGPoint, in scene: VillageScene) -> CGPoint {
-        CGPoint(
-            x: min(max(48, point.x), scene.size.width - 48),
-            y: min(max(58, point.y), scene.size.height - 58)
-        )
-    }
-
-    private func isWalkable(_ point: CGPoint, in scene: VillageScene) -> Bool {
-        scene.walkableAreas.contains { $0.contains(point) }
-    }
-
-    private func stepTowardWalkable(_ destination: CGPoint) -> CGPoint? {
-        let delta = CGSize(
-            width: destination.x - playerPosition.x,
-            height: destination.y - playerPosition.y
-        )
-        let distance = hypot(delta.width, delta.height)
-        guard distance > 0 else {
-            return nil
-        }
-
-        let step = min(movementStep, distance)
-        let candidate = clamp(
-            CGPoint(
-                x: playerPosition.x + delta.width / distance * step,
-                y: playerPosition.y + delta.height / distance * step
-            )
-        )
-
-        return isWalkable(candidate, in: scene) ? candidate : nil
-    }
-
-    private func move(to nextPosition: CGPoint) {
-        markMoving(from: playerPosition, to: nextPosition)
-        playerPosition = nextPosition
-        updateStatus()
-    }
-
-    private func markMoving(from oldPosition: CGPoint, to newPosition: CGPoint) {
-        let deltaX = newPosition.x - oldPosition.x
-        if abs(deltaX) > 1 {
-            playerFacing = deltaX >= 0 ? 1 : -1
-        }
-
-        movementTick += 1
-        let currentTick = movementTick
-        isPlayerMoving = true
-
-        Task {
-            try? await Task.sleep(for: .milliseconds(180))
-            if currentTick == movementTick {
-                isPlayerMoving = false
-            }
-        }
-    }
-
-    private func distance(from first: CGPoint, to second: CGPoint) -> CGFloat {
-        hypot(first.x - second.x, first.y - second.y)
-    }
-}
-
-enum VillageDirection {
-    case up
-    case down
-    case left
-    case right
-
-    var delta: CGSize {
-        switch self {
-        case .up:
-            CGSize(width: 0, height: -1)
-        case .down:
-            CGSize(width: 0, height: 1)
-        case .left:
-            CGSize(width: -1, height: 0)
-        case .right:
-            CGSize(width: 1, height: 0)
-        }
-    }
-
-    var icon: String {
-        switch self {
-        case .up:
-            "chevron.up"
-        case .down:
-            "chevron.down"
-        case .left:
-            "chevron.left"
-        case .right:
-            "chevron.right"
-        }
-    }
-}
-
 struct WorldMapView: View {
-    @StateObject private var game = VillageGameModel()
-    @State private var mapZoom = CGFloat(1.28)
-    @GestureState private var gestureZoom = CGFloat(1)
-
-    private let minimumMapZoom = CGFloat(0.82)
-    private let maximumMapZoom = CGFloat(2.2)
-
-    private var activeMapZoom: CGFloat {
-        clampedZoom(mapZoom * gestureZoom)
-    }
+    @State private var gameScene = VillageExploreScene(size: UIScreen.main.bounds.size)
+    @State private var activeScene = VillageScene.village
+    @State private var statusText = "Explore the village. School, cafe, and library are enterable."
+    @State private var primaryActionTitle = "Explore"
+    @State private var canUsePrimaryAction = false
+    @State private var activeConversation: VillageCharacter?
 
     var body: some View {
         NavigationStack {
@@ -450,42 +229,19 @@ struct WorldMapView: View {
                 Color(red: 0.08, green: 0.13, blue: 0.11)
                     .ignoresSafeArea()
 
-                GeometryReader { proxy in
-                    let viewport = proxy.size
-                    let zoom = activeMapZoom
-                    let offset = cameraOffset(viewport: viewport, zoom: zoom)
-
-                    VillageCanvas(game: game)
-                        .frame(width: game.scene.size.width, height: game.scene.size.height)
-                        .scaleEffect(zoom, anchor: .topLeading)
-                        .offset(offset)
-                        .frame(width: viewport.width, height: viewport.height)
-                        .clipped()
-                        .contentShape(Rectangle())
-                        .gesture(
-                            DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                                .onChanged { value in
-                                    game.movePlayer(to: scenePoint(from: value.location, viewport: viewport, zoom: zoom))
-                                }
-                        )
-                        .simultaneousGesture(mapMagnificationGesture)
-                        .animation(.easeOut(duration: 0.16), value: game.playerPosition)
-                        .animation(.easeOut(duration: 0.20), value: zoom)
-                        .onChange(of: game.sceneID) { _, _ in
-                            mapZoom = game.scene.id == .village ? 1.28 : 1.12
-                        }
-                        .accessibilityLabel(game.scene.title)
-                }
+                SpriteView(scene: gameScene)
+                    .ignoresSafeArea()
+                    .accessibilityLabel(activeScene.title)
 
                 VStack(spacing: 10) {
                     HStack(alignment: .top, spacing: 10) {
-                        VillageHeader(scene: game.scene, statusText: game.statusText)
+                        VillageHeader(scene: activeScene, statusText: statusText)
 
                         ZoomControls(
-                            canZoomIn: activeMapZoom < maximumMapZoom,
-                            canZoomOut: activeMapZoom > minimumMapZoom,
-                            zoomIn: { mapZoom = clampedZoom(mapZoom + 0.16) },
-                            zoomOut: { mapZoom = clampedZoom(mapZoom - 0.16) }
+                            canZoomIn: true,
+                            canZoomOut: true,
+                            zoomIn: gameScene.zoomIn,
+                            zoomOut: gameScene.zoomOut
                         )
                     }
                     .padding(.horizontal, 14)
@@ -494,10 +250,10 @@ struct WorldMapView: View {
                     Spacer()
 
                     VillageControls(
-                        primaryTitle: game.primaryActionTitle,
-                        canUsePrimary: game.canUsePrimaryAction,
-                        moveVector: { game.move(vector: $0) },
-                        usePrimary: game.usePrimaryAction
+                        primaryTitle: primaryActionTitle,
+                        canUsePrimary: canUsePrimaryAction,
+                        moveVector: gameScene.setInputVector,
+                        usePrimary: gameScene.performPrimaryAction
                     )
                     .padding(.horizontal, 14)
                     .padding(.bottom, 16)
@@ -505,7 +261,8 @@ struct WorldMapView: View {
             }
             .navigationTitle("Spanish Village")
             .navigationBarTitleDisplayMode(.inline)
-            .sheet(item: $game.activeConversation) { character in
+            .onAppear(perform: configureSceneCallbacks)
+            .sheet(item: $activeConversation) { character in
                 ScholarPracticeView(character: character)
                     .presentationDetents([.medium, .large])
                     .presentationDragIndicator(.visible)
@@ -513,51 +270,23 @@ struct WorldMapView: View {
         }
     }
 
-    private var mapMagnificationGesture: some Gesture {
-        MagnificationGesture()
-            .updating($gestureZoom) { value, state, _ in
-                state = value
-            }
-            .onEnded { value in
-                mapZoom = clampedZoom(mapZoom * value)
-            }
-    }
-
-    private func clampedZoom(_ value: CGFloat) -> CGFloat {
-        min(max(value, minimumMapZoom), maximumMapZoom)
-    }
-
-    private func scenePoint(from viewportPoint: CGPoint, viewport: CGSize, zoom: CGFloat) -> CGPoint {
-        let offset = cameraOffset(viewport: viewport, zoom: zoom)
-        return CGPoint(
-            x: (viewportPoint.x - offset.width) / zoom,
-            y: (viewportPoint.y - offset.height) / zoom
-        )
-    }
-
-    private func cameraOffset(viewport: CGSize, zoom: CGFloat) -> CGSize {
-        let scaledScene = CGSize(
-            width: game.scene.size.width * zoom,
-            height: game.scene.size.height * zoom
-        )
-
-        let desired = CGSize(
-            width: viewport.width / 2 - game.playerPosition.x * zoom,
-            height: viewport.height / 2 - game.playerPosition.y * zoom
-        )
-
-        return CGSize(
-            width: clampedCameraAxis(desired.width, viewport: viewport.width, content: scaledScene.width),
-            height: clampedCameraAxis(desired.height, viewport: viewport.height, content: scaledScene.height)
-        )
-    }
-
-    private func clampedCameraAxis(_ value: CGFloat, viewport: CGFloat, content: CGFloat) -> CGFloat {
-        guard content > viewport else {
-            return (viewport - content) / 2
+    private func configureSceneCallbacks() {
+        gameScene.onSceneChange = { scene in
+            activeScene = scene
         }
 
-        return min(CGFloat(0), max(viewport - content, value))
+        gameScene.onStatusChange = { text in
+            statusText = text
+        }
+
+        gameScene.onActionChange = { title, enabled in
+            primaryActionTitle = title
+            canUsePrimaryAction = enabled
+        }
+
+        gameScene.onPracticeRequested = { character in
+            activeConversation = character
+        }
     }
 }
 
@@ -632,159 +361,6 @@ private struct ZoomControls: View {
     }
 }
 
-private struct VillageCanvas: View {
-    @ObservedObject var game: VillageGameModel
-
-    var body: some View {
-        ZStack {
-            GameArtImage(game.scene.backgroundImageName)
-                .resizable()
-                .scaledToFill()
-                .frame(width: game.scene.size.width, height: game.scene.size.height)
-                .clipped()
-
-            ForEach(game.scene.portals) { portal in
-                PortalMarkerView(
-                    portal: portal,
-                    isNearby: game.nearbyPortal?.id == portal.id
-                )
-            }
-
-            ForEach(game.scene.characters) { character in
-                VillageCharacterView(
-                    character: character,
-                    isNearby: game.nearbyCharacter == character
-                )
-                .position(character.position)
-            }
-
-            VillagePlayerView(isMoving: game.isPlayerMoving, facing: game.playerFacing)
-                .position(game.playerPosition)
-                .animation(.spring(response: 0.24, dampingFraction: 0.86), value: game.playerPosition)
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(game.scene.title)
-    }
-}
-
-private struct PortalMarkerView: View {
-    let portal: VillagePortal
-    let isNearby: Bool
-
-    var body: some View {
-        VStack(spacing: 5) {
-            Image(systemName: portal.icon)
-                .font(.system(size: isNearby ? 24 : 19, weight: .black))
-                .foregroundStyle(isNearby ? Color(red: 0.14, green: 0.14, blue: 0.09) : .white)
-                .frame(width: isNearby ? 54 : 44, height: isNearby ? 54 : 44)
-                .background(
-                    Circle()
-                        .fill(isNearby ? Color(red: 1.0, green: 0.84, blue: 0.36) : Color.black.opacity(0.48))
-                        .stroke(Color.white.opacity(0.75), lineWidth: 2)
-                )
-                .shadow(color: Color.black.opacity(0.30), radius: 8, y: 4)
-
-            Text(isNearby ? portal.actionTitle : portal.title)
-                .font(.system(size: 12, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(Capsule().fill(Color.black.opacity(0.55)))
-        }
-        .position(x: portal.frame.midX, y: portal.frame.midY)
-        .animation(.spring(response: 0.24, dampingFraction: 0.82), value: isNearby)
-        .accessibilityLabel(portal.actionTitle)
-    }
-}
-
-private struct VillageCharacterView: View {
-    let character: VillageCharacter
-    let isNearby: Bool
-
-    var body: some View {
-        VStack(spacing: 5) {
-            if isNearby {
-                Text("Talk")
-                    .font(.system(size: 12, weight: .black, design: .rounded))
-                    .foregroundStyle(Color(red: 0.12, green: 0.18, blue: 0.16))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 5)
-                    .background(Capsule().fill(Color(red: 1.0, green: 0.86, blue: 0.37)))
-                    .transition(.scale.combined(with: .opacity))
-            }
-
-            ZStack {
-                Ellipse()
-                    .fill(Color.black.opacity(0.26))
-                    .frame(width: 42, height: 12)
-                    .offset(y: 36)
-
-                GameArtImage(character.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: isNearby ? 82 : 74, height: isNearby ? 110 : 100)
-                    .shadow(color: Color.black.opacity(0.30), radius: 7, y: 5)
-            }
-
-            Text(character.name)
-                .font(.system(size: 13, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(Capsule().fill(Color.black.opacity(0.45)))
-        }
-        .animation(.spring(response: 0.28, dampingFraction: 0.82), value: isNearby)
-        .accessibilityLabel("\(character.name), \(character.role)")
-    }
-}
-
-private struct VillagePlayerView: View {
-    let isMoving: Bool
-    let facing: CGFloat
-    @State private var bob = false
-
-    var body: some View {
-        VStack(spacing: 4) {
-            ZStack {
-                Ellipse()
-                    .fill(Color.black.opacity(0.26))
-                    .frame(width: 42, height: 12)
-                    .offset(y: 36)
-
-                GameArtImage("player_avatar")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 74, height: 100)
-                    .scaleEffect(x: facing, y: 1, anchor: .center)
-                    .offset(y: isMoving && bob ? -5 : 0)
-                    .shadow(color: Color.black.opacity(0.32), radius: 7, y: 5)
-            }
-
-            Text("You")
-                .font(.system(size: 12, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 9)
-                .padding(.vertical, 4)
-                .background(Capsule().fill(Color.black.opacity(0.48)))
-        }
-        .onAppear {
-            bob = isMoving
-        }
-        .onChange(of: isMoving) { _, newValue in
-            if newValue {
-                withAnimation(.easeInOut(duration: 0.16).repeatForever(autoreverses: true)) {
-                    bob = true
-                }
-            } else {
-                withAnimation(.easeOut(duration: 0.10)) {
-                    bob = false
-                }
-            }
-        }
-        .accessibilityLabel("Your character")
-    }
-}
-
 private struct VillageControls: View {
     let primaryTitle: String
     let canUsePrimary: Bool
@@ -828,7 +404,6 @@ private struct CircularMovePad: View {
     let moveVector: (CGSize) -> Void
     @State private var knobOffset = CGSize.zero
     @State private var activeVector = CGSize.zero
-    @State private var movementTimer: Timer?
 
     private let padSize: CGFloat = 118
     private let knobSize: CGFloat = 46
@@ -864,16 +439,16 @@ private struct CircularMovePad: View {
                     let clamped = clamp(raw)
                     knobOffset = clamped
                     activeVector = CGSize(width: clamped.width / maxOffset, height: clamped.height / maxOffset)
-                    startMovementTimer()
+                    moveVector(activeVector)
                 }
                 .onEnded { _ in
                     knobOffset = .zero
                     activeVector = .zero
-                    stopMovementTimer()
+                    moveVector(.zero)
                 }
         )
         .onDisappear {
-            stopMovementTimer()
+            moveVector(.zero)
         }
         .accessibilityLabel("Movement control")
     }
@@ -886,27 +461,6 @@ private struct CircularMovePad: View {
 
         let scale = maxOffset / length
         return CGSize(width: value.width * scale, height: value.height * scale)
-    }
-
-    private func startMovementTimer() {
-        guard movementTimer == nil else {
-            return
-        }
-
-        moveVector(activeVector)
-        movementTimer = Timer.scheduledTimer(withTimeInterval: 0.075, repeats: true) { _ in
-            guard activeVector != .zero else {
-                stopMovementTimer()
-                return
-            }
-
-            moveVector(activeVector)
-        }
-    }
-
-    private func stopMovementTimer() {
-        movementTimer?.invalidate()
-        movementTimer = nil
     }
 }
 
