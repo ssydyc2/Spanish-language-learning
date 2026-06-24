@@ -1,411 +1,904 @@
 import SwiftUI
 import UIKit
 
-struct QuestStage: Identifiable {
-    let id: String
-    let number: Int
-    let name: String
-    let region: String
-    let status: StageStatus
-    let icon: String
-    let thumbnailName: String
-    let mapPosition: CGPoint
-    let tint: Color
-
-    var isUnlocked: Bool {
-        status == .available
-    }
-
-    static let journey: [QuestStage] = [
-        QuestStage(
-            id: "forest-1",
-            number: 1,
-            name: "Forest of First Words",
-            region: "Whisperwood",
-            status: .available,
-            icon: "tree.fill",
-            thumbnailName: "forest_arena",
-            mapPosition: CGPoint(x: 0.25, y: 0.76),
-            tint: Color(red: 0.20, green: 0.64, blue: 0.34)
-        ),
-        QuestStage(
-            id: "river-2",
-            number: 2,
-            name: "River Crossing",
-            region: "Moonlit Ferry",
-            status: .locked,
-            icon: "water.waves",
-            thumbnailName: "world_map_storybook",
-            mapPosition: CGPoint(x: 0.42, y: 0.61),
-            tint: Color(red: 0.21, green: 0.53, blue: 0.79)
-        ),
-        QuestStage(
-            id: "mountain-3",
-            number: 3,
-            name: "Mountain Gate",
-            region: "Stonepass",
-            status: .locked,
-            icon: "mountain.2.fill",
-            thumbnailName: "world_map_storybook",
-            mapPosition: CGPoint(x: 0.64, y: 0.41),
-            tint: Color(red: 0.54, green: 0.52, blue: 0.60)
-        ),
-        QuestStage(
-            id: "castle-4",
-            number: 4,
-            name: "Dark Castle",
-            region: "Dragon Keep",
-            status: .locked,
-            icon: "building.columns.fill",
-            thumbnailName: "world_map_storybook",
-            mapPosition: CGPoint(x: 0.79, y: 0.20),
-            tint: Color(red: 0.62, green: 0.20, blue: 0.26)
-        )
-    ]
+enum VillageSceneID: String {
+    case village
+    case school
+    case cafe
+    case library
 }
 
-enum StageStatus {
-    case available
-    case locked
+struct VillageScene {
+    let id: VillageSceneID
+    let title: String
+    let subtitle: String
+    let backgroundImageName: String
+    let size: CGSize
+    let spawnPoint: CGPoint
+    let portals: [VillagePortal]
+    let characters: [VillageCharacter]
 
-    var label: String {
+    static func scene(for id: VillageSceneID) -> VillageScene {
+        switch id {
+        case .village:
+            village
+        case .school:
+            school
+        case .cafe:
+            cafe
+        case .library:
+            library
+        }
+    }
+
+    static let village = VillageScene(
+        id: .village,
+        title: "Pueblo Espanol",
+        subtitle: "Move freely around the village. Enter buildings to find new scenes.",
+        backgroundImageName: "village_map_sim",
+        size: CGSize(width: 1254, height: 1254),
+        spawnPoint: CGPoint(x: 625, y: 700),
+        portals: [
+            VillagePortal(
+                id: "school-door",
+                title: "School",
+                actionTitle: "Enter School",
+                icon: "graduationcap.fill",
+                frame: CGRect(x: 535, y: 250, width: 180, height: 155),
+                destination: .school,
+                destinationSpawn: CGPoint(x: 625, y: 980)
+            ),
+            VillagePortal(
+                id: "cafe-door",
+                title: "Cafe",
+                actionTitle: "Enter Cafe",
+                icon: "cup.and.saucer.fill",
+                frame: CGRect(x: 920, y: 490, width: 180, height: 155),
+                destination: .cafe,
+                destinationSpawn: CGPoint(x: 625, y: 880)
+            ),
+            VillagePortal(
+                id: "library-door",
+                title: "Library",
+                actionTitle: "Enter Library",
+                icon: "books.vertical.fill",
+                frame: CGRect(x: 820, y: 860, width: 210, height: 170),
+                destination: .library,
+                destinationSpawn: CGPoint(x: 625, y: 930)
+            )
+        ],
+        characters: []
+    )
+
+    static let school = VillageScene(
+        id: .school,
+        title: "Village School",
+        subtitle: "A future classroom scene for lessons and mini games.",
+        backgroundImageName: "school_interior_sim",
+        size: CGSize(width: 1254, height: 1254),
+        spawnPoint: CGPoint(x: 625, y: 980),
+        portals: [
+            VillagePortal(
+                id: "school-exit",
+                title: "Village Plaza",
+                actionTitle: "Exit School",
+                icon: "door.left.hand.open",
+                frame: CGRect(x: 455, y: 1025, width: 345, height: 180),
+                destination: .village,
+                destinationSpawn: CGPoint(x: 625, y: 410)
+            )
+        ],
+        characters: []
+    )
+
+    static let cafe = VillageScene(
+        id: .cafe,
+        title: "Village Cafe",
+        subtitle: "A future conversation scene for ordering food in Spanish.",
+        backgroundImageName: "cafe_interior_sim",
+        size: CGSize(width: 1254, height: 1254),
+        spawnPoint: CGPoint(x: 625, y: 880),
+        portals: [
+            VillagePortal(
+                id: "cafe-exit",
+                title: "Village Plaza",
+                actionTitle: "Exit Cafe",
+                icon: "door.left.hand.open",
+                frame: CGRect(x: 555, y: 235, width: 190, height: 210),
+                destination: .village,
+                destinationSpawn: CGPoint(x: 990, y: 650)
+            )
+        ],
+        characters: []
+    )
+
+    static let library = VillageScene(
+        id: .library,
+        title: "Village Library",
+        subtitle: "Walk close to the scholar to practice Spanish.",
+        backgroundImageName: "library_interior_sim",
+        size: CGSize(width: 1254, height: 1254),
+        spawnPoint: CGPoint(x: 625, y: 930),
+        portals: [
+            VillagePortal(
+                id: "library-exit",
+                title: "Village Plaza",
+                actionTitle: "Exit Library",
+                icon: "door.left.hand.open",
+                frame: CGRect(x: 450, y: 1050, width: 360, height: 165),
+                destination: .village,
+                destinationSpawn: CGPoint(x: 900, y: 1000)
+            )
+        ],
+        characters: [
+            VillageCharacter(
+                id: "scholar",
+                name: "Scholar",
+                role: "Spanish Tutor",
+                greeting: "Bienvenido. Let's practice Spanish in the library.",
+                position: CGPoint(x: 650, y: 610),
+                imageName: "scholar_npc",
+                accent: Color(red: 0.15, green: 0.45, blue: 0.62),
+                symbol: "person.crop.circle.badge.questionmark"
+            )
+        ]
+    )
+}
+
+struct VillagePortal: Identifiable {
+    let id: String
+    let title: String
+    let actionTitle: String
+    let icon: String
+    let frame: CGRect
+    let destination: VillageSceneID
+    let destinationSpawn: CGPoint
+}
+
+struct VillageCharacter: Identifiable, Equatable {
+    let id: String
+    let name: String
+    let role: String
+    let greeting: String
+    let position: CGPoint
+    let imageName: String
+    let accent: Color
+    let symbol: String
+
+    static func == (lhs: VillageCharacter, rhs: VillageCharacter) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+@MainActor
+final class VillageGameModel: ObservableObject {
+    @Published private(set) var sceneID: VillageSceneID = .village
+    @Published var playerPosition = VillageScene.village.spawnPoint
+    @Published var activeConversation: VillageCharacter?
+    @Published var statusText = "Use the circular pad, drag, or tap anywhere to move."
+
+    private let movementStep: CGFloat = 44
+    private let portalRange: CGFloat = 105
+    private let characterRange: CGFloat = 105
+
+    var scene: VillageScene {
+        VillageScene.scene(for: sceneID)
+    }
+
+    var nearbyPortal: VillagePortal? {
+        scene.portals.first { portal in
+            portal.frame.insetBy(dx: -portalRange, dy: -portalRange).contains(playerPosition)
+        }
+    }
+
+    var nearbyCharacter: VillageCharacter? {
+        scene.characters.first { character in
+            distance(from: playerPosition, to: character.position) <= characterRange
+        }
+    }
+
+    var primaryActionTitle: String {
+        if nearbyCharacter != nil {
+            return "Talk"
+        }
+
+        return nearbyPortal?.actionTitle ?? "Explore"
+    }
+
+    var canUsePrimaryAction: Bool {
+        nearbyCharacter != nil || nearbyPortal != nil
+    }
+
+    func move(_ direction: VillageDirection) {
+        let proposed = CGPoint(
+            x: playerPosition.x + direction.delta.width * movementStep,
+            y: playerPosition.y + direction.delta.height * movementStep
+        )
+        movePlayer(to: proposed)
+    }
+
+    func move(vector: CGSize) {
+        guard vector != .zero else {
+            return
+        }
+
+        let proposed = CGPoint(
+            x: playerPosition.x + vector.width * movementStep,
+            y: playerPosition.y + vector.height * movementStep
+        )
+        movePlayer(to: proposed)
+    }
+
+    func movePlayer(to destination: CGPoint) {
+        playerPosition = clamp(destination)
+        updateStatus()
+    }
+
+    func usePrimaryAction() {
+        if let nearbyCharacter {
+            activeConversation = nearbyCharacter
+            return
+        }
+
+        guard let nearbyPortal else {
+            statusText = "Move near a door or character first."
+            return
+        }
+
+        enter(nearbyPortal)
+    }
+
+    private func enter(_ portal: VillagePortal) {
+        sceneID = portal.destination
+        playerPosition = clamp(portal.destinationSpawn, in: VillageScene.scene(for: portal.destination))
+        statusText = "Entered \(scene.title). Drag or tap to move around this scene."
+        updateStatus()
+    }
+
+    private func updateStatus() {
+        if let nearbyCharacter {
+            statusText = "You are near \(nearbyCharacter.name). Tap Talk to practice Spanish."
+        } else if let nearbyPortal {
+            statusText = "You are near \(nearbyPortal.title). Tap \(nearbyPortal.actionTitle)."
+        } else {
+            switch sceneID {
+            case .village:
+                statusText = "Explore the village. School, cafe, and library are enterable."
+            case .school:
+                statusText = "This classroom can host future lessons. Exit near the bottom door."
+            case .cafe:
+                statusText = "Cafe conversations can be added here later. Exit through the open door."
+            case .library:
+                statusText = "Walk close to the scholar to start Spanish practice. Exit near the bottom."
+            }
+        }
+    }
+
+    private func clamp(_ point: CGPoint) -> CGPoint {
+        clamp(point, in: scene)
+    }
+
+    private func clamp(_ point: CGPoint, in scene: VillageScene) -> CGPoint {
+        CGPoint(
+            x: min(max(48, point.x), scene.size.width - 48),
+            y: min(max(58, point.y), scene.size.height - 58)
+        )
+    }
+
+    private func distance(from first: CGPoint, to second: CGPoint) -> CGFloat {
+        hypot(first.x - second.x, first.y - second.y)
+    }
+}
+
+enum VillageDirection {
+    case up
+    case down
+    case left
+    case right
+
+    var delta: CGSize {
         switch self {
-        case .available:
-            "Ready"
-        case .locked:
-            "Locked"
+        case .up:
+            CGSize(width: 0, height: -1)
+        case .down:
+            CGSize(width: 0, height: 1)
+        case .left:
+            CGSize(width: -1, height: 0)
+        case .right:
+            CGSize(width: 1, height: 0)
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .up:
+            "chevron.up"
+        case .down:
+            "chevron.down"
+        case .left:
+            "chevron.left"
+        case .right:
+            "chevron.right"
         }
     }
 }
 
 struct WorldMapView: View {
-    private let stages = QuestStage.journey
-    private let minimumMapScale = CGFloat(0.5)
-    private let maximumMapScale = CGFloat(2.6)
-
-    @State private var mapScale = CGFloat(1)
-    @GestureState private var gestureScale = CGFloat(1)
-
-    private var activeMapScale: CGFloat {
-        clampedMapScale(mapScale * gestureScale)
-    }
+    @StateObject private var game = VillageGameModel()
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                ArtImage("world_map_storybook")
-                    .resizable()
-                    .scaledToFill()
-                    .blur(radius: 16)
-                    .overlay(Color.black.opacity(0.50))
+            ZStack(alignment: .bottom) {
+                Color(red: 0.08, green: 0.13, blue: 0.11)
                     .ignoresSafeArea()
 
-                LinearGradient(
-                    colors: [
-                        Color.black.opacity(0.46),
-                        Color(red: 0.07, green: 0.09, blue: 0.10).opacity(0.68)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
+                GeometryReader { proxy in
+                    ScrollView([.horizontal, .vertical], showsIndicators: true) {
+                        VillageCanvas(game: game)
+                            .frame(width: game.scene.size.width, height: game.scene.size.height)
+                    }
+                    .defaultScrollAnchor(.center)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                }
 
-                GeometryReader { screenProxy in
-                    mapPanel(height: max(CGFloat(620), screenProxy.size.height - 56))
-                        .padding(.horizontal, 12)
-                        .padding(.top, 8)
-                        .padding(.bottom, 18)
+                VStack(spacing: 0) {
+                    VillageHeader(scene: game.scene, statusText: game.statusText)
+                        .padding(.horizontal, 14)
+                        .padding(.top, 10)
+
+                    Spacer()
+
+                    VillageControls(
+                        primaryTitle: game.primaryActionTitle,
+                        canUsePrimary: game.canUsePrimaryAction,
+                        moveVector: { game.move(vector: $0) },
+                        usePrimary: game.usePrimaryAction
+                    )
+                    .padding(.horizontal, 14)
+                    .padding(.bottom, 16)
                 }
             }
-            .navigationTitle("Spanish Quest")
+            .navigationTitle("Spanish Village")
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $game.activeConversation) { character in
+                ScholarPracticeView(character: character)
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
+            }
         }
-    }
-
-    private func mapPanel(height: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            GeometryReader { proxy in
-                let baseMapSide = max(proxy.size.width * 1.75, CGFloat(700))
-                let mapSide = baseMapSide * activeMapScale
-                let edgeInset = max(CGFloat(96), CGFloat(120) * activeMapScale)
-
-                ScrollView([.horizontal, .vertical], showsIndicators: true) {
-                    MapCanvas(stages: stages, side: mapSide)
-                        .padding(edgeInset)
-                }
-                .simultaneousGesture(mapMagnificationGesture)
-                .defaultScrollAnchor(.bottomLeading)
-                .frame(width: proxy.size.width, height: proxy.size.height)
-                .background(Color.black.opacity(0.22))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color(red: 1.0, green: 0.78, blue: 0.38).opacity(0.42), lineWidth: 2)
-                )
-            }
-            .frame(height: height)
-        }
-        .padding(6)
-        .background(
-            RoundedRectangle(cornerRadius: 14)
-                .fill(Color.black.opacity(0.34))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(Color.white.opacity(0.12), lineWidth: 1)
-                )
-        )
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel("Painted world map with forest, river, mountain, and castle stages")
-    }
-
-    private var mapMagnificationGesture: some Gesture {
-        MagnificationGesture()
-            .updating($gestureScale) { value, state, _ in
-                state = value
-            }
-            .onEnded { value in
-                mapScale = clampedMapScale(mapScale * value)
-            }
-    }
-
-    private func clampedMapScale(_ scale: CGFloat) -> CGFloat {
-        min(max(scale, minimumMapScale), maximumMapScale)
     }
 }
 
-private struct MapCanvas: View {
-    let stages: [QuestStage]
-    let side: CGFloat
+private struct VillageHeader: View {
+    let scene: VillageScene
+    let statusText: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 10) {
+                Image(systemName: scene.id == .village ? "map.fill" : "house.fill")
+                    .font(.system(size: 18, weight: .black))
+                    .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.36))
+
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(scene.title)
+                        .font(.system(size: 23, weight: .black, design: .rounded))
+                        .foregroundStyle(.white)
+                    Text(scene.subtitle)
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.84))
+                }
+
+                Spacer()
+            }
+
+            Text(statusText)
+                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                .foregroundStyle(.white.opacity(0.90))
+                .lineLimit(2)
+        }
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.black.opacity(0.44))
+                .stroke(Color.white.opacity(0.18), lineWidth: 1)
+        )
+    }
+}
+
+private struct VillageCanvas: View {
+    @ObservedObject var game: VillageGameModel
 
     var body: some View {
         ZStack {
-            ArtImage("world_map_storybook")
+            GameArtImage(game.scene.backgroundImageName)
                 .resizable()
-                .scaledToFit()
-                .frame(width: side, height: side)
-                .overlay(Color.black.opacity(0.08))
+                .scaledToFill()
+                .frame(width: game.scene.size.width, height: game.scene.size.height)
+                .clipped()
 
-            LinearGradient(
-                colors: [
-                    Color.black.opacity(0.02),
-                    Color.black.opacity(0.18)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-
-            QuestRoute(stages: stages)
-                .stroke(
-                    Color(red: 1.0, green: 0.84, blue: 0.46).opacity(0.78),
-                    style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round, dash: [10, 9])
+            ForEach(game.scene.portals) { portal in
+                PortalMarkerView(
+                    portal: portal,
+                    isNearby: game.nearbyPortal?.id == portal.id
                 )
-                .shadow(color: .black.opacity(0.50), radius: 2, y: 1)
-
-            MapStoryPin(
-                imageName: "shadow_dragon_portrait",
-                label: "Dragon",
-                accent: Color(red: 0.80, green: 0.12, blue: 0.16)
-            )
-            .position(x: side * 0.88, y: side * 0.13)
-
-            MapStoryPin(
-                imageName: "princess_portrait",
-                label: "Princess",
-                accent: Color(red: 0.28, green: 0.50, blue: 0.92)
-            )
-            .position(x: side * 0.79, y: side * 0.16)
-
-            HeroLocationBadge()
-                .position(x: side * 0.15, y: side * 0.69)
-
-            ForEach(stages) { stage in
-                if stage.isUnlocked {
-                    NavigationLink {
-                        BattleView()
-                    } label: {
-                        MapStageNode(stage: stage)
-                    }
-                    .buttonStyle(.plain)
-                    .position(x: side * stage.mapPosition.x, y: side * stage.mapPosition.y)
-                } else {
-                    MapStageNode(stage: stage)
-                        .position(x: side * stage.mapPosition.x, y: side * stage.mapPosition.y)
-                }
             }
+
+            ForEach(game.scene.characters) { character in
+                VillageCharacterView(
+                    character: character,
+                    isNearby: game.nearbyCharacter == character
+                )
+                .position(character.position)
+            }
+
+            VillagePlayerView()
+                .position(game.playerPosition)
+                .animation(.spring(response: 0.24, dampingFraction: 0.86), value: game.playerPosition)
         }
-        .frame(width: side, height: side)
+        .contentShape(Rectangle())
+        .gesture(
+            DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                .onChanged { value in
+                    game.movePlayer(to: value.location)
+                }
+        )
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(game.scene.title)
     }
 }
 
-private struct QuestRoute: Shape {
-    let stages: [QuestStage]
+private struct PortalMarkerView: View {
+    let portal: VillagePortal
+    let isNearby: Bool
 
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        guard let first = stages.first else {
-            return path
+    var body: some View {
+        VStack(spacing: 5) {
+            Image(systemName: portal.icon)
+                .font(.system(size: isNearby ? 24 : 19, weight: .black))
+                .foregroundStyle(isNearby ? Color(red: 0.14, green: 0.14, blue: 0.09) : .white)
+                .frame(width: isNearby ? 54 : 44, height: isNearby ? 54 : 44)
+                .background(
+                    Circle()
+                        .fill(isNearby ? Color(red: 1.0, green: 0.84, blue: 0.36) : Color.black.opacity(0.48))
+                        .stroke(Color.white.opacity(0.75), lineWidth: 2)
+                )
+                .shadow(color: Color.black.opacity(0.30), radius: 8, y: 4)
+
+            Text(isNearby ? portal.actionTitle : portal.title)
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(Capsule().fill(Color.black.opacity(0.55)))
         }
-
-        path.move(to: point(for: first, in: rect))
-
-        for stage in stages.dropFirst() {
-            path.addLine(to: point(for: stage, in: rect))
-        }
-
-        return path
+        .position(x: portal.frame.midX, y: portal.frame.midY)
+        .animation(.spring(response: 0.24, dampingFraction: 0.82), value: isNearby)
+        .accessibilityLabel(portal.actionTitle)
     }
+}
 
-    private func point(for stage: QuestStage, in rect: CGRect) -> CGPoint {
-        CGPoint(
-            x: rect.minX + rect.width * stage.mapPosition.x,
-            y: rect.minY + rect.height * stage.mapPosition.y
+private struct VillageCharacterView: View {
+    let character: VillageCharacter
+    let isNearby: Bool
+
+    var body: some View {
+        VStack(spacing: 5) {
+            if isNearby {
+                Text("Talk")
+                    .font(.system(size: 12, weight: .black, design: .rounded))
+                    .foregroundStyle(Color(red: 0.12, green: 0.18, blue: 0.16))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 5)
+                    .background(Capsule().fill(Color(red: 1.0, green: 0.86, blue: 0.37)))
+                    .transition(.scale.combined(with: .opacity))
+            }
+
+            ZStack {
+                Ellipse()
+                    .fill(Color.black.opacity(0.26))
+                    .frame(width: 70, height: 18)
+                    .offset(y: 76)
+
+                GameArtImage(character.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: isNearby ? 118 : 108, height: isNearby ? 168 : 156)
+                    .shadow(color: Color.black.opacity(0.30), radius: 7, y: 5)
+            }
+
+            Text(character.name)
+                .font(.system(size: 13, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(Capsule().fill(Color.black.opacity(0.45)))
+        }
+        .animation(.spring(response: 0.28, dampingFraction: 0.82), value: isNearby)
+        .accessibilityLabel("\(character.name), \(character.role)")
+    }
+}
+
+private struct VillagePlayerView: View {
+    var body: some View {
+        VStack(spacing: 4) {
+            ZStack {
+                Ellipse()
+                    .fill(Color.black.opacity(0.26))
+                    .frame(width: 70, height: 18)
+                    .offset(y: 76)
+
+                GameArtImage("player_avatar")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 108, height: 156)
+                    .shadow(color: Color.black.opacity(0.32), radius: 7, y: 5)
+            }
+
+            Text("You")
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 9)
+                .padding(.vertical, 4)
+                .background(Capsule().fill(Color.black.opacity(0.48)))
+        }
+        .accessibilityLabel("Your character")
+    }
+}
+
+private struct VillageControls: View {
+    let primaryTitle: String
+    let canUsePrimary: Bool
+    let moveVector: (CGSize) -> Void
+    let usePrimary: () -> Void
+
+    var body: some View {
+        HStack(alignment: .bottom, spacing: 14) {
+            CircularMovePad(moveVector: moveVector)
+
+            Spacer()
+
+            Button(action: usePrimary) {
+                HStack(spacing: 8) {
+                    Image(systemName: canUsePrimary ? "hand.tap.fill" : "sparkles")
+                    Text(primaryTitle)
+                }
+                .font(.system(size: 16, weight: .black, design: .rounded))
+                .foregroundStyle(canUsePrimary ? Color(red: 0.13, green: 0.16, blue: 0.13) : .white.opacity(0.70))
+                .frame(width: 160, height: 56)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(canUsePrimary ? Color(red: 1.0, green: 0.84, blue: 0.36) : Color.black.opacity(0.38))
+                        .stroke(Color.white.opacity(canUsePrimary ? 0.72 : 0.18), lineWidth: 1)
+                )
+            }
+            .buttonStyle(.plain)
+            .disabled(!canUsePrimary)
+            .accessibilityLabel(primaryTitle)
+        }
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.black.opacity(0.38))
+                .stroke(Color.white.opacity(0.16), lineWidth: 1)
         )
     }
 }
 
-private struct MapStageNode: View {
-    let stage: QuestStage
+private struct CircularMovePad: View {
+    let moveVector: (CGSize) -> Void
+    @State private var knobOffset = CGSize.zero
+
+    private let padSize: CGFloat = 118
+    private let knobSize: CGFloat = 46
+    private let maxOffset: CGFloat = 38
 
     var body: some View {
-        VStack(spacing: 7) {
-            ZStack {
-                if stage.isUnlocked {
-                    Circle()
-                        .fill(stage.tint.opacity(0.28))
-                        .frame(width: 108, height: 108)
-                        .blur(radius: 10)
-                }
+        ZStack {
+            Circle()
+                .fill(Color.black.opacity(0.38))
+                .stroke(Color.white.opacity(0.22), lineWidth: 2)
 
-                ArtImage(stage.thumbnailName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 82, height: 82)
-                    .clipShape(Circle())
-                    .saturation(stage.isUnlocked ? 1 : 0.45)
-                    .brightness(stage.isUnlocked ? 0.02 : -0.12)
-                    .shadow(color: stage.tint.opacity(stage.isUnlocked ? 0.88 : 0.24), radius: stage.isUnlocked ? 14 : 5)
+            Circle()
+                .fill(Color.white.opacity(0.10))
+                .frame(width: 82, height: 82)
 
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                stage.tint.opacity(0.15),
-                                Color.black.opacity(stage.isUnlocked ? 0.08 : 0.48)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
+            Circle()
+                .fill(Color(red: 0.17, green: 0.56, blue: 0.48))
+                .stroke(Color.white.opacity(0.70), lineWidth: 2)
+                .frame(width: knobSize, height: knobSize)
+                .shadow(color: Color.black.opacity(0.25), radius: 5, y: 3)
+                .offset(knobOffset)
+        }
+        .frame(width: padSize, height: padSize)
+        .contentShape(Circle())
+        .gesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { value in
+                    let center = CGPoint(x: padSize / 2, y: padSize / 2)
+                    let raw = CGSize(
+                        width: value.location.x - center.x,
+                        height: value.location.y - center.y
                     )
-                    .frame(width: 82, height: 82)
-
-                Circle()
-                    .stroke(Color.white.opacity(stage.isUnlocked ? 0.92 : 0.42), lineWidth: 3)
-                    .frame(width: 82, height: 82)
-
-                Circle()
-                    .stroke(stage.tint.opacity(stage.isUnlocked ? 0.95 : 0.48), lineWidth: 5)
-                    .frame(width: 92, height: 92)
-
-                VStack(spacing: 2) {
-                    Image(systemName: stage.isUnlocked ? stage.icon : "lock.fill")
-                        .font(.system(size: 23, weight: .black))
-                    Text("\(stage.number)")
-                        .font(.system(size: 15, weight: .black, design: .rounded))
+                    let clamped = clamp(raw)
+                    knobOffset = clamped
+                    moveVector(CGSize(width: clamped.width / maxOffset, height: clamped.height / maxOffset))
                 }
-                .foregroundStyle(.white)
-                .shadow(color: .black.opacity(0.75), radius: 4, y: 1)
+                .onEnded { _ in
+                    knobOffset = .zero
+                }
+        )
+        .accessibilityLabel("Movement control")
+    }
+
+    private func clamp(_ value: CGSize) -> CGSize {
+        let length = hypot(value.width, value.height)
+        guard length > maxOffset else {
+            return value
+        }
+
+        let scale = maxOffset / length
+        return CGSize(width: value.width * scale, height: value.height * scale)
+    }
+}
+
+private struct ScholarPracticeView: View {
+    let character: VillageCharacter
+    @StateObject private var viewModel = ScholarPracticeViewModel()
+    @State private var typedAnswer = ""
+    @FocusState private var isAnswerFocused: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .top, spacing: 12) {
+                GameArtImage(character.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 58, height: 72)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(character.name)
+                        .font(.system(size: 25, weight: .black, design: .rounded))
+                    Text(character.greeting)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
             }
 
-            VStack(spacing: 1) {
-                Text("Stage \(stage.number)")
-                    .font(.system(size: 12, weight: .black, design: .rounded))
-                Text(stage.status.label)
-                    .font(.system(size: 10, weight: .black, design: .rounded))
-                    .foregroundStyle(stage.isUnlocked ? Color(red: 0.74, green: 1.0, blue: 0.54) : .white.opacity(0.58))
+            HStack(spacing: 10) {
+                PracticeStat(title: "Score", value: "\(viewModel.correctCount)")
+                PracticeStat(title: "Streak", value: "\(viewModel.streak)")
+                PracticeStat(title: "Round", value: "\(viewModel.round)")
             }
-            .foregroundStyle(.white)
-            .padding(.horizontal, 9)
-            .padding(.vertical, 5)
-            .background(Capsule().fill(Color.black.opacity(0.56)))
+
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text(viewModel.prompt.mode.title)
+                        .font(.system(size: 14, weight: .black, design: .rounded))
+                        .foregroundStyle(Color(red: 0.16, green: 0.50, blue: 0.66))
+
+                    Spacer()
+
+                    if viewModel.prompt.audioPath != nil {
+                        Button {
+                            viewModel.playPromptAudio()
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundStyle(.white)
+                                .frame(width: 42, height: 42)
+                                .background(Circle().fill(Color(red: 0.16, green: 0.50, blue: 0.66)))
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Play audio prompt")
+                    }
+                }
+
+                Text(viewModel.prompt.question)
+                    .font(.system(size: 30, weight: .black, design: .rounded))
+                    .foregroundStyle(.primary)
+                    .minimumScaleFactor(0.75)
+                    .lineLimit(3)
+
+                Text(viewModel.feedback)
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .foregroundStyle(viewModel.lastAnswerWasCorrect ? .green : .secondary)
+                    .frame(minHeight: 36, alignment: .topLeading)
+            }
+            .padding(14)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(uiColor: .secondarySystemBackground))
+            )
+
+            if viewModel.prompt.mode == .audioToSpanish {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    ForEach(viewModel.prompt.choices, id: \.self) { choice in
+                        Button {
+                            submit(choice)
+                        } label: {
+                            Text(choice)
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity, minHeight: 50)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color(red: 0.17, green: 0.56, blue: 0.48))
+                                )
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(viewModel.isResolving)
+                    }
+                }
+            } else {
+                HStack(spacing: 10) {
+                    TextField("Type your answer", text: $typedAnswer)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .submitLabel(.done)
+                        .focused($isAnswerFocused)
+                        .onSubmit {
+                            submit(typedAnswer)
+                        }
+                        .padding(.horizontal, 12)
+                        .frame(minHeight: 54)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color(uiColor: .secondarySystemBackground))
+                                .stroke(Color(red: 0.17, green: 0.56, blue: 0.48).opacity(0.54), lineWidth: 1)
+                        )
+
+                    Button {
+                        submit(typedAnswer)
+                    } label: {
+                        Text("Check")
+                            .font(.system(size: 15, weight: .black, design: .rounded))
+                            .foregroundStyle(.white)
+                            .frame(width: 88)
+                            .frame(minHeight: 54)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(typedAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray.opacity(0.36) : Color(red: 0.17, green: 0.56, blue: 0.48))
+                            )
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(typedAnswer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || viewModel.isResolving)
+                }
+            }
+
+            Button {
+                viewModel.nextPrompt()
+            } label: {
+                Text("Skip")
+                    .font(.system(size: 15, weight: .black, design: .rounded))
+                    .foregroundStyle(Color(red: 0.17, green: 0.56, blue: 0.48))
+                    .frame(maxWidth: .infinity, minHeight: 46)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(red: 0.17, green: 0.56, blue: 0.48), lineWidth: 1)
+                    )
+            }
+            .buttonStyle(.plain)
+            .disabled(viewModel.isResolving)
+
+            Spacer(minLength: 0)
         }
-        .opacity(stage.isUnlocked ? 1 : 0.72)
-        .accessibilityLabel("\(stage.name), \(stage.status.label)")
+        .padding(18)
+        .onAppear {
+            isAnswerFocused = viewModel.prompt.mode != .audioToSpanish
+            if viewModel.prompt.audioPath != nil {
+                viewModel.playPromptAudio()
+            }
+        }
+        .onChange(of: viewModel.prompt.id) { _, _ in
+            typedAnswer = ""
+            isAnswerFocused = viewModel.prompt.mode != .audioToSpanish
+            if viewModel.prompt.audioPath != nil {
+                viewModel.playPromptAudio()
+            }
+        }
+    }
+
+    private func submit(_ answer: String) {
+        let trimmed = answer.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else {
+            return
+        }
+
+        viewModel.answer(trimmed)
+        typedAnswer = ""
     }
 }
 
-private struct MapStoryPin: View {
-    let imageName: String
-    let label: String
-    let accent: Color
+private struct PracticeStat: View {
+    let title: String
+    let value: String
 
     var body: some View {
-        VStack(spacing: 3) {
-            ArtImage(imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 48, height: 48)
-                .clipShape(Circle())
-                .overlay(
-                    Circle()
-                        .stroke(accent, lineWidth: 3)
-                )
-                .shadow(color: accent.opacity(0.70), radius: 9)
-
-            Text(label)
-                .font(.system(size: 10, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 7)
-                .padding(.vertical, 3)
-                .background(Capsule().fill(Color.black.opacity(0.62)))
+        VStack(spacing: 2) {
+            Text(value)
+                .font(.system(size: 22, weight: .black, design: .rounded))
+            Text(title)
+                .font(.system(size: 11, weight: .black, design: .rounded))
+                .foregroundStyle(.secondary)
         }
-        .accessibilityLabel(label)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 9)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(uiColor: .secondarySystemBackground))
+        )
     }
 }
 
-private struct HeroLocationBadge: View {
-    var body: some View {
-        VStack(spacing: 3) {
-            SpriteSheetFirstFrame(imageName: "hero_spritesheet", size: 50)
-                .padding(4)
-                .background(Circle().fill(Color(red: 0.11, green: 0.48, blue: 0.42)))
-                .overlay(
-                    Circle()
-                        .stroke(Color(red: 0.72, green: 1.0, blue: 0.56), lineWidth: 3)
-                )
-                .shadow(color: Color(red: 0.42, green: 1.0, blue: 0.62).opacity(0.82), radius: 12)
+@MainActor
+private final class ScholarPracticeViewModel: ObservableObject {
+    @Published private(set) var prompt: QuizPrompt
+    @Published private(set) var correctCount = 0
+    @Published private(set) var streak = 0
+    @Published private(set) var round = 1
+    @Published private(set) var lastAnswerWasCorrect = false
+    @Published private(set) var isResolving = false
+    @Published var feedback = "Answer the scholar's prompt. No battle, just practice."
 
-            Text("Hero")
-                .font(.system(size: 10, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 7)
-                .padding(.vertical, 3)
-                .background(Capsule().fill(Color.black.opacity(0.62)))
+    private let quizEngine: QuizEngine
+    private let audioPlayer = AudioPlayer()
+
+    init(vocabulary: Vocabulary = VocabularyLoader.load()) {
+        quizEngine = QuizEngine(vocabulary: vocabulary)
+        prompt = quizEngine.nextPrompt()
+    }
+
+    func answer(_ value: String) {
+        guard !isResolving else {
+            return
         }
-        .accessibilityLabel("Hero current location")
+
+        isResolving = true
+
+        if prompt.accepts(value) {
+            correctCount += 1
+            streak += 1
+            lastAnswerWasCorrect = true
+            feedback = "Correct. \(prompt.acceptedAnswers.joined(separator: " / "))"
+        } else {
+            streak = 0
+            lastAnswerWasCorrect = false
+            feedback = "Not quite. Answer: \(prompt.acceptedAnswers.joined(separator: " / "))"
+        }
+
+        Task {
+            try? await Task.sleep(for: .milliseconds(700))
+            nextPrompt()
+        }
+    }
+
+    func nextPrompt() {
+        round += 1
+        prompt = quizEngine.nextPrompt()
+        lastAnswerWasCorrect = false
+        isResolving = false
+        feedback = "Try the next Spanish prompt."
+    }
+
+    func playPromptAudio() {
+        audioPlayer.play(path: prompt.audioPath)
     }
 }
 
-private struct SpriteSheetFirstFrame: View {
-    let imageName: String
-    let size: CGFloat
-
-    var body: some View {
-        ZStack(alignment: .topLeading) {
-            ArtImage(imageName)
-                .resizable()
-                .interpolation(.none)
-                .frame(width: size * 4, height: size * 4)
-        }
-        .frame(width: size, height: size, alignment: .topLeading)
-        .clipShape(Circle())
-    }
-}
-
-private struct ArtImage {
+private struct GameArtImage {
     private let image: Image
 
     init(_ name: String) {
-        if let uiImage = UIImage(named: name) ?? UIImage(contentsOfFile: Bundle.main.path(forResource: name, ofType: "png") ?? "") {
+        let bundlePath = Bundle.main.path(forResource: name, ofType: "png")
+        let artPath = Bundle.main.path(forResource: name, ofType: "png", inDirectory: "Resources/Art")
+
+        if let uiImage = UIImage(named: name)
+            ?? UIImage(contentsOfFile: bundlePath ?? "")
+            ?? UIImage(contentsOfFile: artPath ?? "") {
             image = Image(uiImage: uiImage)
         } else {
             image = Image(systemName: "photo")
