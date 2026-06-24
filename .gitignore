@@ -4,6 +4,7 @@ ios/**/*.xcuserdata/
 xcuserdata/
 *.xcuserstate
 .DS_Store
+godot/.godot/
 
 # Local secrets and machine-specific config.
 seven_eleven_key
