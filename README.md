@@ -1,6 +1,8 @@
-# Spanish Learning CLI
+# Spanish Quest
 
-A Rust CLI for Spanish practice drills.
+Spanish Quest contains a Rust CLI for vocabulary practice and a Godot 4 village-learning game prototype.
+
+## Rust CLI
 
 The first data file lives at `data/vocabulary.json` and currently contains:
 
@@ -46,7 +48,7 @@ The new game-first prototype lives in `godot/` and is intended to become the mai
 It currently includes:
 
 - a Godot 4 project with `res://scenes/Main.tscn` as the entry scene
-- HD 2D village, school, cafe, and library backgrounds copied from the iOS prototype
+- HD 2D village, school, cafe, and library backgrounds
 - a normal player character and scholar NPC sprite
 - free player movement with keyboard, tap-to-move, and a circular mobile joystick
 - camera follow and zoom controls
@@ -78,30 +80,3 @@ The app logic is intentionally small and data-driven:
 - `godot/scripts/Main.gd`: village maps, player movement, camera, portals, NPC interaction
 - `godot/scripts/VirtualJoystick.gd`: mobile movement control
 - `godot/scripts/QuizPanel.gd`: scholar quiz UI and vocabulary loading
-
-## iOS village prototype
-
-The first native iOS prototype lives in `ios/SpanishQuest`.
-
-It is now a legacy native prototype kept as a reference while the game layer moves to Godot:
-
-- the root screen is a generated HD 2D Spanish village map
-- the player can move freely by dragging, tapping, or using a circular phone movement pad
-- the village is scene-driven so more buildings, interiors, and characters can be added
-- the school, cafe, and library are enterable buildings with generated HD 2D interior backgrounds
-- the player and first scholar NPC use generated HD 2D character sprites
-- the first character is a scholar inside the library
-- talking with the scholar starts a simple Spanish quiz using the existing vocabulary and audio data
-- the old battle prototype files are still in the project, but the app now launches into the village
-
-Build it from the repo root:
-
-```sh
-xcodebuild -project ios/SpanishQuest/SpanishQuest.xcodeproj \
-  -scheme SpanishQuest \
-  -destination 'generic/platform=iOS Simulator' \
-  -derivedDataPath ios/SpanishQuest/DerivedData \
-  build
-```
-
-The app currently bundles a snapshot of `data/vocabulary.json`, `data/audio/`, and the generated art assets under `ios/SpanishQuest/SpanishQuest/Resources/`.
