@@ -722,7 +722,7 @@ private struct VillageCharacterView: View {
                 GameArtImage(character.imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: isNearby ? 70 : 64, height: isNearby ? 92 : 84)
+                    .frame(width: isNearby ? 82 : 74, height: isNearby ? 110 : 100)
                     .shadow(color: Color.black.opacity(0.30), radius: 7, y: 5)
             }
 
@@ -754,7 +754,7 @@ private struct VillagePlayerView: View {
                 GameArtImage("player_avatar")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 64, height: 84)
+                    .frame(width: 74, height: 100)
                     .scaleEffect(x: facing, y: 1, anchor: .center)
                     .offset(y: isMoving && bob ? -5 : 0)
                     .shadow(color: Color.black.opacity(0.32), radius: 7, y: 5)
