@@ -16,6 +16,7 @@
 		1A0000010000000000000007 /* Services/AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000107 /* Services/AudioPlayer.swift */; };
 		1A0000010000000000000008 /* ViewModels/BattleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000108 /* ViewModels/BattleViewModel.swift */; };
 		1A0000010000000000000009 /* Game/BattleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000109 /* Game/BattleScene.swift */; };
+		1A000001000000000000001E /* Game/VillageExploreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000110 /* Game/VillageExploreScene.swift */; };
 		1A000001000000000000000A /* Views/HPBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010A /* Views/HPBarView.swift */; };
 		1A000001000000000000000B /* Views/BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010B /* Views/BattleView.swift */; };
 		1A000001000000000000000C /* Views/QuizPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000010C /* Views/QuizPanelView.swift */; };
@@ -49,6 +50,7 @@
 		1A0000010000000000000107 /* Services/AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AudioPlayer.swift; sourceTree = "<group>"; };
 		1A0000010000000000000108 /* ViewModels/BattleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/BattleViewModel.swift; sourceTree = "<group>"; };
 		1A0000010000000000000109 /* Game/BattleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game/BattleScene.swift; sourceTree = "<group>"; };
+		1A0000010000000000000110 /* Game/VillageExploreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game/VillageExploreScene.swift; sourceTree = "<group>"; };
 		1A000001000000000000010A /* Views/HPBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HPBarView.swift; sourceTree = "<group>"; };
 		1A000001000000000000010B /* Views/BattleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/BattleView.swift; sourceTree = "<group>"; };
 		1A000001000000000000010C /* Views/QuizPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/QuizPanelView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0000010000000000000109 /* Game/BattleScene.swift */,
+				1A0000010000000000000110 /* Game/VillageExploreScene.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				1A0000010000000000000007 /* Services/AudioPlayer.swift in Sources */,
 				1A0000010000000000000008 /* ViewModels/BattleViewModel.swift in Sources */,
 				1A0000010000000000000009 /* Game/BattleScene.swift in Sources */,
+				1A000001000000000000001E /* Game/VillageExploreScene.swift in Sources */,
 				1A000001000000000000000A /* Views/HPBarView.swift in Sources */,
 				1A000001000000000000000B /* Views/BattleView.swift in Sources */,
 				1A000001000000000000000C /* Views/QuizPanelView.swift in Sources */,
