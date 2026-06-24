@@ -39,18 +39,20 @@ The API key file is passed in explicitly and is ignored by Git. Audio files are 
 
 By default, `generate-audio` reuses existing audio files. Pass `--overwrite` when you intentionally want to regenerate them.
 
-## iOS game prototype
+## iOS village prototype
 
 The first native iOS prototype lives in `ios/SpanishQuest`.
 
-It is a SwiftUI + SpriteKit battle quiz:
+It is now a SwiftUI village-learning prototype:
 
-- the top area renders a 2D JRPG-style hero, monster, and forest arena
-- the bottom area shows Spanish quiz prompts with typed answers
-- first correct answer gives a full result
-- second correct answer gives a half result
-- wrong twice fails the current attack or dodge
-- player and monster HP bars animate as answers resolve
+- the root screen is a generated HD 2D Spanish village map
+- the player can move freely by dragging, tapping, or using a circular phone movement pad
+- the village is scene-driven so more buildings, interiors, and characters can be added
+- the school, cafe, and library are enterable buildings with generated HD 2D interior backgrounds
+- the player and first scholar NPC use generated HD 2D character sprites
+- the first character is a scholar inside the library
+- talking with the scholar starts a simple Spanish quiz using the existing vocabulary and audio data
+- the old battle prototype files are still in the project, but the app now launches into the village
 
 Build it from the repo root:
 

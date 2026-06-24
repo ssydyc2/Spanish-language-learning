@@ -30,6 +30,12 @@
 		1A0000010000000000000015 /* Resources/Art/world_map_storybook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000208 /* Resources/Art/world_map_storybook.png */; };
 		1A0000010000000000000016 /* Resources/Art/shadow_dragon_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000209 /* Resources/Art/shadow_dragon_portrait.png */; };
 		1A0000010000000000000017 /* Resources/Art/princess_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020A /* Resources/Art/princess_portrait.png */; };
+		1A0000010000000000000018 /* Resources/Art/village_map_sim.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020B /* Resources/Art/village_map_sim.png */; };
+		1A0000010000000000000019 /* Resources/Art/school_interior_sim.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020C /* Resources/Art/school_interior_sim.png */; };
+		1A000001000000000000001A /* Resources/Art/cafe_interior_sim.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020D /* Resources/Art/cafe_interior_sim.png */; };
+		1A000001000000000000001B /* Resources/Art/library_interior_sim.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020E /* Resources/Art/library_interior_sim.png */; };
+		1A000001000000000000001C /* Resources/Art/player_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A000001000000000000020F /* Resources/Art/player_avatar.png */; };
+		1A000001000000000000001D /* Resources/Art/scholar_npc.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000010000000000000210 /* Resources/Art/scholar_npc.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +63,12 @@
 		1A0000010000000000000208 /* Resources/Art/world_map_storybook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/world_map_storybook.png; sourceTree = "<group>"; };
 		1A0000010000000000000209 /* Resources/Art/shadow_dragon_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/shadow_dragon_portrait.png; sourceTree = "<group>"; };
 		1A000001000000000000020A /* Resources/Art/princess_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/princess_portrait.png; sourceTree = "<group>"; };
+		1A000001000000000000020B /* Resources/Art/village_map_sim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/village_map_sim.png; sourceTree = "<group>"; };
+		1A000001000000000000020C /* Resources/Art/school_interior_sim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/school_interior_sim.png; sourceTree = "<group>"; };
+		1A000001000000000000020D /* Resources/Art/cafe_interior_sim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/cafe_interior_sim.png; sourceTree = "<group>"; };
+		1A000001000000000000020E /* Resources/Art/library_interior_sim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/library_interior_sim.png; sourceTree = "<group>"; };
+		1A000001000000000000020F /* Resources/Art/player_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/player_avatar.png; sourceTree = "<group>"; };
+		1A0000010000000000000210 /* Resources/Art/scholar_npc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resources/Art/scholar_npc.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +180,12 @@
 				1A0000010000000000000208 /* Resources/Art/world_map_storybook.png */,
 				1A0000010000000000000209 /* Resources/Art/shadow_dragon_portrait.png */,
 				1A000001000000000000020A /* Resources/Art/princess_portrait.png */,
+				1A000001000000000000020B /* Resources/Art/village_map_sim.png */,
+				1A000001000000000000020C /* Resources/Art/school_interior_sim.png */,
+				1A000001000000000000020D /* Resources/Art/cafe_interior_sim.png */,
+				1A000001000000000000020E /* Resources/Art/library_interior_sim.png */,
+				1A000001000000000000020F /* Resources/Art/player_avatar.png */,
+				1A0000010000000000000210 /* Resources/Art/scholar_npc.png */,
 			);
 			name = Art;
 			sourceTree = "<group>";
@@ -240,6 +258,12 @@
 				1A0000010000000000000015 /* Resources/Art/world_map_storybook.png in Resources */,
 				1A0000010000000000000016 /* Resources/Art/shadow_dragon_portrait.png in Resources */,
 				1A0000010000000000000017 /* Resources/Art/princess_portrait.png in Resources */,
+				1A0000010000000000000018 /* Resources/Art/village_map_sim.png in Resources */,
+				1A0000010000000000000019 /* Resources/Art/school_interior_sim.png in Resources */,
+				1A000001000000000000001A /* Resources/Art/cafe_interior_sim.png in Resources */,
+				1A000001000000000000001B /* Resources/Art/library_interior_sim.png in Resources */,
+				1A000001000000000000001C /* Resources/Art/player_avatar.png in Resources */,
+				1A000001000000000000001D /* Resources/Art/scholar_npc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
