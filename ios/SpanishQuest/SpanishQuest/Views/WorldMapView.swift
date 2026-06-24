@@ -278,16 +278,19 @@ final class VillageGameModel: ObservableObject {
 
     func movePlayer(to destination: CGPoint) {
         let nextPosition = clamp(destination)
-        guard isWalkable(nextPosition, in: scene) else {
+        if isWalkable(nextPosition, in: scene) {
+            move(to: nextPosition)
+            return
+        }
+
+        guard let fallbackPosition = stepTowardWalkable(destination) else {
             statusText = scene.id == .village
                 ? "Stay on the paths to explore the village."
                 : "Walk through the open floor area."
             return
         }
 
-        markMoving(from: playerPosition, to: nextPosition)
-        playerPosition = nextPosition
-        updateStatus()
+        move(to: fallbackPosition)
     }
 
     func usePrimaryAction() {
@@ -344,6 +347,33 @@ final class VillageGameModel: ObservableObject {
 
     private func isWalkable(_ point: CGPoint, in scene: VillageScene) -> Bool {
         scene.walkableAreas.contains { $0.contains(point) }
+    }
+
+    private func stepTowardWalkable(_ destination: CGPoint) -> CGPoint? {
+        let delta = CGSize(
+            width: destination.x - playerPosition.x,
+            height: destination.y - playerPosition.y
+        )
+        let distance = hypot(delta.width, delta.height)
+        guard distance > 0 else {
+            return nil
+        }
+
+        let step = min(movementStep, distance)
+        let candidate = clamp(
+            CGPoint(
+                x: playerPosition.x + delta.width / distance * step,
+                y: playerPosition.y + delta.height / distance * step
+            )
+        )
+
+        return isWalkable(candidate, in: scene) ? candidate : nil
+    }
+
+    private func move(to nextPosition: CGPoint) {
+        markMoving(from: playerPosition, to: nextPosition)
+        playerPosition = nextPosition
+        updateStatus()
     }
 
     private func markMoving(from oldPosition: CGPoint, to newPosition: CGPoint) {
@@ -797,6 +827,8 @@ private struct VillageControls: View {
 private struct CircularMovePad: View {
     let moveVector: (CGSize) -> Void
     @State private var knobOffset = CGSize.zero
+    @State private var activeVector = CGSize.zero
+    @State private var movementTimer: Timer?
 
     private let padSize: CGFloat = 118
     private let knobSize: CGFloat = 46
@@ -831,12 +863,18 @@ private struct CircularMovePad: View {
                     )
                     let clamped = clamp(raw)
                     knobOffset = clamped
-                    moveVector(CGSize(width: clamped.width / maxOffset, height: clamped.height / maxOffset))
+                    activeVector = CGSize(width: clamped.width / maxOffset, height: clamped.height / maxOffset)
+                    startMovementTimer()
                 }
                 .onEnded { _ in
                     knobOffset = .zero
+                    activeVector = .zero
+                    stopMovementTimer()
                 }
         )
+        .onDisappear {
+            stopMovementTimer()
+        }
         .accessibilityLabel("Movement control")
     }
 
@@ -848,6 +886,27 @@ private struct CircularMovePad: View {
 
         let scale = maxOffset / length
         return CGSize(width: value.width * scale, height: value.height * scale)
+    }
+
+    private func startMovementTimer() {
+        guard movementTimer == nil else {
+            return
+        }
+
+        moveVector(activeVector)
+        movementTimer = Timer.scheduledTimer(withTimeInterval: 0.075, repeats: true) { _ in
+            guard activeVector != .zero else {
+                stopMovementTimer()
+                return
+            }
+
+            moveVector(activeVector)
+        }
+    }
+
+    private func stopMovementTimer() {
+        movementTimer?.invalidate()
+        movementTimer = nil
     }
 }
 
