@@ -1,5 +1,4 @@
 extends Control
-class_name VirtualJoystick
 
 signal vector_changed(vector: Vector2)
 
