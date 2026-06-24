@@ -1,4 +1,5 @@
 /target
+ios/
 ios/**/DerivedData/
 ios/**/*.xcuserdata/
 xcuserdata/
