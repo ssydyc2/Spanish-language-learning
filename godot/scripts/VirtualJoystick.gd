@@ -54,8 +54,8 @@ func _gui_input(event: InputEvent) -> void:
         accept_event()
 
 
-func _set_from_local_position(position: Vector2) -> void:
-    var raw := position - size * 0.5
+func _set_from_local_position(local_position: Vector2) -> void:
+    var raw := local_position - size * 0.5
     knob_offset = raw.limit_length(pad_radius)
     vector_changed.emit(knob_offset / pad_radius)
     queue_redraw()

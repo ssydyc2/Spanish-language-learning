@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://spanish_quest_library"]
+
+[ext_resource type="Script" path="res://scripts/MapLocation.gd" id="1_location"]
+[ext_resource type="Texture2D" path="res://assets/art/library_interior_sim.png" id="2_background"]
+[ext_resource type="Script" path="res://scripts/PortalArea.gd" id="3_portal"]
+[ext_resource type="Script" path="res://scripts/CharacterArea.gd" id="4_character"]
+[ext_resource type="Texture2D" path="res://assets/art/scholar_npc.png" id="5_scholar"]
+
+[node name="Library" type="Node2D"]
+scale = Vector2(1.35, 1.35)
+script = ExtResource("1_location")
+scene_id = "library"
+title = "Village Library"
+subtitle = "Walk close to the scholar to practice Spanish."
+default_status = "Walk close to the scholar to start Spanish practice. Exit near the bottom."
+map_size = Vector2(1254, 1254)
+initial_zoom = 1.0
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+texture = ExtResource("2_background")
+centered = false
+
+[node name="Collision" type="Node2D" parent="."]
+
+[node name="MapBounds" type="StaticBody2D" parent="Collision"]
+
+[node name="Top" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(0, -80, 1254, -80, 1254, 0, 0, 0)
+
+[node name="Bottom" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(0, 1254, 1254, 1254, 1254, 1334, 0, 1334)
+
+[node name="Left" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(-80, 0, 0, 0, 0, 1254, -80, 1254)
+
+[node name="Right" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Entry" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(625, 930)
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="library-exit" type="Area2D" parent="Portals"]
+position = Vector2(630, 1130)
+script = ExtResource("3_portal")
+portal_id = "library-exit"
+portal_title = "Village Plaza"
+action_title = "Exit Library"
+destination_scene = "village"
+destination_spawn = "LibraryReturn"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/library-exit"]
+polygon = PackedVector2Array(-220, -100, 220, -100, 220, 100, -220, 100)
+
+[node name="Marker" type="Polygon2D" parent="Portals/library-exit"]
+z_index = 50
+polygon = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0)
+color = Color(0, 0, 0, 0.46)
+
+[node name="Label" type="Label" parent="Portals/library-exit"]
+position = Vector2(-64, 24)
+text = "Village Plaza"
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="scholar" type="Area2D" parent="Characters"]
+position = Vector2(650, 610)
+z_index = 610
+script = ExtResource("4_character")
+character_id = "scholar"
+character_name = "Scholar"
+role = "Spanish Tutor"
+greeting = "Bienvenido. Let's practice Spanish in the library."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Characters/scholar"]
+polygon = PackedVector2Array(-90, -120, 90, -120, 90, 32, -90, 32)
+
+[node name="Shadow" type="Polygon2D" parent="Characters/scholar"]
+polygon = PackedVector2Array(22, 0, 20.326, 4.975, 15.556, 9.192, 8.419, 12.011, 0, 13, -8.419, 12.011, -15.556, 9.192, -20.326, 4.975, -22, 0, -20.326, -4.975, -15.556, -9.192, -8.419, -12.011, 0, -13, 8.419, -12.011, 15.556, -9.192, 20.326, -4.975)
+color = Color(0, 0, 0, 0.24)
+
+[node name="Sprite" type="Sprite2D" parent="Characters/scholar"]
+position = Vector2(0, -56)
+scale = Vector2(0.143631, 0.143631)
+z_index = 10
+texture = ExtResource("5_scholar")
+
+[node name="Label" type="Label" parent="Characters/scholar"]
+position = Vector2(-34, -118)
+text = "Scholar"
