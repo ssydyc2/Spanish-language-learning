@@ -6,6 +6,12 @@ const PLAYER_SPRITE_HEIGHT := 108.0
 const PLAYER_RUN_FRAME_COUNT := 6
 const CAMERA_EDGE_PADDING := 12.0
 const MIN_CAMERA_ZOOM := 0.58
+const MOVEMENT_COLLISION_LAYER := 1
+const DEBUG_COLLISION_COLOR := Color(1.0, 0.26, 0.12, 0.32)
+const DEBUG_COLLISION_OUTLINE_COLOR := Color(1.0, 0.9, 0.25, 0.72)
+const DEBUG_WALKABLE_COLOR := Color(0.2, 0.95, 0.45, 0.22)
+const DEBUG_WALKABLE_OUTLINE_COLOR := Color(0.45, 1.0, 0.65, 0.72)
+const DEBUG_COLLISION_Z_INDEX := 4090
 
 const LOCATION_SCENES := {
 	"village": "res://scenes/locations/Village.tscn",
@@ -28,6 +34,7 @@ var player: CharacterBody2D
 var player_sprite: AnimatedSprite2D
 var player_sprite_base_scale := 1.0
 var player_shadow: Polygon2D
+var collision_debug_root: Node2D
 var camera: Camera2D
 var title_label: Label
 var status_label: Label
@@ -35,6 +42,7 @@ var interact_button: Button
 var quiz_panel: Control
 
 @export var player_speed := 210.0
+@export var show_collision_debug := false
 
 func _ready() -> void:
 	randomize()
@@ -53,6 +61,12 @@ func _process(delta: float) -> void:
 	_update_camera()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F3:
+		show_collision_debug = not show_collision_debug
+		_refresh_collision_debug_overlay()
+
+
 func _build_world() -> void:
 	world = Node2D.new()
 	add_child(world)
@@ -63,6 +77,8 @@ func _build_world() -> void:
 
 	player = CharacterBody2D.new()
 	player.name = "Player"
+	player.collision_layer = MOVEMENT_COLLISION_LAYER
+	player.collision_mask = MOVEMENT_COLLISION_LAYER
 	world.add_child(player)
 
 	player_shadow = _ellipse_polygon(Vector2(46, 14), Color(0, 0, 0, 0.28))
@@ -79,10 +95,17 @@ func _build_world() -> void:
 	player_sprite.scale = Vector2.ONE * player_sprite_base_scale
 
 	var shape := CollisionShape2D.new()
+	shape.name = "FootCollision"
 	var circle := CircleShape2D.new()
-	circle.radius = 18
+	circle.radius = 16
 	shape.shape = circle
 	player.add_child(shape)
+
+	collision_debug_root = Node2D.new()
+	collision_debug_root.name = "CollisionDebugOverlay"
+	collision_debug_root.z_index = DEBUG_COLLISION_Z_INDEX
+	collision_debug_root.visible = show_collision_debug
+	world.add_child(collision_debug_root)
 
 	camera = Camera2D.new()
 	camera.enabled = true
@@ -200,6 +223,7 @@ func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 	var packed_scene: PackedScene = load(LOCATION_SCENES[next_scene_id])
 	current_location = packed_scene.instantiate()
 	location_holder.add_child(current_location)
+	_refresh_collision_debug_overlay()
 
 	joystick_vector = Vector2.ZERO
 	player.velocity = Vector2.ZERO
@@ -231,8 +255,10 @@ func _update_movement(_delta: float) -> void:
 	else:
 		player.velocity = Vector2.ZERO
 
+	var previous_position := player.global_position
 	player.move_and_slide()
 	_clamp_player_to_map()
+	_constrain_player_to_walkable_area(previous_position)
 	player.z_index = int(player.global_position.y)
 
 
@@ -250,6 +276,80 @@ func _clamp_player_to_map() -> void:
 		clamp(player.global_position.x, 48.0, map_size.x - 48.0),
 		clamp(player.global_position.y, 58.0, map_size.y - 58.0)
 	)
+
+
+func _refresh_collision_debug_overlay() -> void:
+	if collision_debug_root == null:
+		return
+
+	for child in collision_debug_root.get_children():
+		child.queue_free()
+
+	collision_debug_root.visible = show_collision_debug
+	if not show_collision_debug or current_location == null:
+		return
+
+	var collision_root := current_location.get_node_or_null("Collision")
+	if collision_root != null:
+		for collision_polygon in collision_root.find_children("*", "CollisionPolygon2D", true, false):
+			if collision_polygon.disabled:
+				continue
+
+			_add_debug_polygon(
+				collision_polygon.polygon,
+				collision_polygon.global_transform,
+				DEBUG_COLLISION_COLOR,
+				DEBUG_COLLISION_OUTLINE_COLOR
+			)
+
+	if current_location.has_method("get_walkable_areas"):
+		for walkable_area in current_location.get_walkable_areas():
+			_add_debug_polygon(
+				walkable_area.polygon,
+				walkable_area.global_transform,
+				DEBUG_WALKABLE_COLOR,
+				DEBUG_WALKABLE_OUTLINE_COLOR
+			)
+
+
+func _add_debug_polygon(polygon: PackedVector2Array, transform: Transform2D, fill_color: Color, outline_color: Color) -> void:
+	var fill := Polygon2D.new()
+	fill.polygon = polygon
+	fill.color = fill_color
+	fill.z_index = DEBUG_COLLISION_Z_INDEX
+	collision_debug_root.add_child(fill)
+	fill.global_transform = transform
+
+	var outline := Line2D.new()
+	outline.points = polygon
+	outline.closed = true
+	outline.width = 2.0
+	outline.default_color = outline_color
+	outline.z_index = DEBUG_COLLISION_Z_INDEX + 1
+	collision_debug_root.add_child(outline)
+	outline.global_transform = transform
+
+
+func _constrain_player_to_walkable_area(previous_position: Vector2) -> void:
+	if current_location == null or not current_location.has_method("is_position_walkable"):
+		return
+	if not current_location.has_walkable_areas():
+		return
+	if current_location.is_position_walkable(player.global_position):
+		return
+
+	var target_position := player.global_position
+	var horizontal_position := Vector2(target_position.x, previous_position.y)
+	var vertical_position := Vector2(previous_position.x, target_position.y)
+
+	if current_location.is_position_walkable(horizontal_position):
+		player.global_position = horizontal_position
+	elif current_location.is_position_walkable(vertical_position):
+		player.global_position = vertical_position
+	elif current_location.is_position_walkable(previous_position):
+		player.global_position = previous_position
+	else:
+		player.velocity = Vector2.ZERO
 
 
 func _update_player_visual(_delta: float) -> void:
