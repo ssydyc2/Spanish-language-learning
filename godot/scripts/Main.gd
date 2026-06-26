@@ -17,6 +17,7 @@ const LOCATION_SCENES := {
 var joystick_vector := Vector2.ZERO
 var facing := 1.0
 var camera_zoom := 1.0
+var player_is_moving := false
 var active_portal: Area2D
 var active_character: Area2D
 
@@ -213,6 +214,7 @@ func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 
 func _update_movement(_delta: float) -> void:
 	if quiz_panel.visible:
+		player_is_moving = false
 		player.velocity = Vector2.ZERO
 		return
 
@@ -220,7 +222,8 @@ func _update_movement(_delta: float) -> void:
 	if input_vector.length() < 0.05:
 		input_vector = _keyboard_vector()
 
-	if input_vector.length() > 0.05:
+	player_is_moving = input_vector.length() > 0.05
+	if player_is_moving:
 		var direction := input_vector.normalized()
 		player.velocity = direction * player_speed
 		if abs(direction.x) > 0.05:
@@ -250,19 +253,22 @@ func _clamp_player_to_map() -> void:
 
 
 func _update_player_visual(_delta: float) -> void:
-	var moving := player.velocity.length() > 0.05
+	var moving := player_is_moving
 	var stride := sin(Time.get_ticks_msec() / 1000.0 * 16.0)
 	var squash: float = 0.975 + abs(stride) * 0.035 if moving else 1.0
 	var stretch: float = 1.02 - abs(stride) * 0.025 if moving else 1.0
 
-	if moving and player_sprite.animation != "run":
+	if moving and player_sprite.sprite_frames.has_animation("run") and player_sprite.animation != "run":
 		player_sprite.play("run")
 	elif not moving and player_sprite.animation != "idle":
 		player_sprite.play("idle")
 
+	player_sprite.speed_scale = 1.35 if moving else 1.0
 	player_sprite.flip_h = facing < 0.0
 	player_sprite.scale = Vector2(player_sprite_base_scale * stretch, player_sprite_base_scale * squash)
+	player_sprite.position.x = stride * 2.0 if moving else 0.0
 	player_sprite.position.y = -(PLAYER_SPRITE_HEIGHT * squash) / 2.0
+	player_sprite.rotation_degrees = stride * 2.8 if moving else 0.0
 	player_shadow.scale = Vector2(1.0 + abs(stride) * 0.08, 1.0) if moving else Vector2.ONE
 
 
