@@ -1,6 +1,9 @@
 extends Node2D
 
 const PLAYER_TEXTURE := "res://assets/art/player_avatar.png"
+const PLAYER_RUN_TEXTURE := "res://assets/art/player_run_spritesheet.png"
+const PLAYER_SPRITE_HEIGHT := 108.0
+const PLAYER_RUN_FRAME_COUNT := 6
 const CAMERA_EDGE_PADDING := 12.0
 const MIN_CAMERA_ZOOM := 0.58
 
@@ -21,7 +24,8 @@ var world: Node2D
 var location_holder: Node2D
 var current_location: Node2D
 var player: CharacterBody2D
-var player_sprite: Sprite2D
+var player_sprite: AnimatedSprite2D
+var player_sprite_base_scale := 1.0
 var player_shadow: Polygon2D
 var camera: Camera2D
 var title_label: Label
@@ -64,12 +68,14 @@ func _build_world() -> void:
 	player_shadow.z_index = 9
 	player.add_child(player_shadow)
 
-	player_sprite = Sprite2D.new()
-	player_sprite.texture = load(PLAYER_TEXTURE)
-	player_sprite.position = Vector2(0, -58)
+	player_sprite = AnimatedSprite2D.new()
+	player_sprite.sprite_frames = _build_player_sprite_frames()
+	player_sprite.play("idle")
+	player_sprite.position = Vector2(0, -PLAYER_SPRITE_HEIGHT / 2.0)
 	player_sprite.z_index = 20
 	player.add_child(player_sprite)
-	_fit_sprite_height(player_sprite, 108.0)
+	player_sprite_base_scale = _scale_for_texture_height(load(PLAYER_TEXTURE), PLAYER_SPRITE_HEIGHT)
+	player_sprite.scale = Vector2.ONE * player_sprite_base_scale
 
 	var shape := CollisionShape2D.new()
 	var circle := CircleShape2D.new()
@@ -245,9 +251,19 @@ func _clamp_player_to_map() -> void:
 
 func _update_player_visual(_delta: float) -> void:
 	var moving := player.velocity.length() > 0.05
-	var bob := sin(Time.get_ticks_msec() / 1000.0 * 15.0) * 4.0 if moving else 0.0
-	player_sprite.position.y = -58 + bob
-	player_sprite.scale.x = abs(player_sprite.scale.x) * facing
+	var stride := sin(Time.get_ticks_msec() / 1000.0 * 16.0)
+	var squash: float = 0.975 + abs(stride) * 0.035 if moving else 1.0
+	var stretch: float = 1.02 - abs(stride) * 0.025 if moving else 1.0
+
+	if moving and player_sprite.animation != "run":
+		player_sprite.play("run")
+	elif not moving and player_sprite.animation != "idle":
+		player_sprite.play("idle")
+
+	player_sprite.flip_h = facing < 0.0
+	player_sprite.scale = Vector2(player_sprite_base_scale * stretch, player_sprite_base_scale * squash)
+	player_sprite.position.y = -(PLAYER_SPRITE_HEIGHT * squash) / 2.0
+	player_shadow.scale = Vector2(1.0 + abs(stride) * 0.08, 1.0) if moving else Vector2.ONE
 
 
 func _update_camera(force_camera := false) -> void:
@@ -344,16 +360,43 @@ func _minimum_camera_zoom() -> float:
 	return max(viewport_size.x / map_size.x, viewport_size.y / map_size.y, MIN_CAMERA_ZOOM)
 
 
-func _fit_sprite_height(sprite: Sprite2D, height: float) -> void:
-	if sprite.texture == null:
-		return
+func _build_player_sprite_frames() -> SpriteFrames:
+	var frames := SpriteFrames.new()
+	if frames.has_animation("default"):
+		frames.remove_animation("default")
 
-	var texture_size := sprite.texture.get_size()
+	var idle_texture: Texture2D = load(PLAYER_TEXTURE)
+	frames.add_animation("idle")
+	frames.set_animation_speed("idle", 1.0)
+	frames.set_animation_loop("idle", true)
+	frames.add_frame("idle", idle_texture)
+
+	var run_texture: Texture2D = load(PLAYER_RUN_TEXTURE)
+	if run_texture == null:
+		return frames
+
+	var frame_width := float(run_texture.get_width()) / float(PLAYER_RUN_FRAME_COUNT)
+	frames.add_animation("run")
+	frames.set_animation_speed("run", 10.0)
+	frames.set_animation_loop("run", true)
+	for frame_index in range(PLAYER_RUN_FRAME_COUNT):
+		var frame := AtlasTexture.new()
+		frame.atlas = run_texture
+		frame.region = Rect2(frame_width * frame_index, 0, frame_width, run_texture.get_height())
+		frames.add_frame("run", frame)
+
+	return frames
+
+
+func _scale_for_texture_height(texture: Texture2D, height: float) -> float:
+	if texture == null:
+		return 1.0
+
+	var texture_size := texture.get_size()
 	if texture_size.y <= 0:
-		return
+		return 1.0
 
-	var scale_value := height / texture_size.y
-	sprite.scale = Vector2(scale_value, scale_value)
+	return height / texture_size.y
 
 
 func _ellipse_polygon(size: Vector2, color: Color) -> Polygon2D:
