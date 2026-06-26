@@ -1,0 +1,188 @@
+[gd_scene load_steps=4 format=3 uid="uid://spanish_quest_village"]
+
+[ext_resource type="Script" path="res://scripts/MapLocation.gd" id="1_location"]
+[ext_resource type="Texture2D" path="res://assets/art/village_map_sim.png" id="2_background"]
+[ext_resource type="Script" path="res://scripts/PortalArea.gd" id="3_portal"]
+
+[node name="Village" type="Node2D"]
+scale = Vector2(1.35, 1.35)
+script = ExtResource("1_location")
+scene_id = "village"
+title = "Pueblo Espanol"
+subtitle = "Move freely around the village. Enter buildings to find new scenes."
+default_status = "Explore the village. School, cafe, and library are enterable."
+map_size = Vector2(1254, 1254)
+initial_zoom = 0.9
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+texture = ExtResource("2_background")
+centered = false
+
+[node name="Collision" type="Node2D" parent="."]
+
+[node name="MapBounds" type="StaticBody2D" parent="Collision"]
+
+[node name="Top" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(0, -80, 1254, -80, 1254, 0, 0, 0)
+
+[node name="Bottom" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(0, 1254, 1254, 1254, 1254, 1334, 0, 1334)
+
+[node name="Left" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(-80, 0, 0, 0, 0, 1254, -80, 1254)
+
+[node name="Right" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
+
+[node name="SceneryBlockers" type="StaticBody2D" parent="Collision"]
+
+[node name="SchoolRoof" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(470, 0, 792, 0, 805, 232, 735, 276, 690, 260, 685, 205, 560, 205, 555, 260, 515, 276, 454, 232)
+
+[node name="LeftHouse" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(0, 0, 365, 0, 365, 315, 284, 400, 0, 430)
+
+[node name="ChapelBuilding" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(0, 405, 290, 352, 344, 640, 206, 720, 0, 700)
+
+[node name="CafeRoof" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(900, 330, 1254, 350, 1254, 560, 1115, 575, 1000, 525, 910, 520)
+
+[node name="LibraryRoof" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(780, 780, 1015, 740, 1080, 870, 1015, 930, 820, 920, 730, 865)
+
+[node name="LibraryRightWing" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(1020, 850, 1254, 870, 1254, 1110, 1100, 1115, 1040, 980)
+
+[node name="UpperRightBuilding" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(925, 0, 1075, 0, 1088, 175, 980, 220, 900, 170)
+
+[node name="Fountain" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(687, 626, 667, 674, 620, 696, 572, 674, 552, 626, 572, 578, 620, 558, 667, 578)
+
+[node name="LeftCanopy" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(150, 248, 126, 306, 68, 330, 10, 306, -14, 248, 10, 190, 68, 166, 126, 190)
+
+[node name="CenterLeftTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(586, 365, 564, 417, 512, 439, 460, 417, 438, 365, 460, 313, 512, 291, 564, 313)
+
+[node name="CenterRightTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(782, 424, 761, 474, 712, 495, 662, 474, 642, 424, 662, 375, 712, 354, 761, 375)
+
+[node name="PurpleTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(367, 520, 350, 560, 310, 577, 270, 560, 253, 520, 270, 480, 310, 463, 350, 480)
+
+[node name="LowerPathTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(569, 806, 549, 853, 502, 873, 455, 853, 435, 806, 455, 759, 502, 739, 549, 759)
+
+[node name="BottomCenterTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(666, 1125, 643, 1179, 589, 1202, 535, 1179, 512, 1125, 535, 1071, 589, 1048, 643, 1071)
+
+[node name="RightPinkTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(1235, 258, 1212, 313, 1157, 336, 1102, 313, 1079, 258, 1102, 203, 1157, 180, 1212, 203)
+
+[node name="RightCypress" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(1254, 665, 1254, 824, 1206, 842, 1160, 800, 1167, 707, 1213, 655)
+
+[node name="LibraryCypress" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(1002, 1135, 986, 1218, 950, 1248, 916, 1218, 900, 1135, 930, 1065, 970, 1065)
+
+[node name="LowerLeftGardenBeds" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(52, 872, 360, 780, 392, 958, 70, 1062)
+
+[node name="GardenShed" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(330, 740, 500, 740, 482, 855, 342, 880)
+
+[node name="GardenWallLeft" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(0, 1098, 222, 1180, 212, 1254, 0, 1254)
+
+[node name="CenterPlanters" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(472, 610, 547, 595, 570, 650, 485, 672)
+
+[node name="RightPlanters" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(758, 642, 838, 620, 860, 680, 776, 708)
+
+[node name="LibraryBenchPlanters" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(777, 1040, 860, 1020, 886, 1088, 802, 1115)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Start" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(625, 700)
+
+[node name="SchoolReturn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(625, 410)
+
+[node name="CafeReturn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(990, 650)
+
+[node name="LibraryReturn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(900, 1000)
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="school-door" type="Area2D" parent="Portals"]
+position = Vector2(625, 340)
+script = ExtResource("3_portal")
+portal_id = "school-door"
+portal_title = "School"
+action_title = "Enter School"
+destination_scene = "school"
+destination_spawn = "Entry"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/school-door"]
+polygon = PackedVector2Array(-105, -100, 105, -100, 105, 92, -105, 92)
+
+[node name="Marker" type="Polygon2D" parent="Portals/school-door"]
+z_index = 50
+polygon = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0)
+color = Color(0, 0, 0, 0.46)
+
+[node name="Label" type="Label" parent="Portals/school-door"]
+position = Vector2(-38, 24)
+text = "School"
+
+[node name="cafe-door" type="Area2D" parent="Portals"]
+position = Vector2(1010, 585)
+script = ExtResource("3_portal")
+portal_id = "cafe-door"
+portal_title = "Cafe"
+action_title = "Enter Cafe"
+destination_scene = "cafe"
+destination_spawn = "Entry"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/cafe-door"]
+polygon = PackedVector2Array(-120, -115, 120, -115, 120, 110, -120, 110)
+
+[node name="Marker" type="Polygon2D" parent="Portals/cafe-door"]
+z_index = 50
+polygon = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0)
+color = Color(0, 0, 0, 0.46)
+
+[node name="Label" type="Label" parent="Portals/cafe-door"]
+position = Vector2(-24, 24)
+text = "Cafe"
+
+[node name="library-door" type="Area2D" parent="Portals"]
+position = Vector2(925, 1025)
+script = ExtResource("3_portal")
+portal_id = "library-door"
+portal_title = "Library"
+action_title = "Enter Library"
+destination_scene = "library"
+destination_spawn = "Entry"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/library-door"]
+polygon = PackedVector2Array(-130, -145, 130, -145, 130, 105, -130, 105)
+
+[node name="Marker" type="Polygon2D" parent="Portals/library-door"]
+z_index = 50
+polygon = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0)
+color = Color(0, 0, 0, 0.46)
+
+[node name="Label" type="Label" parent="Portals/library-door"]
+position = Vector2(-36, 24)
+text = "Library"
+
+[node name="Characters" type="Node2D" parent="."]

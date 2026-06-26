@@ -1,72 +1,60 @@
 extends Node2D
 
 const PLAYER_TEXTURE := "res://assets/art/player_avatar.png"
-const SCHOLAR_TEXTURE := "res://assets/art/scholar_npc.png"
-const DEFAULT_SCENE_SCALE := 1.35
 const CAMERA_EDGE_PADDING := 12.0
 const MIN_CAMERA_ZOOM := 0.58
 
-var scenes: Dictionary = {}
-var scene_id := "village"
-var scene_data: Dictionary = {}
-var player_position := Vector2.ZERO
+const LOCATION_SCENES := {
+	"village": "res://scenes/locations/Village.tscn",
+	"school": "res://scenes/locations/School.tscn",
+	"cafe": "res://scenes/locations/Cafe.tscn",
+	"library": "res://scenes/locations/Library.tscn"
+}
+
 var joystick_vector := Vector2.ZERO
-var tap_target: Variant = null
 var facing := 1.0
 var camera_zoom := 1.0
-var active_portal: Dictionary = {}
-var active_character: Dictionary = {}
+var active_portal: Area2D
+var active_character: Area2D
 
 var world: Node2D
-var background: Sprite2D
+var location_holder: Node2D
+var current_location: Node2D
 var player: CharacterBody2D
 var player_sprite: Sprite2D
 var player_shadow: Polygon2D
 var camera: Camera2D
-var scene_content: Node2D
 var title_label: Label
 var status_label: Label
 var interact_button: Button
 var quiz_panel: Control
 
 @export var player_speed := 210.0
-@export var portal_range := 105.0
-@export var character_range := 112.0
 
 func _ready() -> void:
 	randomize()
-	_build_scene_data()
 	_build_world()
 	_build_ui()
-	_load_scene("village", scenes["village"]["spawn"])
+	_load_scene("village", "Start")
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_update_movement(delta)
-	_update_player_visual(delta)
-	_update_camera()
 	_update_interaction()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if quiz_panel != null and quiz_panel.visible:
-		return
-
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		tap_target = get_global_mouse_position()
+func _process(delta: float) -> void:
+	_update_player_visual(delta)
+	_update_camera()
 
 
 func _build_world() -> void:
 	world = Node2D.new()
 	add_child(world)
 
-	background = Sprite2D.new()
-	background.centered = false
-	background.z_index = -100
-	world.add_child(background)
-
-	scene_content = Node2D.new()
-	world.add_child(scene_content)
+	location_holder = Node2D.new()
+	location_holder.name = "LocationHolder"
+	world.add_child(location_holder)
 
 	player = CharacterBody2D.new()
 	player.name = "Player"
@@ -194,148 +182,32 @@ func _build_ui() -> void:
 	layer.add_child(quiz_panel)
 
 
-func _build_scene_data() -> void:
-	scenes = {
-		"village": {
-			"title": "Pueblo Espanol",
-			"subtitle": "Move freely around the village. Enter buildings to find new scenes.",
-			"background": "res://assets/art/village_map_sim.png",
-			"size": Vector2(1254, 1254),
-			"spawn": Vector2(625, 700),
-			"walkable": [
-				{"type": "ellipse", "rect": Rect2(390, 430, 480, 360)},
-				{"type": "rect", "rect": Rect2(485, 250, 280, 520)},
-				{"type": "rect", "rect": Rect2(430, 720, 250, 540)},
-				{"type": "rect", "rect": Rect2(210, 560, 370, 160)},
-				{"type": "rect", "rect": Rect2(675, 575, 360, 155)},
-				{"type": "rect", "rect": Rect2(775, 815, 260, 250)},
-				{"type": "rect", "rect": Rect2(500, 360, 230, 80)},
-				{"type": "rect", "rect": Rect2(915, 620, 120, 120)},
-				{"type": "rect", "rect": Rect2(840, 980, 120, 95)}
-			],
-			"portals": [
-				{"id": "school-door", "title": "School", "action": "Enter School", "rect": Rect2(535, 250, 180, 155), "destination": "school", "spawn": Vector2(625, 980)},
-				{"id": "cafe-door", "title": "Cafe", "action": "Enter Cafe", "rect": Rect2(920, 490, 180, 155), "destination": "cafe", "spawn": Vector2(625, 880)},
-				{"id": "library-door", "title": "Library", "action": "Enter Library", "rect": Rect2(820, 860, 210, 170), "destination": "library", "spawn": Vector2(625, 930)}
-			],
-			"characters": []
-		},
-		"school": {
-			"title": "Village School",
-			"subtitle": "A future classroom scene for lessons and mini games.",
-			"background": "res://assets/art/school_interior_sim.png",
-			"size": Vector2(1254, 1254),
-			"spawn": Vector2(625, 980),
-			"walkable": [
-				{"type": "rect", "rect": Rect2(350, 520, 560, 600)},
-				{"type": "rect", "rect": Rect2(455, 1025, 345, 180)}
-			],
-			"portals": [
-				{"id": "school-exit", "title": "Village Plaza", "action": "Exit School", "rect": Rect2(455, 1025, 345, 180), "destination": "village", "spawn": Vector2(625, 410)}
-			],
-			"characters": []
-		},
-		"cafe": {
-			"title": "Village Cafe",
-			"subtitle": "A future conversation scene for ordering food in Spanish.",
-			"background": "res://assets/art/cafe_interior_sim.png",
-			"size": Vector2(1254, 1254),
-			"spawn": Vector2(625, 880),
-			"walkable": [
-				{"type": "rect", "rect": Rect2(290, 470, 560, 550)},
-				{"type": "rect", "rect": Rect2(555, 235, 190, 280)}
-			],
-			"portals": [
-				{"id": "cafe-exit", "title": "Village Plaza", "action": "Exit Cafe", "rect": Rect2(555, 235, 190, 210), "destination": "village", "spawn": Vector2(990, 650)}
-			],
-			"characters": []
-		},
-		"library": {
-			"title": "Village Library",
-			"subtitle": "Walk close to the scholar to practice Spanish.",
-			"background": "res://assets/art/library_interior_sim.png",
-			"size": Vector2(1254, 1254),
-			"spawn": Vector2(625, 930),
-			"walkable": [
-				{"type": "rect", "rect": Rect2(350, 520, 590, 555)},
-				{"type": "rect", "rect": Rect2(450, 1050, 360, 165)}
-			],
-			"portals": [
-				{"id": "library-exit", "title": "Village Plaza", "action": "Exit Library", "rect": Rect2(450, 1050, 360, 165), "destination": "village", "spawn": Vector2(900, 1000)}
-			],
-			"characters": [
-				{"id": "scholar", "name": "Scholar", "role": "Spanish Tutor", "greeting": "Bienvenido. Let's practice Spanish in the library.", "position": Vector2(650, 610), "texture": SCHOLAR_TEXTURE}
-			]
-		}
-	}
+func _load_scene(next_scene_id: String, spawn_name: String) -> void:
+	if not LOCATION_SCENES.has(next_scene_id):
+		push_warning("Unknown location: %s" % next_scene_id)
+		return
 
-
-func _load_scene(next_scene_id: String, spawn: Vector2) -> void:
-	scene_id = next_scene_id
-	scene_data = scenes[scene_id]
-	background.texture = load(scene_data["background"])
-	background.scale = Vector2.ONE * _scene_scale()
-	player_position = _clamp_to_scene(_to_world_point(spawn))
-	joystick_vector = Vector2.ZERO
-	tap_target = null
-	camera_zoom = 1.0 if scene_id != "village" else 0.9
-	camera_zoom = max(camera_zoom, _minimum_camera_zoom())
-
-	for child in scene_content.get_children():
+	for child in location_holder.get_children():
 		child.queue_free()
 
-	for portal in scene_data["portals"]:
-		_add_portal_marker(portal)
+	var packed_scene: PackedScene = load(LOCATION_SCENES[next_scene_id])
+	current_location = packed_scene.instantiate()
+	location_holder.add_child(current_location)
 
-	for character in scene_data["characters"]:
-		_add_character(character)
+	joystick_vector = Vector2.ZERO
+	player.velocity = Vector2.ZERO
+	camera_zoom = max(float(current_location.initial_zoom), _minimum_camera_zoom())
+	_set_player_position(current_location.get_spawn_position(spawn_name))
 
-	_set_player_position(player_position)
-	title_label.text = scene_data["title"]
-	status_label.text = _default_status()
+	title_label.text = current_location.title
+	status_label.text = current_location.default_status
 	_update_camera(true)
 	_update_interaction(true)
 
 
-func _add_portal_marker(portal: Dictionary) -> void:
-	var rect := _to_world_rect(portal["rect"])
-	var marker := Node2D.new()
-	marker.position = rect.get_center()
-	marker.z_index = 50
-	scene_content.add_child(marker)
-
-	var dot := _ellipse_polygon(Vector2(46, 46), Color(0, 0, 0, 0.46))
-	marker.add_child(dot)
-
-	var label := Label.new()
-	label.text = portal["title"]
-	label.position = Vector2(-40, 24)
-	marker.add_child(label)
-
-
-func _add_character(character: Dictionary) -> void:
-	var node := Node2D.new()
-	node.position = _to_world_point(character["position"])
-	node.z_index = int(node.position.y)
-	scene_content.add_child(node)
-
-	node.add_child(_ellipse_polygon(Vector2(44, 13), Color(0, 0, 0, 0.24)))
-
-	var sprite := Sprite2D.new()
-	sprite.texture = load(character["texture"])
-	sprite.position = Vector2(0, -56)
-	sprite.z_index = 10
-	node.add_child(sprite)
-	_fit_sprite_height(sprite, 106.0)
-
-	var label := Label.new()
-	label.text = character["name"]
-	label.position = Vector2(-34, -118)
-	node.add_child(label)
-
-
-func _update_movement(delta: float) -> void:
+func _update_movement(_delta: float) -> void:
 	if quiz_panel.visible:
+		player.velocity = Vector2.ZERO
 		return
 
 	var input_vector := joystick_vector
@@ -343,57 +215,46 @@ func _update_movement(delta: float) -> void:
 		input_vector = _keyboard_vector()
 
 	if input_vector.length() > 0.05:
-		tap_target = null
-		_move_by(input_vector.normalized() * player_speed * delta)
-	elif tap_target != null:
-		var to_target: Vector2 = tap_target - player_position
-		if to_target.length() <= 8.0:
-			tap_target = null
-		else:
-			_move_by(to_target.normalized() * min(player_speed * delta, to_target.length()))
+		var direction := input_vector.normalized()
+		player.velocity = direction * player_speed
+		if abs(direction.x) > 0.05:
+			facing = 1.0 if direction.x > 0.0 else -1.0
+	else:
+		player.velocity = Vector2.ZERO
+
+	player.move_and_slide()
+	_clamp_player_to_map()
+	player.z_index = int(player.global_position.y)
 
 
-func _move_by(delta: Vector2) -> void:
-	var proposed := _clamp_to_scene(player_position + delta)
-	if _is_walkable(proposed):
-		_commit_move(proposed)
+func _set_player_position(spawn_position: Vector2) -> void:
+	player.global_position = spawn_position
+	player.z_index = int(spawn_position.y)
+
+
+func _clamp_player_to_map() -> void:
+	if current_location == null:
 		return
 
-	var horizontal := _clamp_to_scene(Vector2(proposed.x, player_position.y))
-	if _is_walkable(horizontal):
-		_commit_move(horizontal)
-		return
-
-	var vertical := _clamp_to_scene(Vector2(player_position.x, proposed.y))
-	if _is_walkable(vertical):
-		_commit_move(vertical)
-		return
-
-	status_label.text = "Stay on the paths." if scene_id == "village" else "Walk through the open floor area."
-
-
-func _commit_move(next_position: Vector2) -> void:
-	if abs(next_position.x - player_position.x) > 0.5:
-		facing = 1.0 if next_position.x > player_position.x else -1.0
-
-	player_position = next_position
-	_set_player_position(player_position)
-
-
-func _set_player_position(position: Vector2) -> void:
-	player.global_position = position
-	player.z_index = int(position.y)
+	var map_size: Vector2 = current_location.get_world_size()
+	player.global_position = Vector2(
+		clamp(player.global_position.x, 48.0, map_size.x - 48.0),
+		clamp(player.global_position.y, 58.0, map_size.y - 58.0)
+	)
 
 
 func _update_player_visual(_delta: float) -> void:
-	var moving := joystick_vector.length() > 0.05 or tap_target != null or _keyboard_vector().length() > 0.05
+	var moving := player.velocity.length() > 0.05
 	var bob := sin(Time.get_ticks_msec() / 1000.0 * 15.0) * 4.0 if moving else 0.0
 	player_sprite.position.y = -58 + bob
 	player_sprite.scale.x = abs(player_sprite.scale.x) * facing
 
 
 func _update_camera(force_camera := false) -> void:
-	var target := _clamped_camera_position(player_position)
+	if current_location == null:
+		return
+
+	var target := _clamped_camera_position(player.global_position)
 	camera.zoom = Vector2.ONE * camera_zoom
 	if force_camera:
 		camera.global_position = target
@@ -402,43 +263,45 @@ func _update_camera(force_camera := false) -> void:
 
 
 func _update_interaction(force := false) -> void:
-	active_character = {}
-	active_portal = {}
+	if current_location == null:
+		return
 
-	for character in scene_data["characters"]:
-		if player_position.distance_to(_to_world_point(character["position"])) <= character_range:
+	active_character = null
+	active_portal = null
+
+	for character in current_location.get_characters():
+		if character.overlaps_body(player):
 			active_character = character
 			break
 
-	if active_character.is_empty():
-		for portal in scene_data["portals"]:
-			var rect := _to_world_rect(portal["rect"])
-			if rect.grow(portal_range).has_point(player_position):
+	if active_character == null:
+		for portal in current_location.get_portals():
+			if portal.overlaps_body(player):
 				active_portal = portal
 				break
 
-	if not active_character.is_empty():
+	if active_character != null:
 		interact_button.disabled = false
 		interact_button.text = "Talk"
-		status_label.text = "You are near %s. Tap Talk to practice Spanish." % active_character["name"]
-	elif not active_portal.is_empty():
+		status_label.text = "You are near %s. Tap Talk to practice Spanish." % active_character.character_name
+	elif active_portal != null:
 		interact_button.disabled = false
-		interact_button.text = active_portal["action"]
-		status_label.text = "You are near %s. Tap %s." % [active_portal["title"], active_portal["action"]]
+		interact_button.text = active_portal.action_title
+		status_label.text = "You are near %s. Tap %s." % [active_portal.portal_title, active_portal.action_title]
 	else:
 		interact_button.disabled = true
 		interact_button.text = "Explore"
 		if force or status_label.text.begins_with("You are near"):
-			status_label.text = _default_status()
+			status_label.text = current_location.default_status
 
 
 func _use_primary_action() -> void:
-	if not active_character.is_empty():
-		quiz_panel.start(active_character["name"])
+	if active_character != null:
+		quiz_panel.start(active_character.character_name)
 		return
 
-	if not active_portal.is_empty():
-		_load_scene(active_portal["destination"], active_portal["spawn"])
+	if active_portal != null:
+		_load_scene(active_portal.destination_scene, active_portal.destination_spawn)
 
 
 func _change_zoom(delta: float) -> void:
@@ -463,25 +326,8 @@ func _keyboard_vector() -> Vector2:
 	return vector.normalized() if vector.length() > 1.0 else vector
 
 
-func _clamp_to_scene(point: Vector2) -> Vector2:
-	var size := _scene_size()
-	return Vector2(clamp(point.x, 48.0, size.x - 48.0), clamp(point.y, 58.0, size.y - 58.0))
-
-
-func _is_walkable(point: Vector2) -> bool:
-	for area in scene_data["walkable"]:
-		var rect := _to_world_rect(area["rect"])
-		if area["type"] == "rect" and rect.has_point(point):
-			return true
-		if area["type"] == "ellipse":
-			var normalized := Vector2((point.x - rect.get_center().x) / (rect.size.x / 2.0), (point.y - rect.get_center().y) / (rect.size.y / 2.0))
-			if normalized.length_squared() <= 1.0:
-				return true
-	return false
-
-
 func _clamped_camera_position(target: Vector2) -> Vector2:
-	var map_size := _scene_size()
+	var map_size: Vector2 = current_location.get_world_size()
 	var visible_size := get_viewport_rect().size / camera_zoom
 	var center := map_size / 2.0
 	var x: float = center.x if visible_size.x >= map_size.x else clamp(target.x, visible_size.x / 2.0, map_size.x - visible_size.x / 2.0)
@@ -489,26 +335,11 @@ func _clamped_camera_position(target: Vector2) -> Vector2:
 	return Vector2(x, y)
 
 
-func _scene_scale() -> float:
-	return float(scene_data.get("scale", DEFAULT_SCENE_SCALE))
-
-
-func _scene_size() -> Vector2:
-	return scene_data["size"] * _scene_scale()
-
-
-func _to_world_point(point: Vector2) -> Vector2:
-	return point * _scene_scale()
-
-
-func _to_world_rect(rect: Rect2) -> Rect2:
-	return Rect2(rect.position * _scene_scale(), rect.size * _scene_scale())
-
-
 func _minimum_camera_zoom() -> float:
-	if scene_data.is_empty():
+	if current_location == null:
 		return MIN_CAMERA_ZOOM
-	var map_size := _scene_size()
+
+	var map_size: Vector2 = current_location.get_world_size()
 	var viewport_size := get_viewport_rect().size + Vector2.ONE * CAMERA_EDGE_PADDING
 	return max(viewport_size.x / map_size.x, viewport_size.y / map_size.y, MIN_CAMERA_ZOOM)
 
@@ -516,9 +347,11 @@ func _minimum_camera_zoom() -> float:
 func _fit_sprite_height(sprite: Sprite2D, height: float) -> void:
 	if sprite.texture == null:
 		return
+
 	var texture_size := sprite.texture.get_size()
 	if texture_size.y <= 0:
 		return
+
 	var scale_value := height / texture_size.y
 	sprite.scale = Vector2(scale_value, scale_value)
 
@@ -532,16 +365,3 @@ func _ellipse_polygon(size: Vector2, color: Color) -> Polygon2D:
 	polygon.polygon = points
 	polygon.color = color
 	return polygon
-
-
-func _default_status() -> String:
-	match scene_id:
-		"village":
-			return "Explore the village. School, cafe, and library are enterable."
-		"school":
-			return "This classroom can host future lessons. Exit near the bottom door."
-		"cafe":
-			return "Cafe conversations can be added here later. Exit through the open door."
-		"library":
-			return "Walk close to the scholar to start Spanish practice. Exit near the bottom."
-	return ""

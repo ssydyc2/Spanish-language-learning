@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://spanish_quest_cafe"]
+
+[ext_resource type="Script" path="res://scripts/MapLocation.gd" id="1_location"]
+[ext_resource type="Texture2D" path="res://assets/art/cafe_interior_sim.png" id="2_background"]
+[ext_resource type="Script" path="res://scripts/PortalArea.gd" id="3_portal"]
+
+[node name="Cafe" type="Node2D"]
+scale = Vector2(1.35, 1.35)
+script = ExtResource("1_location")
+scene_id = "cafe"
+title = "Village Cafe"
+subtitle = "A future conversation scene for ordering food in Spanish."
+default_status = "Cafe conversations can be added here later. Exit through the open door."
+map_size = Vector2(1254, 1254)
+initial_zoom = 1.0
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+texture = ExtResource("2_background")
+centered = false
+
+[node name="Collision" type="Node2D" parent="."]
+
+[node name="MapBounds" type="StaticBody2D" parent="Collision"]
+
+[node name="Top" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(0, -80, 1254, -80, 1254, 0, 0, 0)
+
+[node name="Bottom" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(0, 1254, 1254, 1254, 1254, 1334, 0, 1334)
+
+[node name="Left" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(-80, 0, 0, 0, 0, 1254, -80, 1254)
+
+[node name="Right" type="CollisionPolygon2D" parent="Collision/MapBounds"]
+polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Entry" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(625, 880)
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="cafe-exit" type="Area2D" parent="Portals"]
+position = Vector2(650, 340)
+script = ExtResource("3_portal")
+portal_id = "cafe-exit"
+portal_title = "Village Plaza"
+action_title = "Exit Cafe"
+destination_scene = "village"
+destination_spawn = "CafeReturn"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/cafe-exit"]
+polygon = PackedVector2Array(-125, -130, 125, -130, 125, 120, -125, 120)
+
+[node name="Marker" type="Polygon2D" parent="Portals/cafe-exit"]
+z_index = 50
+polygon = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0)
+color = Color(0, 0, 0, 0.46)
+
+[node name="Label" type="Label" parent="Portals/cafe-exit"]
+position = Vector2(-64, 24)
+text = "Village Plaza"
+
+[node name="Characters" type="Node2D" parent="."]
