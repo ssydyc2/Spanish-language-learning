@@ -29,6 +29,34 @@ func get_characters() -> Array:
 	return _area_children("Characters")
 
 
+func has_walkable_areas() -> bool:
+	return not get_walkable_areas().is_empty()
+
+
+func is_position_walkable(world_position: Vector2) -> bool:
+	var walkable_areas := get_walkable_areas()
+	if walkable_areas.is_empty():
+		return true
+
+	for area in walkable_areas:
+		if Geometry2D.is_point_in_polygon(area.to_local(world_position), area.polygon):
+			return true
+
+	return false
+
+
+func get_walkable_areas() -> Array:
+	var areas := []
+	var container := get_node_or_null("WalkableAreas")
+	if container == null:
+		return areas
+
+	for child in container.get_children():
+		if child is Polygon2D:
+			areas.append(child)
+	return areas
+
+
 func _area_children(container_name: String) -> Array:
 	var areas := []
 	var container := get_node_or_null(container_name)

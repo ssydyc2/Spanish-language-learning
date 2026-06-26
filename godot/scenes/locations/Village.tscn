@@ -19,6 +19,37 @@ z_index = -100
 texture = ExtResource("2_background")
 centered = false
 
+[node name="WalkableAreas" type="Node2D" parent="."]
+visible = false
+
+[node name="CentralPlaza" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(470, 520, 770, 520, 840, 650, 760, 800, 520, 800, 400, 660)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
+[node name="SchoolApproach" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(500, 250, 748, 250, 748, 430, 710, 520, 540, 520, 500, 430)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
+[node name="WestLane" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(92, 220, 365, 250, 530, 430, 460, 610, 250, 735, 52, 712, 60, 520, 210, 405)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
+[node name="LeftGardenLane" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(170, 700, 470, 690, 505, 860, 430, 1030, 280, 1220, 125, 1185, 250, 960)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
+[node name="SouthLane" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(430, 760, 740, 760, 805, 960, 660, 1254, 400, 1254, 470, 980)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
+[node name="EastLane" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(760, 300, 1128, 240, 1254, 300, 1254, 650, 1030, 725, 820, 690, 760, 560)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
+[node name="LibraryLane" type="Polygon2D" parent="WalkableAreas"]
+polygon = PackedVector2Array(650, 760, 1040, 755, 1140, 945, 1050, 1160, 760, 1190, 610, 1020)
+color = Color(0.2, 0.95, 0.45, 0.2)
+
 [node name="Collision" type="Node2D" parent="."]
 
 [node name="MapBounds" type="StaticBody2D" parent="Collision"]
@@ -38,64 +69,97 @@ polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
 [node name="SceneryBlockers" type="StaticBody2D" parent="Collision"]
 
 [node name="SchoolRoof" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(470, 0, 792, 0, 805, 232, 735, 276, 690, 260, 685, 205, 560, 205, 555, 260, 515, 276, 454, 232)
+polygon = PackedVector2Array(470, 0, 792, 0, 806, 230, 735, 274, 690, 258, 682, 222, 564, 222, 555, 258, 515, 274, 452, 230)
+
+[node name="SchoolLeftWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(455, 205, 570, 205, 558, 320, 492, 350, 448, 255)
+
+[node name="SchoolRightWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(682, 205, 808, 232, 760, 336, 692, 318)
+
+[node name="SchoolEntryPlanters" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(544, 306, 586, 306, 580, 352, 534, 360)
+
+[node name="SchoolRightEntryPlanters" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(668, 304, 712, 308, 724, 356, 674, 352)
 
 [node name="LeftHouse" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(0, 0, 365, 0, 365, 315, 284, 400, 0, 430)
+polygon = PackedVector2Array(0, 0, 360, 0, 360, 306, 300, 374, 206, 386, 0, 418)
+
+[node name="LeftHouseFrontWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(118, 285, 342, 306, 302, 404, 132, 428, 32, 382)
 
 [node name="ChapelBuilding" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(0, 405, 290, 352, 344, 640, 206, 720, 0, 700)
+polygon = PackedVector2Array(0, 406, 288, 354, 338, 622, 218, 690, 0, 686)
+
+[node name="ChapelFrontWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(0, 590, 210, 610, 240, 720, 0, 704)
 
 [node name="CafeRoof" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(900, 330, 1254, 350, 1254, 560, 1115, 575, 1000, 525, 910, 520)
+polygon = PackedVector2Array(908, 330, 1254, 350, 1254, 542, 1122, 550, 1050, 506, 925, 510)
+
+[node name="CafeBackWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(922, 492, 1058, 502, 1060, 574, 946, 574, 912, 538)
+
+[node name="CafeRightWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(1120, 520, 1254, 532, 1254, 652, 1140, 636, 1090, 572)
 
 [node name="LibraryRoof" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(780, 780, 1015, 740, 1080, 870, 1015, 930, 820, 920, 730, 865)
+polygon = PackedVector2Array(785, 782, 1012, 744, 1074, 860, 1010, 910, 832, 905, 740, 864)
 
 [node name="LibraryRightWing" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(1020, 850, 1254, 870, 1254, 1110, 1100, 1115, 1040, 980)
+polygon = PackedVector2Array(1030, 850, 1254, 872, 1254, 1088, 1114, 1098, 1050, 972)
+
+[node name="LibraryLeftFrontWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(750, 892, 900, 904, 886, 1088, 768, 1098, 724, 980)
+
+[node name="LibraryRightFrontWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(968, 902, 1118, 968, 1128, 1102, 986, 1100)
 
 [node name="UpperRightBuilding" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
 polygon = PackedVector2Array(925, 0, 1075, 0, 1088, 175, 980, 220, 900, 170)
+
+[node name="UpperRightFrontWall" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
+polygon = PackedVector2Array(908, 158, 986, 198, 1054, 176, 1046, 238, 968, 266, 892, 214)
 
 [node name="Fountain" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
 polygon = PackedVector2Array(687, 626, 667, 674, 620, 696, 572, 674, 552, 626, 572, 578, 620, 558, 667, 578)
 
 [node name="LeftCanopy" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(150, 248, 126, 306, 68, 330, 10, 306, -14, 248, 10, 190, 68, 166, 126, 190)
+polygon = PackedVector2Array(94, 284, 88, 312, 66, 326, 44, 312, 38, 284, 52, 262, 80, 262)
 
 [node name="CenterLeftTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(586, 365, 564, 417, 512, 439, 460, 417, 438, 365, 460, 313, 512, 291, 564, 313)
+polygon = PackedVector2Array(536, 400, 528, 424, 510, 436, 492, 424, 484, 400, 494, 380, 526, 380)
 
 [node name="CenterRightTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(782, 424, 761, 474, 712, 495, 662, 474, 642, 424, 662, 375, 712, 354, 761, 375)
+polygon = PackedVector2Array(736, 456, 728, 482, 710, 494, 690, 482, 682, 456, 694, 436, 724, 436)
 
 [node name="PurpleTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(367, 520, 350, 560, 310, 577, 270, 560, 253, 520, 270, 480, 310, 463, 350, 480)
+polygon = PackedVector2Array(330, 542, 322, 568, 308, 578, 292, 568, 284, 542, 294, 524, 320, 524)
 
 [node name="LowerPathTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(569, 806, 549, 853, 502, 873, 455, 853, 435, 806, 455, 759, 502, 739, 549, 759)
+polygon = PackedVector2Array(526, 836, 518, 864, 500, 876, 480, 864, 472, 836, 484, 816, 514, 816)
 
 [node name="BottomCenterTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(666, 1125, 643, 1179, 589, 1202, 535, 1179, 512, 1125, 535, 1071, 589, 1048, 643, 1071)
+polygon = PackedVector2Array(614, 1160, 606, 1190, 586, 1204, 566, 1190, 558, 1160, 570, 1138, 602, 1138)
 
 [node name="RightPinkTree" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(1235, 258, 1212, 313, 1157, 336, 1102, 313, 1079, 258, 1102, 203, 1157, 180, 1212, 203)
+polygon = PackedVector2Array(1182, 292, 1174, 322, 1155, 336, 1134, 322, 1126, 292, 1138, 270, 1170, 270)
 
 [node name="RightCypress" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(1254, 665, 1254, 824, 1206, 842, 1160, 800, 1167, 707, 1213, 655)
+polygon = PackedVector2Array(1228, 704, 1236, 816, 1206, 842, 1176, 816, 1184, 706, 1206, 656)
 
 [node name="LibraryCypress" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(1002, 1135, 986, 1218, 950, 1248, 916, 1218, 900, 1135, 930, 1065, 970, 1065)
+polygon = PackedVector2Array(976, 1136, 980, 1222, 950, 1248, 920, 1222, 924, 1136, 940, 1066, 960, 1066)
 
 [node name="LowerLeftGardenBeds" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(52, 872, 360, 780, 392, 958, 70, 1062)
+polygon = PackedVector2Array(64, 876, 352, 790, 382, 948, 74, 1050)
 
 [node name="GardenShed" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(330, 740, 500, 740, 482, 855, 342, 880)
+polygon = PackedVector2Array(338, 744, 492, 744, 476, 848, 346, 870)
 
 [node name="GardenWallLeft" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
-polygon = PackedVector2Array(0, 1098, 222, 1180, 212, 1254, 0, 1254)
+polygon = PackedVector2Array(0, 1102, 216, 1184, 208, 1254, 0, 1254)
 
 [node name="CenterPlanters" type="CollisionPolygon2D" parent="Collision/SceneryBlockers"]
 polygon = PackedVector2Array(472, 610, 547, 595, 570, 650, 485, 672)
