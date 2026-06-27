@@ -43,7 +43,7 @@ position = Vector2(625, 880)
 [node name="Portals" type="Node2D" parent="."]
 
 [node name="cafe-exit" type="Area2D" parent="Portals"]
-position = Vector2(650, 340)
+position = Vector2(650, 1110)
 script = ExtResource("3_portal")
 portal_id = "cafe-exit"
 portal_title = "Village Plaza"

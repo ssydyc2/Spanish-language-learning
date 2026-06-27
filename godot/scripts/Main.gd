@@ -2,7 +2,7 @@ extends Node2D
 
 const PLAYER_TEXTURE := "res://assets/art/player_avatar.png"
 const PLAYER_RUN_TEXTURE := "res://assets/art/player_run_spritesheet.png"
-const PLAYER_SPRITE_HEIGHT := 108.0
+const PLAYER_SPRITE_HEIGHT := 142.0
 const PLAYER_RUN_FRAME_COUNT := 6
 const CAMERA_EDGE_PADDING := 12.0
 const MIN_CAMERA_ZOOM := 0.58
@@ -81,7 +81,7 @@ func _build_world() -> void:
 	player.collision_mask = MOVEMENT_COLLISION_LAYER
 	world.add_child(player)
 
-	player_shadow = _ellipse_polygon(Vector2(46, 14), Color(0, 0, 0, 0.28))
+	player_shadow = _ellipse_polygon(Vector2(60, 18), Color(0, 0, 0, 0.28))
 	player_shadow.z_index = 9
 	player.add_child(player_shadow)
 
