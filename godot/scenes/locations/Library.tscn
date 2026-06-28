@@ -40,7 +40,7 @@ polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Entry" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(625, 930)
+position = Vector2(630, 1060)
 
 [node name="Portals" type="Node2D" parent="."]
 
@@ -54,7 +54,7 @@ destination_scene = "village"
 destination_spawn = "LibraryReturn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/library-exit"]
-polygon = PackedVector2Array(-220, -100, 220, -100, 220, 100, -220, 100)
+polygon = PackedVector2Array(-58, -26, 58, -26, 58, 34, -58, 34)
 
 [node name="Marker" type="Polygon2D" parent="Portals/library-exit"]
 z_index = 50

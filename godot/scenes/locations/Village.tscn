@@ -176,18 +176,18 @@ polygon = PackedVector2Array(777, 1040, 860, 1020, 886, 1088, 802, 1115)
 position = Vector2(625, 700)
 
 [node name="SchoolReturn" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(625, 410)
+position = Vector2(625, 395)
 
 [node name="CafeReturn" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(990, 650)
+position = Vector2(958, 680)
 
 [node name="LibraryReturn" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(900, 1000)
+position = Vector2(900, 1090)
 
 [node name="Portals" type="Node2D" parent="."]
 
 [node name="school-door" type="Area2D" parent="Portals"]
-position = Vector2(625, 340)
+position = Vector2(625, 350)
 script = ExtResource("3_portal")
 portal_id = "school-door"
 portal_title = "School"
@@ -196,7 +196,7 @@ destination_scene = "school"
 destination_spawn = "Entry"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/school-door"]
-polygon = PackedVector2Array(-105, -100, 105, -100, 105, 92, -105, 92)
+polygon = PackedVector2Array(-44, -24, 44, -24, 44, 30, -44, 30)
 
 [node name="Marker" type="Polygon2D" parent="Portals/school-door"]
 z_index = 50
@@ -208,7 +208,7 @@ position = Vector2(-38, 24)
 text = "School"
 
 [node name="cafe-door" type="Area2D" parent="Portals"]
-position = Vector2(1010, 585)
+position = Vector2(958, 640)
 script = ExtResource("3_portal")
 portal_id = "cafe-door"
 portal_title = "Cafe"
@@ -217,7 +217,7 @@ destination_scene = "cafe"
 destination_spawn = "Entry"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/cafe-door"]
-polygon = PackedVector2Array(-120, -115, 120, -115, 120, 110, -120, 110)
+polygon = PackedVector2Array(-42, -24, 42, -24, 42, 32, -42, 32)
 
 [node name="Marker" type="Polygon2D" parent="Portals/cafe-door"]
 z_index = 50
@@ -229,7 +229,7 @@ position = Vector2(-24, 24)
 text = "Cafe"
 
 [node name="library-door" type="Area2D" parent="Portals"]
-position = Vector2(925, 1025)
+position = Vector2(905, 1050)
 script = ExtResource("3_portal")
 portal_id = "library-door"
 portal_title = "Library"
@@ -238,7 +238,7 @@ destination_scene = "library"
 destination_spawn = "Entry"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/library-door"]
-polygon = PackedVector2Array(-130, -145, 130, -145, 130, 105, -130, 105)
+polygon = PackedVector2Array(-42, -24, 42, -24, 42, 32, -42, 32)
 
 [node name="Marker" type="Polygon2D" parent="Portals/library-door"]
 z_index = 50

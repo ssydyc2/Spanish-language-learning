@@ -38,7 +38,7 @@ polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Entry" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(625, 880)
+position = Vector2(650, 1040)
 
 [node name="Portals" type="Node2D" parent="."]
 
@@ -52,7 +52,7 @@ destination_scene = "village"
 destination_spawn = "CafeReturn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/cafe-exit"]
-polygon = PackedVector2Array(-125, -130, 125, -130, 125, 120, -125, 120)
+polygon = PackedVector2Array(-58, -26, 58, -26, 58, 34, -58, 34)
 
 [node name="Marker" type="Polygon2D" parent="Portals/cafe-exit"]
 z_index = 50
