@@ -26,6 +26,7 @@ var camera_zoom := 1.0
 var player_is_moving := false
 var active_portal: Area2D
 var active_character: Area2D
+var ignored_spawn_portal: Area2D
 
 var world: Node2D
 var location_holder: Node2D
@@ -229,6 +230,7 @@ func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 	player.velocity = Vector2.ZERO
 	camera_zoom = max(float(current_location.initial_zoom), _minimum_camera_zoom())
 	_set_player_position(current_location.get_spawn_position(spawn_name))
+	ignored_spawn_portal = _find_portal_at_player_position()
 
 	title_label.text = current_location.title
 	status_label.text = current_location.default_status
@@ -391,39 +393,74 @@ func _update_interaction(force := false) -> void:
 	active_character = null
 	active_portal = null
 
-	for character in current_location.get_characters():
-		if character.overlaps_body(player):
-			active_character = character
-			break
+	active_character = _find_overlapping_character()
 
 	if active_character == null:
-		for portal in current_location.get_portals():
-			if portal.overlaps_body(player):
-				active_portal = portal
-				break
+		if ignored_spawn_portal != null and not _portal_contains_point(ignored_spawn_portal, player.global_position):
+			ignored_spawn_portal = null
+
+		active_portal = _find_portal_at_player_position()
+		if active_portal == ignored_spawn_portal:
+			active_portal = null
 
 	if active_character != null:
 		interact_button.disabled = false
 		interact_button.text = "Talk"
 		status_label.text = "You are near %s. Tap Talk to practice Spanish." % active_character.character_name
 	elif active_portal != null:
-		interact_button.disabled = false
-		interact_button.text = active_portal.action_title
-		status_label.text = "You are near %s. Tap %s." % [active_portal.portal_title, active_portal.action_title]
+		interact_button.disabled = true
+		interact_button.text = "Explore"
+		status_label.text = "Entering %s..." % active_portal.portal_title
+		_enter_portal(active_portal)
 	else:
 		interact_button.disabled = true
 		interact_button.text = "Explore"
-		if force or status_label.text.begins_with("You are near"):
+		if force or status_label.text.begins_with("You are near") or status_label.text.begins_with("Entering"):
 			status_label.text = current_location.default_status
 
 
 func _use_primary_action() -> void:
 	if active_character != null:
 		quiz_panel.start(active_character.character_name)
+
+
+func _enter_portal(portal: Area2D) -> void:
+	if portal == null:
 		return
 
-	if active_portal != null:
-		_load_scene(active_portal.destination_scene, active_portal.destination_spawn)
+	_load_scene(portal.destination_scene, portal.destination_spawn)
+
+
+func _find_overlapping_character() -> Area2D:
+	if current_location == null:
+		return null
+
+	for character in current_location.get_characters():
+		if character.overlaps_body(player):
+			return character
+
+	return null
+
+
+func _find_portal_at_player_position() -> Area2D:
+	if current_location == null:
+		return null
+
+	for portal in current_location.get_portals():
+		if _portal_contains_point(portal, player.global_position):
+			return portal
+
+	return null
+
+
+func _portal_contains_point(portal: Area2D, world_position: Vector2) -> bool:
+	for collision_polygon in portal.find_children("*", "CollisionPolygon2D", true, false):
+		if collision_polygon.disabled:
+			continue
+		if Geometry2D.is_point_in_polygon(collision_polygon.to_local(world_position), collision_polygon.polygon):
+			return true
+
+	return false
 
 
 func _change_zoom(delta: float) -> void:
