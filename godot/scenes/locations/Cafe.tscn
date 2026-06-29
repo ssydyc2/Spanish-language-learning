@@ -12,7 +12,6 @@ title = "Village Cafe"
 subtitle = "A future conversation scene for ordering food in Spanish."
 default_status = "Cafe conversations can be added here later. Exit through the open door."
 map_size = Vector2(1254, 1254)
-initial_zoom = 1.0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100

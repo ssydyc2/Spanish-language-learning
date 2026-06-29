@@ -14,7 +14,6 @@ title = "Village Library"
 subtitle = "Walk close to the scholar to practice Spanish."
 default_status = "Walk close to the scholar to start Spanish practice. Exit near the bottom."
 map_size = Vector2(1254, 1254)
-initial_zoom = 1.0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100

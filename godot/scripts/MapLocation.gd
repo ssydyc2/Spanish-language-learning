@@ -5,7 +5,6 @@ extends Node2D
 @export_multiline var subtitle := ""
 @export_multiline var default_status := ""
 @export var map_size := Vector2(1254, 1254)
-@export var initial_zoom := 1.0
 
 func get_spawn_position(spawn_name: String) -> Vector2:
 	var spawns := get_node_or_null("SpawnPoints")
