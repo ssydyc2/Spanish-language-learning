@@ -37,6 +37,77 @@ polygon = PackedVector2Array(-80, 0, 0, 0, 0, 1254, -80, 1254)
 [node name="Right" type="CollisionPolygon2D" parent="Collision/MapBounds"]
 polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
 
+[node name="CharacterBlockers" type="StaticBody2D" parent="Collision"]
+
+[node name="ScholarFootprint" type="CollisionPolygon2D" parent="Collision/CharacterBlockers"]
+position = Vector2(650, 610)
+polygon = PackedVector2Array(-28, -18, 28, -18, 28, 18, -28, 18)
+
+[node name="FurnitureBlockers" type="StaticBody2D" parent="Collision"]
+
+[node name="TopLeftBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(102, 66, 424, 66, 424, 226, 102, 226)
+
+[node name="TopRightBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(827, 65, 1147, 65, 1147, 225, 827, 225)
+
+[node name="LeftUpperBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(84, 279, 159, 279, 159, 535, 84, 535)
+
+[node name="LeftLowerBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(80, 520, 152, 520, 152, 671, 80, 671)
+
+[node name="RightUpperBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(1102, 278, 1178, 278, 1178, 556, 1102, 556)
+
+[node name="RightLowerBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(1114, 545, 1180, 545, 1180, 778, 1114, 778)
+
+[node name="CenterReadingTable" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(516, 249, 749, 249, 749, 360, 516, 360)
+
+[node name="CenterReadingChair" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(580, 171, 675, 171, 675, 248, 580, 248)
+
+[node name="BlueReadingTable" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(267, 567, 478, 567, 478, 759, 267, 759)
+
+[node name="BlueReadingChairs" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(301, 552, 455, 552, 455, 808, 301, 808)
+
+[node name="RedReadingTable" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(804, 598, 978, 598, 978, 746, 804, 746)
+
+[node name="RedReadingChairs" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(815, 558, 912, 558, 912, 806, 815, 806)
+
+[node name="LowerLeftDesk" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(118, 895, 392, 895, 392, 976, 118, 976)
+
+[node name="TopCenterCabinet" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(725, 80, 812, 80, 812, 166, 725, 166)
+
+[node name="ScrollBarrel" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(976, 410, 1067, 410, 1067, 539, 976, 539)
+
+[node name="LeftCornerPlant" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(57, 684, 139, 684, 139, 792, 57, 792)
+
+[node name="TopLeftPlant" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(61, 104, 144, 104, 144, 242, 61, 242)
+
+[node name="TopRightPlant" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(1086, 132, 1187, 132, 1187, 245, 1086, 245)
+
+[node name="RightLowerPlants" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(976, 840, 1187, 840, 1187, 965, 976, 965)
+
+[node name="TopWoodenPostLeft" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(464, 9, 503, 9, 503, 162, 464, 162)
+
+[node name="TopWoodenPostRight" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(751, 8, 790, 8, 790, 58, 751, 58)
+
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Entry" type="Marker2D" parent="SpawnPoints"]

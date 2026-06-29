@@ -194,8 +194,9 @@ func _build_ui() -> void:
 	bottom.add_child(spacer)
 
 	interact_button = Button.new()
-	interact_button.text = "Explore"
+	interact_button.text = "Talk"
 	interact_button.disabled = true
+	interact_button.visible = false
 	interact_button.custom_minimum_size = Vector2(160, 56)
 	interact_button.pressed.connect(_use_primary_action)
 	bottom.add_child(interact_button)
@@ -405,16 +406,17 @@ func _update_interaction(force := false) -> void:
 
 	if active_character != null:
 		interact_button.disabled = false
+		interact_button.visible = true
 		interact_button.text = "Talk"
 		status_label.text = "You are near %s. Tap Talk to practice Spanish." % active_character.character_name
 	elif active_portal != null:
 		interact_button.disabled = true
-		interact_button.text = "Explore"
+		interact_button.visible = false
 		status_label.text = "Entering %s..." % active_portal.portal_title
 		_enter_portal(active_portal)
 	else:
 		interact_button.disabled = true
-		interact_button.text = "Explore"
+		interact_button.visible = false
 		if force or status_label.text.begins_with("You are near") or status_label.text.begins_with("Entering"):
 			status_label.text = current_location.default_status
 
