@@ -6,6 +6,7 @@ const PLAYER_SPRITE_HEIGHT := 142.0
 const PLAYER_RUN_FRAME_COUNT := 6
 const CAMERA_EDGE_PADDING := 12.0
 const MIN_CAMERA_ZOOM := 0.58
+const MAX_CAMERA_ZOOM := 1.8
 const MOVEMENT_COLLISION_LAYER := 1
 const DEBUG_COLLISION_COLOR := Color(1.0, 0.26, 0.12, 0.32)
 const DEBUG_COLLISION_OUTLINE_COLOR := Color(1.0, 0.9, 0.25, 0.72)
@@ -23,6 +24,8 @@ const LOCATION_SCENES := {
 var joystick_vector := Vector2.ZERO
 var facing := 1.0
 var camera_zoom := 1.0
+var active_touch_positions := {}
+var pinch_distance := 0.0
 var player_is_moving := false
 var active_portal: Area2D
 var active_character: Area2D
@@ -66,6 +69,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F3:
 		show_collision_debug = not show_collision_debug
 		_refresh_collision_debug_overlay()
+		return
+
+	if event is InputEventMagnifyGesture:
+		_set_zoom(camera_zoom * event.factor)
+		return
+
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			active_touch_positions[event.index] = event.position
+		else:
+			active_touch_positions.erase(event.index)
+		_update_pinch_state()
+		return
+
+	if event is InputEventScreenDrag:
+		if active_touch_positions.has(event.index):
+			active_touch_positions[event.index] = event.position
+			_update_pinch_zoom()
 
 
 func _build_world() -> void:
@@ -157,21 +178,6 @@ func _build_ui() -> void:
 	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	header_box.add_child(status_label)
 
-	var zoom_box := VBoxContainer.new()
-	top.add_child(zoom_box)
-
-	var zoom_in_button := Button.new()
-	zoom_in_button.text = "+"
-	zoom_in_button.custom_minimum_size = Vector2(48, 42)
-	zoom_in_button.pressed.connect(func(): _change_zoom(0.12))
-	zoom_box.add_child(zoom_in_button)
-
-	var zoom_out_button := Button.new()
-	zoom_out_button.text = "-"
-	zoom_out_button.custom_minimum_size = Vector2(48, 42)
-	zoom_out_button.pressed.connect(func(): _change_zoom(-0.12))
-	zoom_box.add_child(zoom_out_button)
-
 	var bottom := HBoxContainer.new()
 	bottom.anchor_left = 0.0
 	bottom.anchor_top = 1.0
@@ -229,7 +235,7 @@ func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 
 	joystick_vector = Vector2.ZERO
 	player.velocity = Vector2.ZERO
-	camera_zoom = max(float(current_location.initial_zoom), _minimum_camera_zoom())
+	camera_zoom = _minimum_camera_zoom()
 	_set_player_position(current_location.get_spawn_position(spawn_name))
 	ignored_spawn_portal = _find_portal_at_player_position()
 
@@ -465,9 +471,31 @@ func _portal_contains_point(portal: Area2D, world_position: Vector2) -> bool:
 	return false
 
 
-func _change_zoom(delta: float) -> void:
-	camera_zoom = clamp(camera_zoom + delta, _minimum_camera_zoom(), 1.8)
+func _set_zoom(value: float) -> void:
+	camera_zoom = clamp(value, _minimum_camera_zoom(), MAX_CAMERA_ZOOM)
 	_update_camera(true)
+
+
+func _update_pinch_state() -> void:
+	pinch_distance = _current_pinch_distance()
+
+
+func _update_pinch_zoom() -> void:
+	var current_distance := _current_pinch_distance()
+	if pinch_distance <= 0.0 or current_distance <= 0.0:
+		pinch_distance = current_distance
+		return
+
+	_set_zoom(camera_zoom * (current_distance / pinch_distance))
+	pinch_distance = current_distance
+
+
+func _current_pinch_distance() -> float:
+	if active_touch_positions.size() < 2:
+		return 0.0
+
+	var touch_positions := active_touch_positions.values()
+	return touch_positions[0].distance_to(touch_positions[1])
 
 
 func _on_joystick_vector_changed(vector: Vector2) -> void:

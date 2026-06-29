@@ -12,7 +12,6 @@ title = "Pueblo Espanol"
 subtitle = "Move freely around the village. Enter buildings to find new scenes."
 default_status = "Explore the village. School, cafe, and library are enterable."
 map_size = Vector2(1254, 1254)
-initial_zoom = 0.9
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100

@@ -12,7 +12,6 @@ title = "Village School"
 subtitle = "A future classroom scene for lessons and mini games."
 default_status = "This classroom can host future lessons. Exit near the bottom door."
 map_size = Vector2(1254, 1254)
-initial_zoom = 1.0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
