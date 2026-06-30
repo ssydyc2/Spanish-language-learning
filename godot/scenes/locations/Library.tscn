@@ -144,7 +144,7 @@ script = ExtResource("4_character")
 character_id = "scholar"
 character_name = "Scholar"
 role = "Spanish Tutor"
-greeting = "Bienvenido. Let's practice Spanish in the library."
+greeting = "Welcome to the library.\nBienvenido a la biblioteca."
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Characters/scholar"]
 polygon = PackedVector2Array(-90, -120, 90, -120, 90, 32, -90, 32)

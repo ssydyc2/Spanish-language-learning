@@ -44,6 +44,10 @@ var title_label: Label
 var status_label: Label
 var interact_button: Button
 var quiz_panel: Control
+var practice_prompt_panel: PanelContainer
+var practice_prompt_title: Label
+var practice_prompt_body: Label
+var prompted_character_name := ""
 
 @export var player_speed := 210.0
 @export var show_collision_debug := false
@@ -219,6 +223,61 @@ func _build_ui() -> void:
 	quiz_panel.offset_bottom = 235
 	layer.add_child(quiz_panel)
 
+	_build_practice_prompt(layer)
+
+
+func _build_practice_prompt(layer: CanvasLayer) -> void:
+	practice_prompt_panel = PanelContainer.new()
+	practice_prompt_panel.visible = false
+	practice_prompt_panel.anchor_left = 0.5
+	practice_prompt_panel.anchor_top = 0.5
+	practice_prompt_panel.anchor_right = 0.5
+	practice_prompt_panel.anchor_bottom = 0.5
+	practice_prompt_panel.offset_left = -180
+	practice_prompt_panel.offset_top = -112
+	practice_prompt_panel.offset_right = 180
+	practice_prompt_panel.offset_bottom = 112
+	practice_prompt_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	layer.add_child(practice_prompt_panel)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_bottom", 16)
+	practice_prompt_panel.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 12)
+	margin.add_child(box)
+
+	practice_prompt_title = Label.new()
+	practice_prompt_title.text = "Scholar"
+	practice_prompt_title.add_theme_font_size_override("font_size", 24)
+	box.add_child(practice_prompt_title)
+
+	practice_prompt_body = Label.new()
+	practice_prompt_body.text = "Do you want to practice Spanish?\n¿Quieres practicar español?"
+	practice_prompt_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	practice_prompt_body.add_theme_font_size_override("font_size", 18)
+	box.add_child(practice_prompt_body)
+
+	var actions := HBoxContainer.new()
+	actions.add_theme_constant_override("separation", 10)
+	box.add_child(actions)
+
+	var practice_button := Button.new()
+	practice_button.text = "Practice / Practicar"
+	practice_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	practice_button.pressed.connect(_accept_practice_prompt)
+	actions.add_child(practice_button)
+
+	var decline_button := Button.new()
+	decline_button.text = "No thanks / No, gracias"
+	decline_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	decline_button.pressed.connect(_decline_practice_prompt)
+	actions.add_child(decline_button)
+
 
 func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 	if not LOCATION_SCENES.has(next_scene_id):
@@ -246,7 +305,7 @@ func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 
 
 func _update_movement(_delta: float) -> void:
-	if quiz_panel.visible:
+	if quiz_panel.visible or practice_prompt_panel.visible:
 		player_is_moving = false
 		player.velocity = Vector2.ZERO
 		return
@@ -429,7 +488,29 @@ func _update_interaction(force := false) -> void:
 
 func _use_primary_action() -> void:
 	if active_character != null:
-		quiz_panel.start(active_character.character_name)
+		_open_practice_prompt(active_character)
+
+
+func _open_practice_prompt(character: Area2D) -> void:
+	prompted_character_name = character.character_name
+	practice_prompt_title.text = character.character_name
+	practice_prompt_body.text = "Do you want to practice Spanish?\n¿Quieres practicar español?"
+	if not character.greeting.is_empty():
+		practice_prompt_body.text = "%s\n\n%s" % [character.greeting, practice_prompt_body.text]
+	practice_prompt_panel.visible = true
+
+
+func _accept_practice_prompt() -> void:
+	practice_prompt_panel.visible = false
+	var character_name := prompted_character_name
+	if character_name.is_empty():
+		character_name = "Scholar"
+	quiz_panel.start(character_name)
+
+
+func _decline_practice_prompt() -> void:
+	practice_prompt_panel.visible = false
+	status_label.text = "Scholar nods. Come back anytime to practice Spanish."
 
 
 func _enter_portal(portal: Area2D) -> void:
