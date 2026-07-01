@@ -47,6 +47,9 @@ var quiz_panel: Control
 var practice_prompt_panel: PanelContainer
 var practice_prompt_title: Label
 var practice_prompt_body: Label
+var practice_prompt_primary_button: Button
+var practice_prompt_decline_button: Button
+var prompted_character_id := ""
 var prompted_character_name := ""
 
 @export var player_speed := 210.0
@@ -266,17 +269,17 @@ func _build_practice_prompt(layer: CanvasLayer) -> void:
 	actions.add_theme_constant_override("separation", 10)
 	box.add_child(actions)
 
-	var practice_button := Button.new()
-	practice_button.text = "Practice / Practicar"
-	practice_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	practice_button.pressed.connect(_accept_practice_prompt)
-	actions.add_child(practice_button)
+	practice_prompt_primary_button = Button.new()
+	practice_prompt_primary_button.text = "Practice / Practicar"
+	practice_prompt_primary_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	practice_prompt_primary_button.pressed.connect(_accept_practice_prompt)
+	actions.add_child(practice_prompt_primary_button)
 
-	var decline_button := Button.new()
-	decline_button.text = "No thanks / No, gracias"
-	decline_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	decline_button.pressed.connect(_decline_practice_prompt)
-	actions.add_child(decline_button)
+	practice_prompt_decline_button = Button.new()
+	practice_prompt_decline_button.text = "No thanks / No, gracias"
+	practice_prompt_decline_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	practice_prompt_decline_button.pressed.connect(_decline_practice_prompt)
+	actions.add_child(practice_prompt_decline_button)
 
 
 func _load_scene(next_scene_id: String, spawn_name: String) -> void:
@@ -473,7 +476,7 @@ func _update_interaction(force := false) -> void:
 		interact_button.disabled = false
 		interact_button.visible = true
 		interact_button.text = "Talk"
-		status_label.text = "You are near %s. Tap Talk to practice Spanish." % active_character.character_name
+		status_label.text = "You are near %s. Tap Talk." % active_character.character_name
 	elif active_portal != null:
 		interact_button.disabled = true
 		interact_button.visible = false
@@ -492,9 +495,16 @@ func _use_primary_action() -> void:
 
 
 func _open_practice_prompt(character: Area2D) -> void:
+	prompted_character_id = character.character_id
 	prompted_character_name = character.character_name
 	practice_prompt_title.text = character.character_name
-	practice_prompt_body.text = "Do you want to practice Spanish?\n¿Quieres practicar español?"
+	if prompted_character_id == "teacher":
+		practice_prompt_body.text = "Do you want to study a lesson?\n¿Quieres estudiar una lección?"
+		practice_prompt_primary_button.text = "Study Lesson / Estudiar la lección"
+	else:
+		practice_prompt_body.text = "Do you want to practice Spanish?\n¿Quieres practicar español?"
+		practice_prompt_primary_button.text = "Practice / Practicar"
+	practice_prompt_decline_button.text = "No thanks / No, gracias"
 	if not character.greeting.is_empty():
 		practice_prompt_body.text = "%s\n\n%s" % [character.greeting, practice_prompt_body.text]
 	practice_prompt_panel.visible = true
@@ -502,6 +512,9 @@ func _open_practice_prompt(character: Area2D) -> void:
 
 func _accept_practice_prompt() -> void:
 	practice_prompt_panel.visible = false
+	if prompted_character_id == "teacher":
+		return
+
 	var character_name := prompted_character_name
 	if character_name.is_empty():
 		character_name = "Scholar"
@@ -510,7 +523,10 @@ func _accept_practice_prompt() -> void:
 
 func _decline_practice_prompt() -> void:
 	practice_prompt_panel.visible = false
-	status_label.text = "Scholar nods. Come back anytime to practice Spanish."
+	var character_name := prompted_character_name
+	if character_name.is_empty():
+		character_name = "Teacher"
+	status_label.text = "%s nods. Come back anytime to practice Spanish." % character_name
 
 
 func _enter_portal(portal: Area2D) -> void:
