@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://spanish_quest_school"]
+[gd_scene load_steps=6 format=3 uid="uid://spanish_quest_school"]
 
 [ext_resource type="Script" path="res://scripts/MapLocation.gd" id="1_location"]
-[ext_resource type="Texture2D" path="res://assets/art/school_interior_sim.png" id="2_background"]
+[ext_resource type="Texture2D" path="res://assets/art/school_interior_rescaled.png" id="2_background"]
 [ext_resource type="Script" path="res://scripts/PortalArea.gd" id="3_portal"]
+[ext_resource type="Script" path="res://scripts/CharacterArea.gd" id="4_character"]
+[ext_resource type="Texture2D" path="res://assets/art/teacher_npc.png" id="5_teacher"]
 
 [node name="School" type="Node2D"]
 scale = Vector2(1.35, 1.35)
 script = ExtResource("1_location")
 scene_id = "school"
 title = "Village School"
-subtitle = "A future classroom scene for lessons and mini games."
-default_status = "This classroom can host future lessons. Exit near the bottom door."
+subtitle = "Talk to the teacher to start classroom Spanish practice."
+default_status = "Walk close to the teacher to start Spanish practice. Exit near the bottom door."
 map_size = Vector2(1254, 1254)
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -33,6 +35,68 @@ polygon = PackedVector2Array(-80, 0, 0, 0, 0, 1254, -80, 1254)
 
 [node name="Right" type="CollisionPolygon2D" parent="Collision/MapBounds"]
 polygon = PackedVector2Array(1254, 0, 1334, 0, 1334, 1254, 1254, 1254)
+
+[node name="CharacterBlockers" type="StaticBody2D" parent="Collision"]
+
+[node name="TeacherFootprint" type="CollisionPolygon2D" parent="Collision/CharacterBlockers"]
+position = Vector2(758, 375)
+polygon = PackedVector2Array(-28, -18, 28, -18, 28, 18, -28, 18)
+
+[node name="FurnitureBlockers" type="StaticBody2D" parent="Collision"]
+
+[node name="Chalkboard" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(382, 82, 873, 82, 873, 226, 382, 226)
+
+[node name="LeftBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(82, 205, 207, 205, 207, 548, 82, 548)
+
+[node name="LeftScrollStand" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(70, 556, 180, 556, 180, 690, 70, 690)
+
+[node name="RightBookcase" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(980, 207, 1154, 207, 1154, 350, 980, 350)
+
+[node name="RightWaterJar" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(1080, 360, 1150, 360, 1150, 440, 1080, 440)
+
+[node name="RightCabinet" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(1065, 673, 1171, 673, 1171, 979, 1065, 979)
+
+[node name="TeacherDesk" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(430, 326, 642, 326, 642, 425, 430, 425)
+
+[node name="TeacherChair" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(492, 286, 563, 286, 563, 339, 492, 339)
+
+[node name="UpperLeftStudentDesk" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(443, 658, 555, 658, 555, 735, 443, 735)
+
+[node name="UpperLeftStudentChair" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(466, 731, 529, 731, 529, 801, 466, 801)
+
+[node name="UpperRightStudentDesk" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(656, 658, 769, 658, 769, 735, 656, 735)
+
+[node name="UpperRightStudentChair" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(682, 731, 744, 731, 744, 802, 682, 802)
+
+[node name="LowerLeftStudentDesk" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(443, 836, 556, 836, 556, 911, 443, 911)
+
+[node name="LowerLeftStudentChair" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(467, 908, 528, 908, 528, 978, 467, 978)
+
+[node name="LowerRightStudentDesk" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(656, 836, 769, 836, 769, 911, 656, 911)
+
+[node name="LowerRightStudentChair" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(682, 908, 744, 908, 744, 978, 682, 978)
+
+[node name="BottomLeftPlant" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(68, 960, 168, 960, 168, 1064, 68, 1064)
+
+[node name="BottomRightPlant" type="CollisionPolygon2D" parent="Collision/FurnitureBlockers"]
+polygon = PackedVector2Array(1035, 932, 1155, 932, 1155, 1065, 1035, 1065)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
@@ -63,3 +127,29 @@ position = Vector2(-64, 24)
 text = "Village Plaza"
 
 [node name="Characters" type="Node2D" parent="."]
+
+[node name="teacher" type="Area2D" parent="Characters"]
+position = Vector2(758, 375)
+z_index = 375
+script = ExtResource("4_character")
+character_id = "teacher"
+character_name = "Teacher"
+role = "Spanish Teacher"
+greeting = "Welcome to class.\nBienvenidos a clase."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Characters/teacher"]
+polygon = PackedVector2Array(-90, -120, 90, -120, 90, 32, -90, 32)
+
+[node name="Shadow" type="Polygon2D" parent="Characters/teacher"]
+polygon = PackedVector2Array(22, 0, 20.326, 4.975, 15.556, 9.192, 8.419, 12.011, 0, 13, -8.419, 12.011, -15.556, 9.192, -20.326, 4.975, -22, 0, -20.326, -4.975, -15.556, -9.192, -8.419, -12.011, 0, -13, 8.419, -12.011, 15.556, -9.192, 20.326, -4.975)
+color = Color(0, 0, 0, 0.24)
+
+[node name="Sprite" type="Sprite2D" parent="Characters/teacher"]
+position = Vector2(0, -56)
+scale = Vector2(0.074, 0.074)
+z_index = 10
+texture = ExtResource("5_teacher")
+
+[node name="Label" type="Label" parent="Characters/teacher"]
+position = Vector2(-34, -118)
+text = "Teacher"
