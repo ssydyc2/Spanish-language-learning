@@ -44,13 +44,16 @@ var title_label: Label
 var status_label: Label
 var interact_button: Button
 var quiz_panel: Control
+var number_lesson_panel: Control
 var practice_prompt_panel: PanelContainer
 var practice_prompt_title: Label
 var practice_prompt_body: Label
 var practice_prompt_primary_button: Button
+var practice_prompt_secondary_button: Button
 var practice_prompt_decline_button: Button
 var prompted_character_id := ""
 var prompted_character_name := ""
+var practice_prompt_mode := "practice"
 
 @export var player_speed := 210.0
 @export var show_collision_debug := false
@@ -226,6 +229,20 @@ func _build_ui() -> void:
 	quiz_panel.offset_bottom = 235
 	layer.add_child(quiz_panel)
 
+	var number_lesson_script := load("res://scripts/NumberLessonPanel.gd")
+	number_lesson_panel = number_lesson_script.new()
+	number_lesson_panel.anchor_left = 0.5
+	number_lesson_panel.anchor_top = 0.5
+	number_lesson_panel.anchor_right = 0.5
+	number_lesson_panel.anchor_bottom = 0.5
+	number_lesson_panel.offset_left = -270
+	number_lesson_panel.offset_top = -300
+	number_lesson_panel.offset_right = 270
+	number_lesson_panel.offset_bottom = 300
+	number_lesson_panel.back_requested.connect(_open_course_menu)
+	number_lesson_panel.closed.connect(_on_number_lesson_closed)
+	layer.add_child(number_lesson_panel)
+
 	_build_practice_prompt(layer)
 
 
@@ -237,9 +254,9 @@ func _build_practice_prompt(layer: CanvasLayer) -> void:
 	practice_prompt_panel.anchor_right = 0.5
 	practice_prompt_panel.anchor_bottom = 0.5
 	practice_prompt_panel.offset_left = -180
-	practice_prompt_panel.offset_top = -112
+	practice_prompt_panel.offset_top = -160
 	practice_prompt_panel.offset_right = 180
-	practice_prompt_panel.offset_bottom = 112
+	practice_prompt_panel.offset_bottom = 160
 	practice_prompt_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 	layer.add_child(practice_prompt_panel)
 
@@ -265,7 +282,7 @@ func _build_practice_prompt(layer: CanvasLayer) -> void:
 	practice_prompt_body.add_theme_font_size_override("font_size", 18)
 	box.add_child(practice_prompt_body)
 
-	var actions := HBoxContainer.new()
+	var actions := VBoxContainer.new()
 	actions.add_theme_constant_override("separation", 10)
 	box.add_child(actions)
 
@@ -274,6 +291,12 @@ func _build_practice_prompt(layer: CanvasLayer) -> void:
 	practice_prompt_primary_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	practice_prompt_primary_button.pressed.connect(_accept_practice_prompt)
 	actions.add_child(practice_prompt_primary_button)
+
+	practice_prompt_secondary_button = Button.new()
+	practice_prompt_secondary_button.text = "Number Practice / Números"
+	practice_prompt_secondary_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	practice_prompt_secondary_button.pressed.connect(_open_number_practice_menu)
+	actions.add_child(practice_prompt_secondary_button)
 
 	practice_prompt_decline_button = Button.new()
 	practice_prompt_decline_button.text = "No thanks / No, gracias"
@@ -308,7 +331,7 @@ func _load_scene(next_scene_id: String, spawn_name: String) -> void:
 
 
 func _update_movement(_delta: float) -> void:
-	if quiz_panel.visible or practice_prompt_panel.visible:
+	if quiz_panel.visible or practice_prompt_panel.visible or number_lesson_panel.visible:
 		player_is_moving = false
 		player.velocity = Vector2.ZERO
 		return
@@ -499,11 +522,13 @@ func _open_practice_prompt(character: Area2D) -> void:
 	prompted_character_name = character.character_name
 	practice_prompt_title.text = character.character_name
 	if prompted_character_id == "teacher":
-		practice_prompt_body.text = "Do you want to study a lesson?\n¿Quieres estudiar una lección?"
-		practice_prompt_primary_button.text = "Study Lesson / Estudiar la lección"
+		_open_teacher_course_prompt(character.greeting)
+		return
 	else:
+		practice_prompt_mode = "practice"
 		practice_prompt_body.text = "Do you want to practice Spanish?\n¿Quieres practicar español?"
 		practice_prompt_primary_button.text = "Practice / Practicar"
+		practice_prompt_secondary_button.visible = false
 	practice_prompt_decline_button.text = "No thanks / No, gracias"
 	if not character.greeting.is_empty():
 		practice_prompt_body.text = "%s\n\n%s" % [character.greeting, practice_prompt_body.text]
@@ -511,9 +536,14 @@ func _open_practice_prompt(character: Area2D) -> void:
 
 
 func _accept_practice_prompt() -> void:
-	practice_prompt_panel.visible = false
-	if prompted_character_id == "teacher":
+	if practice_prompt_mode == "teacher_intro":
+		_open_course_menu()
 		return
+	if practice_prompt_mode == "teacher_courses":
+		_open_number_practice_menu()
+		return
+
+	practice_prompt_panel.visible = false
 
 	var character_name := prompted_character_name
 	if character_name.is_empty():
@@ -521,7 +551,46 @@ func _accept_practice_prompt() -> void:
 	quiz_panel.start(character_name)
 
 
+func _open_teacher_course_prompt(greeting := "") -> void:
+	practice_prompt_mode = "teacher_intro"
+	practice_prompt_title.text = "Teacher"
+	practice_prompt_body.text = "Would you like to study a course?\n¿Quieres estudiar un curso?"
+	practice_prompt_primary_button.text = "1. Course Study / Estudio de cursos"
+	practice_prompt_secondary_button.visible = false
+	practice_prompt_decline_button.text = "2. No thanks / No, gracias"
+	if not greeting.is_empty():
+		practice_prompt_body.text = "%s\n\n%s" % [greeting, practice_prompt_body.text]
+	practice_prompt_panel.visible = true
+
+
+func _open_course_menu() -> void:
+	if number_lesson_panel.visible:
+		number_lesson_panel.visible = false
+	practice_prompt_mode = "teacher_courses"
+	prompted_character_id = "teacher"
+	prompted_character_name = "Teacher"
+	practice_prompt_title.text = "Course Study / Estudio de cursos"
+	practice_prompt_body.text = "Choose a course.\nElige un curso."
+	practice_prompt_primary_button.text = "1. Number Course / Curso de números"
+	practice_prompt_secondary_button.visible = false
+	practice_prompt_decline_button.text = "Back / Volver"
+	practice_prompt_panel.visible = true
+
+
+func _open_number_practice_menu() -> void:
+	practice_prompt_panel.visible = false
+	number_lesson_panel.open_menu()
+
+
+func _on_number_lesson_closed() -> void:
+	status_label.text = "Teacher is ready when you want more number practice."
+
+
 func _decline_practice_prompt() -> void:
+	if practice_prompt_mode == "teacher_courses":
+		_open_teacher_course_prompt("Welcome to class.\nBienvenidos a clase.")
+		return
+
 	practice_prompt_panel.visible = false
 	var character_name := prompted_character_name
 	if character_name.is_empty():

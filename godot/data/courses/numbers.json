@@ -1,0 +1,5864 @@
+{
+  "version": 1,
+  "title": "Spanish Numbers 0-1000000",
+  "lessons": [
+    {
+      "item_id": "number_1",
+      "title": "1: uno / uno",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_2",
+      "title": "2: dos / dos",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_3",
+      "title": "3: tres / tres",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_4",
+      "title": "4: cuatro / cuatro",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_5",
+      "title": "5: cinco / cinco",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_6",
+      "title": "6: seis / seis",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_7",
+      "title": "7: siete / siete",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_8",
+      "title": "8: ocho / ocho",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_9",
+      "title": "9: nueve / nueve",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_10",
+      "title": "10: diez / diez",
+      "explanation": "English: Memorize this base number; later numbers reuse these words.\nEspañol: Memoriza este número base; los números más grandes reutilizan estas palabras."
+    },
+    {
+      "item_id": "number_11",
+      "title": "11: once / once",
+      "explanation": "English: This is a special fixed form before the regular patterns begin.\nEspañol: Esta es una forma fija especial antes de que empiecen los patrones regulares."
+    },
+    {
+      "item_id": "number_12",
+      "title": "12: doce / doce",
+      "explanation": "English: This is a special fixed form before the regular patterns begin.\nEspañol: Esta es una forma fija especial antes de que empiecen los patrones regulares."
+    },
+    {
+      "item_id": "number_13",
+      "title": "13: trece / trece",
+      "explanation": "English: This is a special fixed form before the regular patterns begin.\nEspañol: Esta es una forma fija especial antes de que empiecen los patrones regulares."
+    },
+    {
+      "item_id": "number_14",
+      "title": "14: catorce / catorce",
+      "explanation": "English: This is a special fixed form before the regular patterns begin.\nEspañol: Esta es una forma fija especial antes de que empiecen los patrones regulares."
+    },
+    {
+      "item_id": "number_15",
+      "title": "15: quince / quince",
+      "explanation": "English: This is a special fixed form before the regular patterns begin.\nEspañol: Esta es una forma fija especial antes de que empiecen los patrones regulares."
+    },
+    {
+      "item_id": "number_16",
+      "title": "16: dieciséis / dieciséis",
+      "explanation": "English: 16 starts the dieci- pattern and keeps an accent: dieciséis.\nEspañol: 16 empieza el patrón dieci- y lleva tilde: dieciséis."
+    },
+    {
+      "item_id": "number_17",
+      "title": "17: diecisiete / diecisiete",
+      "explanation": "English: 17 continues the dieci- pattern: diecisiete.\nEspañol: 17 continúa el patrón dieci-: diecisiete."
+    },
+    {
+      "item_id": "number_18",
+      "title": "18: dieciocho / dieciocho",
+      "explanation": "English: 18 is dieci- plus ocho: dieciocho.\nEspañol: 18 es dieci- más ocho: dieciocho."
+    },
+    {
+      "item_id": "number_19",
+      "title": "19: diecinueve / diecinueve",
+      "explanation": "English: 19 is dieci- plus nueve: diecinueve.\nEspañol: 19 es dieci- más nueve: diecinueve."
+    },
+    {
+      "item_id": "number_20",
+      "title": "20: veinte / veinte",
+      "explanation": "English: 20 is veinte. 21-29 switch to the joined veinti- form.\nEspañol: 20 es veinte. Del 21 al 29 se usa la forma unida veinti-."
+    },
+    {
+      "item_id": "number_21",
+      "title": "21: veintiuno / veintiuno",
+      "explanation": "English: 21 is veintiuno. Before a masculine noun, uno can shorten: veintiún libros.\nEspañol: 21 es veintiuno. Antes de un sustantivo masculino, uno puede acortarse: veintiún libros."
+    },
+    {
+      "item_id": "number_22",
+      "title": "22: veintidós / veintidós",
+      "explanation": "English: Some veinti- numbers keep accents, like veintidós, veintitrés, veintiséis.\nEspañol: Algunos números con veinti- llevan tilde, como veintidós, veintitrés, veintiséis."
+    },
+    {
+      "item_id": "number_29",
+      "title": "29: veintinueve / veintinueve",
+      "explanation": "English: 29 finishes the joined veinti- group. After 30, use spaces with y.\nEspañol: 29 termina el grupo unido veinti-. Después de 30, usa espacios con y."
+    },
+    {
+      "item_id": "number_30",
+      "title": "30: treinta / treinta",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_40",
+      "title": "40: cuarenta / cuarenta",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_50",
+      "title": "50: cincuenta / cincuenta",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_60",
+      "title": "60: sesenta / sesenta",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_70",
+      "title": "70: setenta / setenta",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_80",
+      "title": "80: ochenta / ochenta",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_90",
+      "title": "90: noventa / noventa",
+      "explanation": "English: This is a tens word. For 31-99, add y plus the ones word: treinta y uno, cuarenta y dos.\nEspañol: Esta es una decena. Para 31-99, añade y más la unidad: treinta y uno, cuarenta y dos."
+    },
+    {
+      "item_id": "number_31",
+      "title": "31: treinta y uno / treinta y uno",
+      "explanation": "English: From 31 onward, combine tens + y + ones.\nEspañol: Desde 31, combina decena + y + unidad."
+    },
+    {
+      "item_id": "number_42",
+      "title": "42: cuarenta y dos / cuarenta y dos",
+      "explanation": "English: The same tens + y + ones rule works through 99.\nEspañol: La misma regla decena + y + unidad funciona hasta 99."
+    },
+    {
+      "item_id": "number_100",
+      "title": "100: cien / cien",
+      "explanation": "English: Exactly 100 is cien.\nEspañol: Exactamente 100 es cien."
+    },
+    {
+      "item_id": "number_101",
+      "title": "101: ciento uno / ciento uno",
+      "explanation": "English: When another number follows 100, use ciento: ciento uno, ciento veinte, ciento noventa y nueve.\nEspañol: Cuando sigue otro número después de 100, usa ciento: ciento uno, ciento veinte, ciento noventa y nueve."
+    },
+    {
+      "item_id": "number_200",
+      "title": "200: doscientos / doscientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_300",
+      "title": "300: trescientos / trescientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_400",
+      "title": "400: cuatrocientos / cuatrocientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_500",
+      "title": "500: quinientos / quinientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_600",
+      "title": "600: seiscientos / seiscientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_700",
+      "title": "700: setecientos / setecientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_800",
+      "title": "800: ochocientos / ochocientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_900",
+      "title": "900: novecientos / novecientos",
+      "explanation": "English: This is a hundred word. Add the rest after it: doscientos cinco, quinientos veinte.\nEspañol: Esta es una centena. Añade el resto después: doscientos cinco, quinientos veinte."
+    },
+    {
+      "item_id": "number_999",
+      "title": "999: novecientos noventa y nueve / novecientos noventa y nueve",
+      "explanation": "English: Build 101-999 as hundreds + tens + ones.\nEspañol: Forma 101-999 con centenas + decenas + unidades."
+    },
+    {
+      "item_id": "number_1000",
+      "title": "1000: mil / mil",
+      "explanation": "English: 1,000 is mil. Do not say un mil.\nEspañol: 1.000 es mil. No se dice un mil."
+    },
+    {
+      "item_id": "number_2000",
+      "title": "2000: dos mil / dos mil",
+      "explanation": "English: For 2,000-999,000, put the number before mil: dos mil, cien mil.\nEspañol: Para 2.000-999.000, pon el número antes de mil: dos mil, cien mil."
+    },
+    {
+      "item_id": "number_10000",
+      "title": "10000: diez mil / diez mil",
+      "explanation": "English: 10,000 is diez mil. The same mil pattern continues.\nEspañol: 10.000 es diez mil. El mismo patrón con mil continúa."
+    },
+    {
+      "item_id": "number_21000",
+      "title": "21000: veintiún mil / veintiún mil",
+      "explanation": "English: Before mil, uno shortens to un: veintiún mil, treinta y un mil.\nEspañol: Antes de mil, uno se acorta a un: veintiún mil, treinta y un mil."
+    },
+    {
+      "item_id": "number_99999",
+      "title": "99999: noventa y nueve mil novecientos noventa y nueve / noventa y nueve mil novecientos noventa y nueve",
+      "explanation": "English: For 1,000-999,999, say the thousands part, then the rest under 1,000.\nEspañol: Para 1.000-999.999, di la parte de miles y luego el resto menor de 1.000."
+    },
+    {
+      "item_id": "number_100000",
+      "title": "100000: cien mil / cien mil",
+      "explanation": "English: 100,000 is cien mil. 101,000 becomes ciento un mil.\nEspañol: 100.000 es cien mil. 101.000 se convierte en ciento un mil."
+    },
+    {
+      "item_id": "number_500000",
+      "title": "500000: quinientos mil / quinientos mil",
+      "explanation": "English: Hundred-thousands use the normal hundreds before mil.\nEspañol: Las centenas de millar usan las centenas normales antes de mil."
+    },
+    {
+      "item_id": "number_999999",
+      "title": "999999: novecientos noventa y nueve mil novecientos noventa y nueve / novecientos noventa y nueve mil novecientos noventa y nueve",
+      "explanation": "English: This is the largest number below one million; it shows the full pattern.\nEspañol: Este es el mayor número antes de un millón; muestra el patrón completo."
+    },
+    {
+      "item_id": "number_1000000",
+      "title": "1000000: un millón / un millón",
+      "explanation": "English: 1,000,000 is un millón. From here, millón is a noun.\nEspañol: 1.000.000 es un millón. Desde aquí, millón funciona como sustantivo."
+    }
+  ],
+  "items": [
+    {
+      "id": "number_0",
+      "kind": "number",
+      "number": 0,
+      "digits": "0",
+      "spanish": "cero",
+      "english": [
+        "0"
+      ],
+      "accepted_spanish": [
+        "cero"
+      ],
+      "audio": "audio/numbers/number_0.mp3"
+    },
+    {
+      "id": "number_1",
+      "kind": "number",
+      "number": 1,
+      "digits": "1",
+      "spanish": "uno",
+      "english": [
+        "1"
+      ],
+      "accepted_spanish": [
+        "uno"
+      ],
+      "audio": "audio/numbers/number_1.mp3"
+    },
+    {
+      "id": "number_2",
+      "kind": "number",
+      "number": 2,
+      "digits": "2",
+      "spanish": "dos",
+      "english": [
+        "2"
+      ],
+      "accepted_spanish": [
+        "dos"
+      ],
+      "audio": "audio/numbers/number_2.mp3"
+    },
+    {
+      "id": "number_3",
+      "kind": "number",
+      "number": 3,
+      "digits": "3",
+      "spanish": "tres",
+      "english": [
+        "3"
+      ],
+      "accepted_spanish": [
+        "tres"
+      ],
+      "audio": "audio/numbers/number_3.mp3"
+    },
+    {
+      "id": "number_4",
+      "kind": "number",
+      "number": 4,
+      "digits": "4",
+      "spanish": "cuatro",
+      "english": [
+        "4"
+      ],
+      "accepted_spanish": [
+        "cuatro"
+      ],
+      "audio": "audio/numbers/number_4.mp3"
+    },
+    {
+      "id": "number_5",
+      "kind": "number",
+      "number": 5,
+      "digits": "5",
+      "spanish": "cinco",
+      "english": [
+        "5"
+      ],
+      "accepted_spanish": [
+        "cinco"
+      ],
+      "audio": "audio/numbers/number_5.mp3"
+    },
+    {
+      "id": "number_6",
+      "kind": "number",
+      "number": 6,
+      "digits": "6",
+      "spanish": "seis",
+      "english": [
+        "6"
+      ],
+      "accepted_spanish": [
+        "seis"
+      ],
+      "audio": "audio/numbers/number_6.mp3"
+    },
+    {
+      "id": "number_7",
+      "kind": "number",
+      "number": 7,
+      "digits": "7",
+      "spanish": "siete",
+      "english": [
+        "7"
+      ],
+      "accepted_spanish": [
+        "siete"
+      ],
+      "audio": "audio/numbers/number_7.mp3"
+    },
+    {
+      "id": "number_8",
+      "kind": "number",
+      "number": 8,
+      "digits": "8",
+      "spanish": "ocho",
+      "english": [
+        "8"
+      ],
+      "accepted_spanish": [
+        "ocho"
+      ],
+      "audio": "audio/numbers/number_8.mp3"
+    },
+    {
+      "id": "number_9",
+      "kind": "number",
+      "number": 9,
+      "digits": "9",
+      "spanish": "nueve",
+      "english": [
+        "9"
+      ],
+      "accepted_spanish": [
+        "nueve"
+      ],
+      "audio": "audio/numbers/number_9.mp3"
+    },
+    {
+      "id": "number_10",
+      "kind": "number",
+      "number": 10,
+      "digits": "10",
+      "spanish": "diez",
+      "english": [
+        "10"
+      ],
+      "accepted_spanish": [
+        "diez"
+      ],
+      "audio": "audio/numbers/number_10.mp3"
+    },
+    {
+      "id": "number_11",
+      "kind": "number",
+      "number": 11,
+      "digits": "11",
+      "spanish": "once",
+      "english": [
+        "11"
+      ],
+      "accepted_spanish": [
+        "once"
+      ],
+      "audio": "audio/numbers/number_11.mp3"
+    },
+    {
+      "id": "number_12",
+      "kind": "number",
+      "number": 12,
+      "digits": "12",
+      "spanish": "doce",
+      "english": [
+        "12"
+      ],
+      "accepted_spanish": [
+        "doce"
+      ],
+      "audio": "audio/numbers/number_12.mp3"
+    },
+    {
+      "id": "number_13",
+      "kind": "number",
+      "number": 13,
+      "digits": "13",
+      "spanish": "trece",
+      "english": [
+        "13"
+      ],
+      "accepted_spanish": [
+        "trece"
+      ],
+      "audio": "audio/numbers/number_13.mp3"
+    },
+    {
+      "id": "number_14",
+      "kind": "number",
+      "number": 14,
+      "digits": "14",
+      "spanish": "catorce",
+      "english": [
+        "14"
+      ],
+      "accepted_spanish": [
+        "catorce"
+      ],
+      "audio": "audio/numbers/number_14.mp3"
+    },
+    {
+      "id": "number_15",
+      "kind": "number",
+      "number": 15,
+      "digits": "15",
+      "spanish": "quince",
+      "english": [
+        "15"
+      ],
+      "accepted_spanish": [
+        "quince"
+      ],
+      "audio": "audio/numbers/number_15.mp3"
+    },
+    {
+      "id": "number_16",
+      "kind": "number",
+      "number": 16,
+      "digits": "16",
+      "spanish": "dieciséis",
+      "english": [
+        "16"
+      ],
+      "accepted_spanish": [
+        "dieciséis",
+        "dieciseis"
+      ],
+      "audio": "audio/numbers/number_16.mp3"
+    },
+    {
+      "id": "number_17",
+      "kind": "number",
+      "number": 17,
+      "digits": "17",
+      "spanish": "diecisiete",
+      "english": [
+        "17"
+      ],
+      "accepted_spanish": [
+        "diecisiete"
+      ],
+      "audio": "audio/numbers/number_17.mp3"
+    },
+    {
+      "id": "number_18",
+      "kind": "number",
+      "number": 18,
+      "digits": "18",
+      "spanish": "dieciocho",
+      "english": [
+        "18"
+      ],
+      "accepted_spanish": [
+        "dieciocho"
+      ],
+      "audio": "audio/numbers/number_18.mp3"
+    },
+    {
+      "id": "number_19",
+      "kind": "number",
+      "number": 19,
+      "digits": "19",
+      "spanish": "diecinueve",
+      "english": [
+        "19"
+      ],
+      "accepted_spanish": [
+        "diecinueve"
+      ],
+      "audio": "audio/numbers/number_19.mp3"
+    },
+    {
+      "id": "number_20",
+      "kind": "number",
+      "number": 20,
+      "digits": "20",
+      "spanish": "veinte",
+      "english": [
+        "20"
+      ],
+      "accepted_spanish": [
+        "veinte"
+      ],
+      "audio": "audio/numbers/number_20.mp3"
+    },
+    {
+      "id": "number_21",
+      "kind": "number",
+      "number": 21,
+      "digits": "21",
+      "spanish": "veintiuno",
+      "english": [
+        "21"
+      ],
+      "accepted_spanish": [
+        "veintiuno"
+      ],
+      "audio": "audio/numbers/number_21.mp3"
+    },
+    {
+      "id": "number_22",
+      "kind": "number",
+      "number": 22,
+      "digits": "22",
+      "spanish": "veintidós",
+      "english": [
+        "22"
+      ],
+      "accepted_spanish": [
+        "veintidós",
+        "veintidos"
+      ],
+      "audio": "audio/numbers/number_22.mp3"
+    },
+    {
+      "id": "number_23",
+      "kind": "number",
+      "number": 23,
+      "digits": "23",
+      "spanish": "veintitrés",
+      "english": [
+        "23"
+      ],
+      "accepted_spanish": [
+        "veintitrés",
+        "veintitres"
+      ],
+      "audio": "audio/numbers/number_23.mp3"
+    },
+    {
+      "id": "number_24",
+      "kind": "number",
+      "number": 24,
+      "digits": "24",
+      "spanish": "veinticuatro",
+      "english": [
+        "24"
+      ],
+      "accepted_spanish": [
+        "veinticuatro"
+      ],
+      "audio": "audio/numbers/number_24.mp3"
+    },
+    {
+      "id": "number_25",
+      "kind": "number",
+      "number": 25,
+      "digits": "25",
+      "spanish": "veinticinco",
+      "english": [
+        "25"
+      ],
+      "accepted_spanish": [
+        "veinticinco"
+      ],
+      "audio": "audio/numbers/number_25.mp3"
+    },
+    {
+      "id": "number_26",
+      "kind": "number",
+      "number": 26,
+      "digits": "26",
+      "spanish": "veintiséis",
+      "english": [
+        "26"
+      ],
+      "accepted_spanish": [
+        "veintiséis",
+        "veintiseis"
+      ],
+      "audio": "audio/numbers/number_26.mp3"
+    },
+    {
+      "id": "number_27",
+      "kind": "number",
+      "number": 27,
+      "digits": "27",
+      "spanish": "veintisiete",
+      "english": [
+        "27"
+      ],
+      "accepted_spanish": [
+        "veintisiete"
+      ],
+      "audio": "audio/numbers/number_27.mp3"
+    },
+    {
+      "id": "number_28",
+      "kind": "number",
+      "number": 28,
+      "digits": "28",
+      "spanish": "veintiocho",
+      "english": [
+        "28"
+      ],
+      "accepted_spanish": [
+        "veintiocho"
+      ],
+      "audio": "audio/numbers/number_28.mp3"
+    },
+    {
+      "id": "number_29",
+      "kind": "number",
+      "number": 29,
+      "digits": "29",
+      "spanish": "veintinueve",
+      "english": [
+        "29"
+      ],
+      "accepted_spanish": [
+        "veintinueve"
+      ],
+      "audio": "audio/numbers/number_29.mp3"
+    },
+    {
+      "id": "number_30",
+      "kind": "number",
+      "number": 30,
+      "digits": "30",
+      "spanish": "treinta",
+      "english": [
+        "30"
+      ],
+      "accepted_spanish": [
+        "treinta"
+      ],
+      "audio": "audio/numbers/number_30.mp3"
+    },
+    {
+      "id": "number_31",
+      "kind": "number",
+      "number": 31,
+      "digits": "31",
+      "spanish": "treinta y uno",
+      "english": [
+        "31"
+      ],
+      "accepted_spanish": [
+        "treinta y uno"
+      ],
+      "audio": "audio/numbers/number_31.mp3"
+    },
+    {
+      "id": "number_32",
+      "kind": "number",
+      "number": 32,
+      "digits": "32",
+      "spanish": "treinta y dos",
+      "english": [
+        "32"
+      ],
+      "accepted_spanish": [
+        "treinta y dos"
+      ],
+      "audio": "audio/numbers/number_32.mp3"
+    },
+    {
+      "id": "number_33",
+      "kind": "number",
+      "number": 33,
+      "digits": "33",
+      "spanish": "treinta y tres",
+      "english": [
+        "33"
+      ],
+      "accepted_spanish": [
+        "treinta y tres"
+      ],
+      "audio": "audio/numbers/number_33.mp3"
+    },
+    {
+      "id": "number_34",
+      "kind": "number",
+      "number": 34,
+      "digits": "34",
+      "spanish": "treinta y cuatro",
+      "english": [
+        "34"
+      ],
+      "accepted_spanish": [
+        "treinta y cuatro"
+      ],
+      "audio": "audio/numbers/number_34.mp3"
+    },
+    {
+      "id": "number_35",
+      "kind": "number",
+      "number": 35,
+      "digits": "35",
+      "spanish": "treinta y cinco",
+      "english": [
+        "35"
+      ],
+      "accepted_spanish": [
+        "treinta y cinco"
+      ],
+      "audio": "audio/numbers/number_35.mp3"
+    },
+    {
+      "id": "number_36",
+      "kind": "number",
+      "number": 36,
+      "digits": "36",
+      "spanish": "treinta y seis",
+      "english": [
+        "36"
+      ],
+      "accepted_spanish": [
+        "treinta y seis"
+      ],
+      "audio": "audio/numbers/number_36.mp3"
+    },
+    {
+      "id": "number_37",
+      "kind": "number",
+      "number": 37,
+      "digits": "37",
+      "spanish": "treinta y siete",
+      "english": [
+        "37"
+      ],
+      "accepted_spanish": [
+        "treinta y siete"
+      ],
+      "audio": "audio/numbers/number_37.mp3"
+    },
+    {
+      "id": "number_38",
+      "kind": "number",
+      "number": 38,
+      "digits": "38",
+      "spanish": "treinta y ocho",
+      "english": [
+        "38"
+      ],
+      "accepted_spanish": [
+        "treinta y ocho"
+      ],
+      "audio": "audio/numbers/number_38.mp3"
+    },
+    {
+      "id": "number_39",
+      "kind": "number",
+      "number": 39,
+      "digits": "39",
+      "spanish": "treinta y nueve",
+      "english": [
+        "39"
+      ],
+      "accepted_spanish": [
+        "treinta y nueve"
+      ],
+      "audio": "audio/numbers/number_39.mp3"
+    },
+    {
+      "id": "number_40",
+      "kind": "number",
+      "number": 40,
+      "digits": "40",
+      "spanish": "cuarenta",
+      "english": [
+        "40"
+      ],
+      "accepted_spanish": [
+        "cuarenta"
+      ],
+      "audio": "audio/numbers/number_40.mp3"
+    },
+    {
+      "id": "number_41",
+      "kind": "number",
+      "number": 41,
+      "digits": "41",
+      "spanish": "cuarenta y uno",
+      "english": [
+        "41"
+      ],
+      "accepted_spanish": [
+        "cuarenta y uno"
+      ],
+      "audio": "audio/numbers/number_41.mp3"
+    },
+    {
+      "id": "number_42",
+      "kind": "number",
+      "number": 42,
+      "digits": "42",
+      "spanish": "cuarenta y dos",
+      "english": [
+        "42"
+      ],
+      "accepted_spanish": [
+        "cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_42.mp3"
+    },
+    {
+      "id": "number_43",
+      "kind": "number",
+      "number": 43,
+      "digits": "43",
+      "spanish": "cuarenta y tres",
+      "english": [
+        "43"
+      ],
+      "accepted_spanish": [
+        "cuarenta y tres"
+      ],
+      "audio": "audio/numbers/number_43.mp3"
+    },
+    {
+      "id": "number_44",
+      "kind": "number",
+      "number": 44,
+      "digits": "44",
+      "spanish": "cuarenta y cuatro",
+      "english": [
+        "44"
+      ],
+      "accepted_spanish": [
+        "cuarenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_44.mp3"
+    },
+    {
+      "id": "number_45",
+      "kind": "number",
+      "number": 45,
+      "digits": "45",
+      "spanish": "cuarenta y cinco",
+      "english": [
+        "45"
+      ],
+      "accepted_spanish": [
+        "cuarenta y cinco"
+      ],
+      "audio": "audio/numbers/number_45.mp3"
+    },
+    {
+      "id": "number_46",
+      "kind": "number",
+      "number": 46,
+      "digits": "46",
+      "spanish": "cuarenta y seis",
+      "english": [
+        "46"
+      ],
+      "accepted_spanish": [
+        "cuarenta y seis"
+      ],
+      "audio": "audio/numbers/number_46.mp3"
+    },
+    {
+      "id": "number_47",
+      "kind": "number",
+      "number": 47,
+      "digits": "47",
+      "spanish": "cuarenta y siete",
+      "english": [
+        "47"
+      ],
+      "accepted_spanish": [
+        "cuarenta y siete"
+      ],
+      "audio": "audio/numbers/number_47.mp3"
+    },
+    {
+      "id": "number_48",
+      "kind": "number",
+      "number": 48,
+      "digits": "48",
+      "spanish": "cuarenta y ocho",
+      "english": [
+        "48"
+      ],
+      "accepted_spanish": [
+        "cuarenta y ocho"
+      ],
+      "audio": "audio/numbers/number_48.mp3"
+    },
+    {
+      "id": "number_49",
+      "kind": "number",
+      "number": 49,
+      "digits": "49",
+      "spanish": "cuarenta y nueve",
+      "english": [
+        "49"
+      ],
+      "accepted_spanish": [
+        "cuarenta y nueve"
+      ],
+      "audio": "audio/numbers/number_49.mp3"
+    },
+    {
+      "id": "number_50",
+      "kind": "number",
+      "number": 50,
+      "digits": "50",
+      "spanish": "cincuenta",
+      "english": [
+        "50"
+      ],
+      "accepted_spanish": [
+        "cincuenta"
+      ],
+      "audio": "audio/numbers/number_50.mp3"
+    },
+    {
+      "id": "number_51",
+      "kind": "number",
+      "number": 51,
+      "digits": "51",
+      "spanish": "cincuenta y uno",
+      "english": [
+        "51"
+      ],
+      "accepted_spanish": [
+        "cincuenta y uno"
+      ],
+      "audio": "audio/numbers/number_51.mp3"
+    },
+    {
+      "id": "number_52",
+      "kind": "number",
+      "number": 52,
+      "digits": "52",
+      "spanish": "cincuenta y dos",
+      "english": [
+        "52"
+      ],
+      "accepted_spanish": [
+        "cincuenta y dos"
+      ],
+      "audio": "audio/numbers/number_52.mp3"
+    },
+    {
+      "id": "number_53",
+      "kind": "number",
+      "number": 53,
+      "digits": "53",
+      "spanish": "cincuenta y tres",
+      "english": [
+        "53"
+      ],
+      "accepted_spanish": [
+        "cincuenta y tres"
+      ],
+      "audio": "audio/numbers/number_53.mp3"
+    },
+    {
+      "id": "number_54",
+      "kind": "number",
+      "number": 54,
+      "digits": "54",
+      "spanish": "cincuenta y cuatro",
+      "english": [
+        "54"
+      ],
+      "accepted_spanish": [
+        "cincuenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_54.mp3"
+    },
+    {
+      "id": "number_55",
+      "kind": "number",
+      "number": 55,
+      "digits": "55",
+      "spanish": "cincuenta y cinco",
+      "english": [
+        "55"
+      ],
+      "accepted_spanish": [
+        "cincuenta y cinco"
+      ],
+      "audio": "audio/numbers/number_55.mp3"
+    },
+    {
+      "id": "number_56",
+      "kind": "number",
+      "number": 56,
+      "digits": "56",
+      "spanish": "cincuenta y seis",
+      "english": [
+        "56"
+      ],
+      "accepted_spanish": [
+        "cincuenta y seis"
+      ],
+      "audio": "audio/numbers/number_56.mp3"
+    },
+    {
+      "id": "number_57",
+      "kind": "number",
+      "number": 57,
+      "digits": "57",
+      "spanish": "cincuenta y siete",
+      "english": [
+        "57"
+      ],
+      "accepted_spanish": [
+        "cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_57.mp3"
+    },
+    {
+      "id": "number_58",
+      "kind": "number",
+      "number": 58,
+      "digits": "58",
+      "spanish": "cincuenta y ocho",
+      "english": [
+        "58"
+      ],
+      "accepted_spanish": [
+        "cincuenta y ocho"
+      ],
+      "audio": "audio/numbers/number_58.mp3"
+    },
+    {
+      "id": "number_59",
+      "kind": "number",
+      "number": 59,
+      "digits": "59",
+      "spanish": "cincuenta y nueve",
+      "english": [
+        "59"
+      ],
+      "accepted_spanish": [
+        "cincuenta y nueve"
+      ],
+      "audio": "audio/numbers/number_59.mp3"
+    },
+    {
+      "id": "number_60",
+      "kind": "number",
+      "number": 60,
+      "digits": "60",
+      "spanish": "sesenta",
+      "english": [
+        "60"
+      ],
+      "accepted_spanish": [
+        "sesenta"
+      ],
+      "audio": "audio/numbers/number_60.mp3"
+    },
+    {
+      "id": "number_61",
+      "kind": "number",
+      "number": 61,
+      "digits": "61",
+      "spanish": "sesenta y uno",
+      "english": [
+        "61"
+      ],
+      "accepted_spanish": [
+        "sesenta y uno"
+      ],
+      "audio": "audio/numbers/number_61.mp3"
+    },
+    {
+      "id": "number_62",
+      "kind": "number",
+      "number": 62,
+      "digits": "62",
+      "spanish": "sesenta y dos",
+      "english": [
+        "62"
+      ],
+      "accepted_spanish": [
+        "sesenta y dos"
+      ],
+      "audio": "audio/numbers/number_62.mp3"
+    },
+    {
+      "id": "number_63",
+      "kind": "number",
+      "number": 63,
+      "digits": "63",
+      "spanish": "sesenta y tres",
+      "english": [
+        "63"
+      ],
+      "accepted_spanish": [
+        "sesenta y tres"
+      ],
+      "audio": "audio/numbers/number_63.mp3"
+    },
+    {
+      "id": "number_64",
+      "kind": "number",
+      "number": 64,
+      "digits": "64",
+      "spanish": "sesenta y cuatro",
+      "english": [
+        "64"
+      ],
+      "accepted_spanish": [
+        "sesenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_64.mp3"
+    },
+    {
+      "id": "number_65",
+      "kind": "number",
+      "number": 65,
+      "digits": "65",
+      "spanish": "sesenta y cinco",
+      "english": [
+        "65"
+      ],
+      "accepted_spanish": [
+        "sesenta y cinco"
+      ],
+      "audio": "audio/numbers/number_65.mp3"
+    },
+    {
+      "id": "number_66",
+      "kind": "number",
+      "number": 66,
+      "digits": "66",
+      "spanish": "sesenta y seis",
+      "english": [
+        "66"
+      ],
+      "accepted_spanish": [
+        "sesenta y seis"
+      ],
+      "audio": "audio/numbers/number_66.mp3"
+    },
+    {
+      "id": "number_67",
+      "kind": "number",
+      "number": 67,
+      "digits": "67",
+      "spanish": "sesenta y siete",
+      "english": [
+        "67"
+      ],
+      "accepted_spanish": [
+        "sesenta y siete"
+      ],
+      "audio": "audio/numbers/number_67.mp3"
+    },
+    {
+      "id": "number_68",
+      "kind": "number",
+      "number": 68,
+      "digits": "68",
+      "spanish": "sesenta y ocho",
+      "english": [
+        "68"
+      ],
+      "accepted_spanish": [
+        "sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_68.mp3"
+    },
+    {
+      "id": "number_69",
+      "kind": "number",
+      "number": 69,
+      "digits": "69",
+      "spanish": "sesenta y nueve",
+      "english": [
+        "69"
+      ],
+      "accepted_spanish": [
+        "sesenta y nueve"
+      ],
+      "audio": "audio/numbers/number_69.mp3"
+    },
+    {
+      "id": "number_70",
+      "kind": "number",
+      "number": 70,
+      "digits": "70",
+      "spanish": "setenta",
+      "english": [
+        "70"
+      ],
+      "accepted_spanish": [
+        "setenta"
+      ],
+      "audio": "audio/numbers/number_70.mp3"
+    },
+    {
+      "id": "number_71",
+      "kind": "number",
+      "number": 71,
+      "digits": "71",
+      "spanish": "setenta y uno",
+      "english": [
+        "71"
+      ],
+      "accepted_spanish": [
+        "setenta y uno"
+      ],
+      "audio": "audio/numbers/number_71.mp3"
+    },
+    {
+      "id": "number_72",
+      "kind": "number",
+      "number": 72,
+      "digits": "72",
+      "spanish": "setenta y dos",
+      "english": [
+        "72"
+      ],
+      "accepted_spanish": [
+        "setenta y dos"
+      ],
+      "audio": "audio/numbers/number_72.mp3"
+    },
+    {
+      "id": "number_73",
+      "kind": "number",
+      "number": 73,
+      "digits": "73",
+      "spanish": "setenta y tres",
+      "english": [
+        "73"
+      ],
+      "accepted_spanish": [
+        "setenta y tres"
+      ],
+      "audio": "audio/numbers/number_73.mp3"
+    },
+    {
+      "id": "number_74",
+      "kind": "number",
+      "number": 74,
+      "digits": "74",
+      "spanish": "setenta y cuatro",
+      "english": [
+        "74"
+      ],
+      "accepted_spanish": [
+        "setenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_74.mp3"
+    },
+    {
+      "id": "number_75",
+      "kind": "number",
+      "number": 75,
+      "digits": "75",
+      "spanish": "setenta y cinco",
+      "english": [
+        "75"
+      ],
+      "accepted_spanish": [
+        "setenta y cinco"
+      ],
+      "audio": "audio/numbers/number_75.mp3"
+    },
+    {
+      "id": "number_76",
+      "kind": "number",
+      "number": 76,
+      "digits": "76",
+      "spanish": "setenta y seis",
+      "english": [
+        "76"
+      ],
+      "accepted_spanish": [
+        "setenta y seis"
+      ],
+      "audio": "audio/numbers/number_76.mp3"
+    },
+    {
+      "id": "number_77",
+      "kind": "number",
+      "number": 77,
+      "digits": "77",
+      "spanish": "setenta y siete",
+      "english": [
+        "77"
+      ],
+      "accepted_spanish": [
+        "setenta y siete"
+      ],
+      "audio": "audio/numbers/number_77.mp3"
+    },
+    {
+      "id": "number_78",
+      "kind": "number",
+      "number": 78,
+      "digits": "78",
+      "spanish": "setenta y ocho",
+      "english": [
+        "78"
+      ],
+      "accepted_spanish": [
+        "setenta y ocho"
+      ],
+      "audio": "audio/numbers/number_78.mp3"
+    },
+    {
+      "id": "number_79",
+      "kind": "number",
+      "number": 79,
+      "digits": "79",
+      "spanish": "setenta y nueve",
+      "english": [
+        "79"
+      ],
+      "accepted_spanish": [
+        "setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_79.mp3"
+    },
+    {
+      "id": "number_80",
+      "kind": "number",
+      "number": 80,
+      "digits": "80",
+      "spanish": "ochenta",
+      "english": [
+        "80"
+      ],
+      "accepted_spanish": [
+        "ochenta"
+      ],
+      "audio": "audio/numbers/number_80.mp3"
+    },
+    {
+      "id": "number_81",
+      "kind": "number",
+      "number": 81,
+      "digits": "81",
+      "spanish": "ochenta y uno",
+      "english": [
+        "81"
+      ],
+      "accepted_spanish": [
+        "ochenta y uno"
+      ],
+      "audio": "audio/numbers/number_81.mp3"
+    },
+    {
+      "id": "number_82",
+      "kind": "number",
+      "number": 82,
+      "digits": "82",
+      "spanish": "ochenta y dos",
+      "english": [
+        "82"
+      ],
+      "accepted_spanish": [
+        "ochenta y dos"
+      ],
+      "audio": "audio/numbers/number_82.mp3"
+    },
+    {
+      "id": "number_83",
+      "kind": "number",
+      "number": 83,
+      "digits": "83",
+      "spanish": "ochenta y tres",
+      "english": [
+        "83"
+      ],
+      "accepted_spanish": [
+        "ochenta y tres"
+      ],
+      "audio": "audio/numbers/number_83.mp3"
+    },
+    {
+      "id": "number_84",
+      "kind": "number",
+      "number": 84,
+      "digits": "84",
+      "spanish": "ochenta y cuatro",
+      "english": [
+        "84"
+      ],
+      "accepted_spanish": [
+        "ochenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_84.mp3"
+    },
+    {
+      "id": "number_85",
+      "kind": "number",
+      "number": 85,
+      "digits": "85",
+      "spanish": "ochenta y cinco",
+      "english": [
+        "85"
+      ],
+      "accepted_spanish": [
+        "ochenta y cinco"
+      ],
+      "audio": "audio/numbers/number_85.mp3"
+    },
+    {
+      "id": "number_86",
+      "kind": "number",
+      "number": 86,
+      "digits": "86",
+      "spanish": "ochenta y seis",
+      "english": [
+        "86"
+      ],
+      "accepted_spanish": [
+        "ochenta y seis"
+      ],
+      "audio": "audio/numbers/number_86.mp3"
+    },
+    {
+      "id": "number_87",
+      "kind": "number",
+      "number": 87,
+      "digits": "87",
+      "spanish": "ochenta y siete",
+      "english": [
+        "87"
+      ],
+      "accepted_spanish": [
+        "ochenta y siete"
+      ],
+      "audio": "audio/numbers/number_87.mp3"
+    },
+    {
+      "id": "number_88",
+      "kind": "number",
+      "number": 88,
+      "digits": "88",
+      "spanish": "ochenta y ocho",
+      "english": [
+        "88"
+      ],
+      "accepted_spanish": [
+        "ochenta y ocho"
+      ],
+      "audio": "audio/numbers/number_88.mp3"
+    },
+    {
+      "id": "number_89",
+      "kind": "number",
+      "number": 89,
+      "digits": "89",
+      "spanish": "ochenta y nueve",
+      "english": [
+        "89"
+      ],
+      "accepted_spanish": [
+        "ochenta y nueve"
+      ],
+      "audio": "audio/numbers/number_89.mp3"
+    },
+    {
+      "id": "number_90",
+      "kind": "number",
+      "number": 90,
+      "digits": "90",
+      "spanish": "noventa",
+      "english": [
+        "90"
+      ],
+      "accepted_spanish": [
+        "noventa"
+      ],
+      "audio": "audio/numbers/number_90.mp3"
+    },
+    {
+      "id": "number_91",
+      "kind": "number",
+      "number": 91,
+      "digits": "91",
+      "spanish": "noventa y uno",
+      "english": [
+        "91"
+      ],
+      "accepted_spanish": [
+        "noventa y uno"
+      ],
+      "audio": "audio/numbers/number_91.mp3"
+    },
+    {
+      "id": "number_92",
+      "kind": "number",
+      "number": 92,
+      "digits": "92",
+      "spanish": "noventa y dos",
+      "english": [
+        "92"
+      ],
+      "accepted_spanish": [
+        "noventa y dos"
+      ],
+      "audio": "audio/numbers/number_92.mp3"
+    },
+    {
+      "id": "number_93",
+      "kind": "number",
+      "number": 93,
+      "digits": "93",
+      "spanish": "noventa y tres",
+      "english": [
+        "93"
+      ],
+      "accepted_spanish": [
+        "noventa y tres"
+      ],
+      "audio": "audio/numbers/number_93.mp3"
+    },
+    {
+      "id": "number_94",
+      "kind": "number",
+      "number": 94,
+      "digits": "94",
+      "spanish": "noventa y cuatro",
+      "english": [
+        "94"
+      ],
+      "accepted_spanish": [
+        "noventa y cuatro"
+      ],
+      "audio": "audio/numbers/number_94.mp3"
+    },
+    {
+      "id": "number_95",
+      "kind": "number",
+      "number": 95,
+      "digits": "95",
+      "spanish": "noventa y cinco",
+      "english": [
+        "95"
+      ],
+      "accepted_spanish": [
+        "noventa y cinco"
+      ],
+      "audio": "audio/numbers/number_95.mp3"
+    },
+    {
+      "id": "number_96",
+      "kind": "number",
+      "number": 96,
+      "digits": "96",
+      "spanish": "noventa y seis",
+      "english": [
+        "96"
+      ],
+      "accepted_spanish": [
+        "noventa y seis"
+      ],
+      "audio": "audio/numbers/number_96.mp3"
+    },
+    {
+      "id": "number_97",
+      "kind": "number",
+      "number": 97,
+      "digits": "97",
+      "spanish": "noventa y siete",
+      "english": [
+        "97"
+      ],
+      "accepted_spanish": [
+        "noventa y siete"
+      ],
+      "audio": "audio/numbers/number_97.mp3"
+    },
+    {
+      "id": "number_98",
+      "kind": "number",
+      "number": 98,
+      "digits": "98",
+      "spanish": "noventa y ocho",
+      "english": [
+        "98"
+      ],
+      "accepted_spanish": [
+        "noventa y ocho"
+      ],
+      "audio": "audio/numbers/number_98.mp3"
+    },
+    {
+      "id": "number_99",
+      "kind": "number",
+      "number": 99,
+      "digits": "99",
+      "spanish": "noventa y nueve",
+      "english": [
+        "99"
+      ],
+      "accepted_spanish": [
+        "noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_99.mp3"
+    },
+    {
+      "id": "number_100",
+      "kind": "number",
+      "number": 100,
+      "digits": "100",
+      "spanish": "cien",
+      "english": [
+        "100"
+      ],
+      "accepted_spanish": [
+        "cien"
+      ],
+      "audio": "audio/numbers/number_100.mp3"
+    },
+    {
+      "id": "number_101",
+      "kind": "number",
+      "number": 101,
+      "digits": "101",
+      "spanish": "ciento uno",
+      "english": [
+        "101"
+      ],
+      "accepted_spanish": [
+        "ciento uno"
+      ],
+      "audio": "audio/numbers/number_101.mp3"
+    },
+    {
+      "id": "number_102",
+      "kind": "number",
+      "number": 102,
+      "digits": "102",
+      "spanish": "ciento dos",
+      "english": [
+        "102"
+      ],
+      "accepted_spanish": [
+        "ciento dos"
+      ],
+      "audio": "audio/numbers/number_102.mp3"
+    },
+    {
+      "id": "number_103",
+      "kind": "number",
+      "number": 103,
+      "digits": "103",
+      "spanish": "ciento tres",
+      "english": [
+        "103"
+      ],
+      "accepted_spanish": [
+        "ciento tres"
+      ],
+      "audio": "audio/numbers/number_103.mp3"
+    },
+    {
+      "id": "number_104",
+      "kind": "number",
+      "number": 104,
+      "digits": "104",
+      "spanish": "ciento cuatro",
+      "english": [
+        "104"
+      ],
+      "accepted_spanish": [
+        "ciento cuatro"
+      ],
+      "audio": "audio/numbers/number_104.mp3"
+    },
+    {
+      "id": "number_105",
+      "kind": "number",
+      "number": 105,
+      "digits": "105",
+      "spanish": "ciento cinco",
+      "english": [
+        "105"
+      ],
+      "accepted_spanish": [
+        "ciento cinco"
+      ],
+      "audio": "audio/numbers/number_105.mp3"
+    },
+    {
+      "id": "number_106",
+      "kind": "number",
+      "number": 106,
+      "digits": "106",
+      "spanish": "ciento seis",
+      "english": [
+        "106"
+      ],
+      "accepted_spanish": [
+        "ciento seis"
+      ],
+      "audio": "audio/numbers/number_106.mp3"
+    },
+    {
+      "id": "number_107",
+      "kind": "number",
+      "number": 107,
+      "digits": "107",
+      "spanish": "ciento siete",
+      "english": [
+        "107"
+      ],
+      "accepted_spanish": [
+        "ciento siete"
+      ],
+      "audio": "audio/numbers/number_107.mp3"
+    },
+    {
+      "id": "number_108",
+      "kind": "number",
+      "number": 108,
+      "digits": "108",
+      "spanish": "ciento ocho",
+      "english": [
+        "108"
+      ],
+      "accepted_spanish": [
+        "ciento ocho"
+      ],
+      "audio": "audio/numbers/number_108.mp3"
+    },
+    {
+      "id": "number_109",
+      "kind": "number",
+      "number": 109,
+      "digits": "109",
+      "spanish": "ciento nueve",
+      "english": [
+        "109"
+      ],
+      "accepted_spanish": [
+        "ciento nueve"
+      ],
+      "audio": "audio/numbers/number_109.mp3"
+    },
+    {
+      "id": "number_110",
+      "kind": "number",
+      "number": 110,
+      "digits": "110",
+      "spanish": "ciento diez",
+      "english": [
+        "110"
+      ],
+      "accepted_spanish": [
+        "ciento diez"
+      ],
+      "audio": "audio/numbers/number_110.mp3"
+    },
+    {
+      "id": "number_111",
+      "kind": "number",
+      "number": 111,
+      "digits": "111",
+      "spanish": "ciento once",
+      "english": [
+        "111"
+      ],
+      "accepted_spanish": [
+        "ciento once"
+      ],
+      "audio": "audio/numbers/number_111.mp3"
+    },
+    {
+      "id": "number_112",
+      "kind": "number",
+      "number": 112,
+      "digits": "112",
+      "spanish": "ciento doce",
+      "english": [
+        "112"
+      ],
+      "accepted_spanish": [
+        "ciento doce"
+      ],
+      "audio": "audio/numbers/number_112.mp3"
+    },
+    {
+      "id": "number_113",
+      "kind": "number",
+      "number": 113,
+      "digits": "113",
+      "spanish": "ciento trece",
+      "english": [
+        "113"
+      ],
+      "accepted_spanish": [
+        "ciento trece"
+      ],
+      "audio": "audio/numbers/number_113.mp3"
+    },
+    {
+      "id": "number_114",
+      "kind": "number",
+      "number": 114,
+      "digits": "114",
+      "spanish": "ciento catorce",
+      "english": [
+        "114"
+      ],
+      "accepted_spanish": [
+        "ciento catorce"
+      ],
+      "audio": "audio/numbers/number_114.mp3"
+    },
+    {
+      "id": "number_115",
+      "kind": "number",
+      "number": 115,
+      "digits": "115",
+      "spanish": "ciento quince",
+      "english": [
+        "115"
+      ],
+      "accepted_spanish": [
+        "ciento quince"
+      ],
+      "audio": "audio/numbers/number_115.mp3"
+    },
+    {
+      "id": "number_116",
+      "kind": "number",
+      "number": 116,
+      "digits": "116",
+      "spanish": "ciento dieciséis",
+      "english": [
+        "116"
+      ],
+      "accepted_spanish": [
+        "ciento dieciséis",
+        "ciento dieciseis"
+      ],
+      "audio": "audio/numbers/number_116.mp3"
+    },
+    {
+      "id": "number_117",
+      "kind": "number",
+      "number": 117,
+      "digits": "117",
+      "spanish": "ciento diecisiete",
+      "english": [
+        "117"
+      ],
+      "accepted_spanish": [
+        "ciento diecisiete"
+      ],
+      "audio": "audio/numbers/number_117.mp3"
+    },
+    {
+      "id": "number_118",
+      "kind": "number",
+      "number": 118,
+      "digits": "118",
+      "spanish": "ciento dieciocho",
+      "english": [
+        "118"
+      ],
+      "accepted_spanish": [
+        "ciento dieciocho"
+      ],
+      "audio": "audio/numbers/number_118.mp3"
+    },
+    {
+      "id": "number_119",
+      "kind": "number",
+      "number": 119,
+      "digits": "119",
+      "spanish": "ciento diecinueve",
+      "english": [
+        "119"
+      ],
+      "accepted_spanish": [
+        "ciento diecinueve"
+      ],
+      "audio": "audio/numbers/number_119.mp3"
+    },
+    {
+      "id": "number_120",
+      "kind": "number",
+      "number": 120,
+      "digits": "120",
+      "spanish": "ciento veinte",
+      "english": [
+        "120"
+      ],
+      "accepted_spanish": [
+        "ciento veinte"
+      ],
+      "audio": "audio/numbers/number_120.mp3"
+    },
+    {
+      "id": "number_121",
+      "kind": "number",
+      "number": 121,
+      "digits": "121",
+      "spanish": "ciento veintiuno",
+      "english": [
+        "121"
+      ],
+      "accepted_spanish": [
+        "ciento veintiuno"
+      ],
+      "audio": "audio/numbers/number_121.mp3"
+    },
+    {
+      "id": "number_122",
+      "kind": "number",
+      "number": 122,
+      "digits": "122",
+      "spanish": "ciento veintidós",
+      "english": [
+        "122"
+      ],
+      "accepted_spanish": [
+        "ciento veintidós",
+        "ciento veintidos"
+      ],
+      "audio": "audio/numbers/number_122.mp3"
+    },
+    {
+      "id": "number_123",
+      "kind": "number",
+      "number": 123,
+      "digits": "123",
+      "spanish": "ciento veintitrés",
+      "english": [
+        "123"
+      ],
+      "accepted_spanish": [
+        "ciento veintitrés",
+        "ciento veintitres"
+      ],
+      "audio": "audio/numbers/number_123.mp3"
+    },
+    {
+      "id": "number_124",
+      "kind": "number",
+      "number": 124,
+      "digits": "124",
+      "spanish": "ciento veinticuatro",
+      "english": [
+        "124"
+      ],
+      "accepted_spanish": [
+        "ciento veinticuatro"
+      ],
+      "audio": "audio/numbers/number_124.mp3"
+    },
+    {
+      "id": "number_125",
+      "kind": "number",
+      "number": 125,
+      "digits": "125",
+      "spanish": "ciento veinticinco",
+      "english": [
+        "125"
+      ],
+      "accepted_spanish": [
+        "ciento veinticinco"
+      ],
+      "audio": "audio/numbers/number_125.mp3"
+    },
+    {
+      "id": "number_126",
+      "kind": "number",
+      "number": 126,
+      "digits": "126",
+      "spanish": "ciento veintiséis",
+      "english": [
+        "126"
+      ],
+      "accepted_spanish": [
+        "ciento veintiséis",
+        "ciento veintiseis"
+      ],
+      "audio": "audio/numbers/number_126.mp3"
+    },
+    {
+      "id": "number_127",
+      "kind": "number",
+      "number": 127,
+      "digits": "127",
+      "spanish": "ciento veintisiete",
+      "english": [
+        "127"
+      ],
+      "accepted_spanish": [
+        "ciento veintisiete"
+      ],
+      "audio": "audio/numbers/number_127.mp3"
+    },
+    {
+      "id": "number_128",
+      "kind": "number",
+      "number": 128,
+      "digits": "128",
+      "spanish": "ciento veintiocho",
+      "english": [
+        "128"
+      ],
+      "accepted_spanish": [
+        "ciento veintiocho"
+      ],
+      "audio": "audio/numbers/number_128.mp3"
+    },
+    {
+      "id": "number_129",
+      "kind": "number",
+      "number": 129,
+      "digits": "129",
+      "spanish": "ciento veintinueve",
+      "english": [
+        "129"
+      ],
+      "accepted_spanish": [
+        "ciento veintinueve"
+      ],
+      "audio": "audio/numbers/number_129.mp3"
+    },
+    {
+      "id": "number_130",
+      "kind": "number",
+      "number": 130,
+      "digits": "130",
+      "spanish": "ciento treinta",
+      "english": [
+        "130"
+      ],
+      "accepted_spanish": [
+        "ciento treinta"
+      ],
+      "audio": "audio/numbers/number_130.mp3"
+    },
+    {
+      "id": "number_131",
+      "kind": "number",
+      "number": 131,
+      "digits": "131",
+      "spanish": "ciento treinta y uno",
+      "english": [
+        "131"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y uno"
+      ],
+      "audio": "audio/numbers/number_131.mp3"
+    },
+    {
+      "id": "number_132",
+      "kind": "number",
+      "number": 132,
+      "digits": "132",
+      "spanish": "ciento treinta y dos",
+      "english": [
+        "132"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y dos"
+      ],
+      "audio": "audio/numbers/number_132.mp3"
+    },
+    {
+      "id": "number_133",
+      "kind": "number",
+      "number": 133,
+      "digits": "133",
+      "spanish": "ciento treinta y tres",
+      "english": [
+        "133"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y tres"
+      ],
+      "audio": "audio/numbers/number_133.mp3"
+    },
+    {
+      "id": "number_134",
+      "kind": "number",
+      "number": 134,
+      "digits": "134",
+      "spanish": "ciento treinta y cuatro",
+      "english": [
+        "134"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y cuatro"
+      ],
+      "audio": "audio/numbers/number_134.mp3"
+    },
+    {
+      "id": "number_135",
+      "kind": "number",
+      "number": 135,
+      "digits": "135",
+      "spanish": "ciento treinta y cinco",
+      "english": [
+        "135"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y cinco"
+      ],
+      "audio": "audio/numbers/number_135.mp3"
+    },
+    {
+      "id": "number_136",
+      "kind": "number",
+      "number": 136,
+      "digits": "136",
+      "spanish": "ciento treinta y seis",
+      "english": [
+        "136"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y seis"
+      ],
+      "audio": "audio/numbers/number_136.mp3"
+    },
+    {
+      "id": "number_137",
+      "kind": "number",
+      "number": 137,
+      "digits": "137",
+      "spanish": "ciento treinta y siete",
+      "english": [
+        "137"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y siete"
+      ],
+      "audio": "audio/numbers/number_137.mp3"
+    },
+    {
+      "id": "number_138",
+      "kind": "number",
+      "number": 138,
+      "digits": "138",
+      "spanish": "ciento treinta y ocho",
+      "english": [
+        "138"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y ocho"
+      ],
+      "audio": "audio/numbers/number_138.mp3"
+    },
+    {
+      "id": "number_139",
+      "kind": "number",
+      "number": 139,
+      "digits": "139",
+      "spanish": "ciento treinta y nueve",
+      "english": [
+        "139"
+      ],
+      "accepted_spanish": [
+        "ciento treinta y nueve"
+      ],
+      "audio": "audio/numbers/number_139.mp3"
+    },
+    {
+      "id": "number_140",
+      "kind": "number",
+      "number": 140,
+      "digits": "140",
+      "spanish": "ciento cuarenta",
+      "english": [
+        "140"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta"
+      ],
+      "audio": "audio/numbers/number_140.mp3"
+    },
+    {
+      "id": "number_141",
+      "kind": "number",
+      "number": 141,
+      "digits": "141",
+      "spanish": "ciento cuarenta y uno",
+      "english": [
+        "141"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y uno"
+      ],
+      "audio": "audio/numbers/number_141.mp3"
+    },
+    {
+      "id": "number_142",
+      "kind": "number",
+      "number": 142,
+      "digits": "142",
+      "spanish": "ciento cuarenta y dos",
+      "english": [
+        "142"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_142.mp3"
+    },
+    {
+      "id": "number_143",
+      "kind": "number",
+      "number": 143,
+      "digits": "143",
+      "spanish": "ciento cuarenta y tres",
+      "english": [
+        "143"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y tres"
+      ],
+      "audio": "audio/numbers/number_143.mp3"
+    },
+    {
+      "id": "number_144",
+      "kind": "number",
+      "number": 144,
+      "digits": "144",
+      "spanish": "ciento cuarenta y cuatro",
+      "english": [
+        "144"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_144.mp3"
+    },
+    {
+      "id": "number_145",
+      "kind": "number",
+      "number": 145,
+      "digits": "145",
+      "spanish": "ciento cuarenta y cinco",
+      "english": [
+        "145"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y cinco"
+      ],
+      "audio": "audio/numbers/number_145.mp3"
+    },
+    {
+      "id": "number_146",
+      "kind": "number",
+      "number": 146,
+      "digits": "146",
+      "spanish": "ciento cuarenta y seis",
+      "english": [
+        "146"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y seis"
+      ],
+      "audio": "audio/numbers/number_146.mp3"
+    },
+    {
+      "id": "number_147",
+      "kind": "number",
+      "number": 147,
+      "digits": "147",
+      "spanish": "ciento cuarenta y siete",
+      "english": [
+        "147"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y siete"
+      ],
+      "audio": "audio/numbers/number_147.mp3"
+    },
+    {
+      "id": "number_148",
+      "kind": "number",
+      "number": 148,
+      "digits": "148",
+      "spanish": "ciento cuarenta y ocho",
+      "english": [
+        "148"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y ocho"
+      ],
+      "audio": "audio/numbers/number_148.mp3"
+    },
+    {
+      "id": "number_149",
+      "kind": "number",
+      "number": 149,
+      "digits": "149",
+      "spanish": "ciento cuarenta y nueve",
+      "english": [
+        "149"
+      ],
+      "accepted_spanish": [
+        "ciento cuarenta y nueve"
+      ],
+      "audio": "audio/numbers/number_149.mp3"
+    },
+    {
+      "id": "number_150",
+      "kind": "number",
+      "number": 150,
+      "digits": "150",
+      "spanish": "ciento cincuenta",
+      "english": [
+        "150"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta"
+      ],
+      "audio": "audio/numbers/number_150.mp3"
+    },
+    {
+      "id": "number_151",
+      "kind": "number",
+      "number": 151,
+      "digits": "151",
+      "spanish": "ciento cincuenta y uno",
+      "english": [
+        "151"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y uno"
+      ],
+      "audio": "audio/numbers/number_151.mp3"
+    },
+    {
+      "id": "number_152",
+      "kind": "number",
+      "number": 152,
+      "digits": "152",
+      "spanish": "ciento cincuenta y dos",
+      "english": [
+        "152"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y dos"
+      ],
+      "audio": "audio/numbers/number_152.mp3"
+    },
+    {
+      "id": "number_153",
+      "kind": "number",
+      "number": 153,
+      "digits": "153",
+      "spanish": "ciento cincuenta y tres",
+      "english": [
+        "153"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y tres"
+      ],
+      "audio": "audio/numbers/number_153.mp3"
+    },
+    {
+      "id": "number_154",
+      "kind": "number",
+      "number": 154,
+      "digits": "154",
+      "spanish": "ciento cincuenta y cuatro",
+      "english": [
+        "154"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_154.mp3"
+    },
+    {
+      "id": "number_155",
+      "kind": "number",
+      "number": 155,
+      "digits": "155",
+      "spanish": "ciento cincuenta y cinco",
+      "english": [
+        "155"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y cinco"
+      ],
+      "audio": "audio/numbers/number_155.mp3"
+    },
+    {
+      "id": "number_156",
+      "kind": "number",
+      "number": 156,
+      "digits": "156",
+      "spanish": "ciento cincuenta y seis",
+      "english": [
+        "156"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y seis"
+      ],
+      "audio": "audio/numbers/number_156.mp3"
+    },
+    {
+      "id": "number_157",
+      "kind": "number",
+      "number": 157,
+      "digits": "157",
+      "spanish": "ciento cincuenta y siete",
+      "english": [
+        "157"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_157.mp3"
+    },
+    {
+      "id": "number_158",
+      "kind": "number",
+      "number": 158,
+      "digits": "158",
+      "spanish": "ciento cincuenta y ocho",
+      "english": [
+        "158"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y ocho"
+      ],
+      "audio": "audio/numbers/number_158.mp3"
+    },
+    {
+      "id": "number_159",
+      "kind": "number",
+      "number": 159,
+      "digits": "159",
+      "spanish": "ciento cincuenta y nueve",
+      "english": [
+        "159"
+      ],
+      "accepted_spanish": [
+        "ciento cincuenta y nueve"
+      ],
+      "audio": "audio/numbers/number_159.mp3"
+    },
+    {
+      "id": "number_160",
+      "kind": "number",
+      "number": 160,
+      "digits": "160",
+      "spanish": "ciento sesenta",
+      "english": [
+        "160"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta"
+      ],
+      "audio": "audio/numbers/number_160.mp3"
+    },
+    {
+      "id": "number_161",
+      "kind": "number",
+      "number": 161,
+      "digits": "161",
+      "spanish": "ciento sesenta y uno",
+      "english": [
+        "161"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y uno"
+      ],
+      "audio": "audio/numbers/number_161.mp3"
+    },
+    {
+      "id": "number_162",
+      "kind": "number",
+      "number": 162,
+      "digits": "162",
+      "spanish": "ciento sesenta y dos",
+      "english": [
+        "162"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y dos"
+      ],
+      "audio": "audio/numbers/number_162.mp3"
+    },
+    {
+      "id": "number_163",
+      "kind": "number",
+      "number": 163,
+      "digits": "163",
+      "spanish": "ciento sesenta y tres",
+      "english": [
+        "163"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y tres"
+      ],
+      "audio": "audio/numbers/number_163.mp3"
+    },
+    {
+      "id": "number_164",
+      "kind": "number",
+      "number": 164,
+      "digits": "164",
+      "spanish": "ciento sesenta y cuatro",
+      "english": [
+        "164"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_164.mp3"
+    },
+    {
+      "id": "number_165",
+      "kind": "number",
+      "number": 165,
+      "digits": "165",
+      "spanish": "ciento sesenta y cinco",
+      "english": [
+        "165"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y cinco"
+      ],
+      "audio": "audio/numbers/number_165.mp3"
+    },
+    {
+      "id": "number_166",
+      "kind": "number",
+      "number": 166,
+      "digits": "166",
+      "spanish": "ciento sesenta y seis",
+      "english": [
+        "166"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y seis"
+      ],
+      "audio": "audio/numbers/number_166.mp3"
+    },
+    {
+      "id": "number_167",
+      "kind": "number",
+      "number": 167,
+      "digits": "167",
+      "spanish": "ciento sesenta y siete",
+      "english": [
+        "167"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y siete"
+      ],
+      "audio": "audio/numbers/number_167.mp3"
+    },
+    {
+      "id": "number_168",
+      "kind": "number",
+      "number": 168,
+      "digits": "168",
+      "spanish": "ciento sesenta y ocho",
+      "english": [
+        "168"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_168.mp3"
+    },
+    {
+      "id": "number_169",
+      "kind": "number",
+      "number": 169,
+      "digits": "169",
+      "spanish": "ciento sesenta y nueve",
+      "english": [
+        "169"
+      ],
+      "accepted_spanish": [
+        "ciento sesenta y nueve"
+      ],
+      "audio": "audio/numbers/number_169.mp3"
+    },
+    {
+      "id": "number_170",
+      "kind": "number",
+      "number": 170,
+      "digits": "170",
+      "spanish": "ciento setenta",
+      "english": [
+        "170"
+      ],
+      "accepted_spanish": [
+        "ciento setenta"
+      ],
+      "audio": "audio/numbers/number_170.mp3"
+    },
+    {
+      "id": "number_171",
+      "kind": "number",
+      "number": 171,
+      "digits": "171",
+      "spanish": "ciento setenta y uno",
+      "english": [
+        "171"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y uno"
+      ],
+      "audio": "audio/numbers/number_171.mp3"
+    },
+    {
+      "id": "number_172",
+      "kind": "number",
+      "number": 172,
+      "digits": "172",
+      "spanish": "ciento setenta y dos",
+      "english": [
+        "172"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y dos"
+      ],
+      "audio": "audio/numbers/number_172.mp3"
+    },
+    {
+      "id": "number_173",
+      "kind": "number",
+      "number": 173,
+      "digits": "173",
+      "spanish": "ciento setenta y tres",
+      "english": [
+        "173"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y tres"
+      ],
+      "audio": "audio/numbers/number_173.mp3"
+    },
+    {
+      "id": "number_174",
+      "kind": "number",
+      "number": 174,
+      "digits": "174",
+      "spanish": "ciento setenta y cuatro",
+      "english": [
+        "174"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_174.mp3"
+    },
+    {
+      "id": "number_175",
+      "kind": "number",
+      "number": 175,
+      "digits": "175",
+      "spanish": "ciento setenta y cinco",
+      "english": [
+        "175"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y cinco"
+      ],
+      "audio": "audio/numbers/number_175.mp3"
+    },
+    {
+      "id": "number_176",
+      "kind": "number",
+      "number": 176,
+      "digits": "176",
+      "spanish": "ciento setenta y seis",
+      "english": [
+        "176"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y seis"
+      ],
+      "audio": "audio/numbers/number_176.mp3"
+    },
+    {
+      "id": "number_177",
+      "kind": "number",
+      "number": 177,
+      "digits": "177",
+      "spanish": "ciento setenta y siete",
+      "english": [
+        "177"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y siete"
+      ],
+      "audio": "audio/numbers/number_177.mp3"
+    },
+    {
+      "id": "number_178",
+      "kind": "number",
+      "number": 178,
+      "digits": "178",
+      "spanish": "ciento setenta y ocho",
+      "english": [
+        "178"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y ocho"
+      ],
+      "audio": "audio/numbers/number_178.mp3"
+    },
+    {
+      "id": "number_179",
+      "kind": "number",
+      "number": 179,
+      "digits": "179",
+      "spanish": "ciento setenta y nueve",
+      "english": [
+        "179"
+      ],
+      "accepted_spanish": [
+        "ciento setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_179.mp3"
+    },
+    {
+      "id": "number_180",
+      "kind": "number",
+      "number": 180,
+      "digits": "180",
+      "spanish": "ciento ochenta",
+      "english": [
+        "180"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta"
+      ],
+      "audio": "audio/numbers/number_180.mp3"
+    },
+    {
+      "id": "number_181",
+      "kind": "number",
+      "number": 181,
+      "digits": "181",
+      "spanish": "ciento ochenta y uno",
+      "english": [
+        "181"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y uno"
+      ],
+      "audio": "audio/numbers/number_181.mp3"
+    },
+    {
+      "id": "number_182",
+      "kind": "number",
+      "number": 182,
+      "digits": "182",
+      "spanish": "ciento ochenta y dos",
+      "english": [
+        "182"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y dos"
+      ],
+      "audio": "audio/numbers/number_182.mp3"
+    },
+    {
+      "id": "number_183",
+      "kind": "number",
+      "number": 183,
+      "digits": "183",
+      "spanish": "ciento ochenta y tres",
+      "english": [
+        "183"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y tres"
+      ],
+      "audio": "audio/numbers/number_183.mp3"
+    },
+    {
+      "id": "number_184",
+      "kind": "number",
+      "number": 184,
+      "digits": "184",
+      "spanish": "ciento ochenta y cuatro",
+      "english": [
+        "184"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y cuatro"
+      ],
+      "audio": "audio/numbers/number_184.mp3"
+    },
+    {
+      "id": "number_185",
+      "kind": "number",
+      "number": 185,
+      "digits": "185",
+      "spanish": "ciento ochenta y cinco",
+      "english": [
+        "185"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y cinco"
+      ],
+      "audio": "audio/numbers/number_185.mp3"
+    },
+    {
+      "id": "number_186",
+      "kind": "number",
+      "number": 186,
+      "digits": "186",
+      "spanish": "ciento ochenta y seis",
+      "english": [
+        "186"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y seis"
+      ],
+      "audio": "audio/numbers/number_186.mp3"
+    },
+    {
+      "id": "number_187",
+      "kind": "number",
+      "number": 187,
+      "digits": "187",
+      "spanish": "ciento ochenta y siete",
+      "english": [
+        "187"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y siete"
+      ],
+      "audio": "audio/numbers/number_187.mp3"
+    },
+    {
+      "id": "number_188",
+      "kind": "number",
+      "number": 188,
+      "digits": "188",
+      "spanish": "ciento ochenta y ocho",
+      "english": [
+        "188"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y ocho"
+      ],
+      "audio": "audio/numbers/number_188.mp3"
+    },
+    {
+      "id": "number_189",
+      "kind": "number",
+      "number": 189,
+      "digits": "189",
+      "spanish": "ciento ochenta y nueve",
+      "english": [
+        "189"
+      ],
+      "accepted_spanish": [
+        "ciento ochenta y nueve"
+      ],
+      "audio": "audio/numbers/number_189.mp3"
+    },
+    {
+      "id": "number_190",
+      "kind": "number",
+      "number": 190,
+      "digits": "190",
+      "spanish": "ciento noventa",
+      "english": [
+        "190"
+      ],
+      "accepted_spanish": [
+        "ciento noventa"
+      ],
+      "audio": "audio/numbers/number_190.mp3"
+    },
+    {
+      "id": "number_191",
+      "kind": "number",
+      "number": 191,
+      "digits": "191",
+      "spanish": "ciento noventa y uno",
+      "english": [
+        "191"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y uno"
+      ],
+      "audio": "audio/numbers/number_191.mp3"
+    },
+    {
+      "id": "number_192",
+      "kind": "number",
+      "number": 192,
+      "digits": "192",
+      "spanish": "ciento noventa y dos",
+      "english": [
+        "192"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y dos"
+      ],
+      "audio": "audio/numbers/number_192.mp3"
+    },
+    {
+      "id": "number_193",
+      "kind": "number",
+      "number": 193,
+      "digits": "193",
+      "spanish": "ciento noventa y tres",
+      "english": [
+        "193"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y tres"
+      ],
+      "audio": "audio/numbers/number_193.mp3"
+    },
+    {
+      "id": "number_194",
+      "kind": "number",
+      "number": 194,
+      "digits": "194",
+      "spanish": "ciento noventa y cuatro",
+      "english": [
+        "194"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y cuatro"
+      ],
+      "audio": "audio/numbers/number_194.mp3"
+    },
+    {
+      "id": "number_195",
+      "kind": "number",
+      "number": 195,
+      "digits": "195",
+      "spanish": "ciento noventa y cinco",
+      "english": [
+        "195"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y cinco"
+      ],
+      "audio": "audio/numbers/number_195.mp3"
+    },
+    {
+      "id": "number_196",
+      "kind": "number",
+      "number": 196,
+      "digits": "196",
+      "spanish": "ciento noventa y seis",
+      "english": [
+        "196"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y seis"
+      ],
+      "audio": "audio/numbers/number_196.mp3"
+    },
+    {
+      "id": "number_197",
+      "kind": "number",
+      "number": 197,
+      "digits": "197",
+      "spanish": "ciento noventa y siete",
+      "english": [
+        "197"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y siete"
+      ],
+      "audio": "audio/numbers/number_197.mp3"
+    },
+    {
+      "id": "number_198",
+      "kind": "number",
+      "number": 198,
+      "digits": "198",
+      "spanish": "ciento noventa y ocho",
+      "english": [
+        "198"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y ocho"
+      ],
+      "audio": "audio/numbers/number_198.mp3"
+    },
+    {
+      "id": "number_199",
+      "kind": "number",
+      "number": 199,
+      "digits": "199",
+      "spanish": "ciento noventa y nueve",
+      "english": [
+        "199"
+      ],
+      "accepted_spanish": [
+        "ciento noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_199.mp3"
+    },
+    {
+      "id": "number_200",
+      "kind": "number",
+      "number": 200,
+      "digits": "200",
+      "spanish": "doscientos",
+      "english": [
+        "200"
+      ],
+      "accepted_spanish": [
+        "doscientos"
+      ],
+      "audio": "audio/numbers/number_200.mp3"
+    },
+    {
+      "id": "number_201",
+      "kind": "number",
+      "number": 201,
+      "digits": "201",
+      "spanish": "doscientos uno",
+      "english": [
+        "201"
+      ],
+      "accepted_spanish": [
+        "doscientos uno"
+      ],
+      "audio": "audio/numbers/number_201.mp3"
+    },
+    {
+      "id": "number_205",
+      "kind": "number",
+      "number": 205,
+      "digits": "205",
+      "spanish": "doscientos cinco",
+      "english": [
+        "205"
+      ],
+      "accepted_spanish": [
+        "doscientos cinco"
+      ],
+      "audio": "audio/numbers/number_205.mp3"
+    },
+    {
+      "id": "number_210",
+      "kind": "number",
+      "number": 210,
+      "digits": "210",
+      "spanish": "doscientos diez",
+      "english": [
+        "210"
+      ],
+      "accepted_spanish": [
+        "doscientos diez"
+      ],
+      "audio": "audio/numbers/number_210.mp3"
+    },
+    {
+      "id": "number_211",
+      "kind": "number",
+      "number": 211,
+      "digits": "211",
+      "spanish": "doscientos once",
+      "english": [
+        "211"
+      ],
+      "accepted_spanish": [
+        "doscientos once"
+      ],
+      "audio": "audio/numbers/number_211.mp3"
+    },
+    {
+      "id": "number_215",
+      "kind": "number",
+      "number": 215,
+      "digits": "215",
+      "spanish": "doscientos quince",
+      "english": [
+        "215"
+      ],
+      "accepted_spanish": [
+        "doscientos quince"
+      ],
+      "audio": "audio/numbers/number_215.mp3"
+    },
+    {
+      "id": "number_216",
+      "kind": "number",
+      "number": 216,
+      "digits": "216",
+      "spanish": "doscientos dieciséis",
+      "english": [
+        "216"
+      ],
+      "accepted_spanish": [
+        "doscientos dieciséis",
+        "doscientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_216.mp3"
+    },
+    {
+      "id": "number_220",
+      "kind": "number",
+      "number": 220,
+      "digits": "220",
+      "spanish": "doscientos veinte",
+      "english": [
+        "220"
+      ],
+      "accepted_spanish": [
+        "doscientos veinte"
+      ],
+      "audio": "audio/numbers/number_220.mp3"
+    },
+    {
+      "id": "number_221",
+      "kind": "number",
+      "number": 221,
+      "digits": "221",
+      "spanish": "doscientos veintiuno",
+      "english": [
+        "221"
+      ],
+      "accepted_spanish": [
+        "doscientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_221.mp3"
+    },
+    {
+      "id": "number_222",
+      "kind": "number",
+      "number": 222,
+      "digits": "222",
+      "spanish": "doscientos veintidós",
+      "english": [
+        "222"
+      ],
+      "accepted_spanish": [
+        "doscientos veintidós",
+        "doscientos veintidos"
+      ],
+      "audio": "audio/numbers/number_222.mp3"
+    },
+    {
+      "id": "number_226",
+      "kind": "number",
+      "number": 226,
+      "digits": "226",
+      "spanish": "doscientos veintiséis",
+      "english": [
+        "226"
+      ],
+      "accepted_spanish": [
+        "doscientos veintiséis",
+        "doscientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_226.mp3"
+    },
+    {
+      "id": "number_230",
+      "kind": "number",
+      "number": 230,
+      "digits": "230",
+      "spanish": "doscientos treinta",
+      "english": [
+        "230"
+      ],
+      "accepted_spanish": [
+        "doscientos treinta"
+      ],
+      "audio": "audio/numbers/number_230.mp3"
+    },
+    {
+      "id": "number_231",
+      "kind": "number",
+      "number": 231,
+      "digits": "231",
+      "spanish": "doscientos treinta y uno",
+      "english": [
+        "231"
+      ],
+      "accepted_spanish": [
+        "doscientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_231.mp3"
+    },
+    {
+      "id": "number_242",
+      "kind": "number",
+      "number": 242,
+      "digits": "242",
+      "spanish": "doscientos cuarenta y dos",
+      "english": [
+        "242"
+      ],
+      "accepted_spanish": [
+        "doscientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_242.mp3"
+    },
+    {
+      "id": "number_257",
+      "kind": "number",
+      "number": 257,
+      "digits": "257",
+      "spanish": "doscientos cincuenta y siete",
+      "english": [
+        "257"
+      ],
+      "accepted_spanish": [
+        "doscientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_257.mp3"
+    },
+    {
+      "id": "number_268",
+      "kind": "number",
+      "number": 268,
+      "digits": "268",
+      "spanish": "doscientos sesenta y ocho",
+      "english": [
+        "268"
+      ],
+      "accepted_spanish": [
+        "doscientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_268.mp3"
+    },
+    {
+      "id": "number_279",
+      "kind": "number",
+      "number": 279,
+      "digits": "279",
+      "spanish": "doscientos setenta y nueve",
+      "english": [
+        "279"
+      ],
+      "accepted_spanish": [
+        "doscientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_279.mp3"
+    },
+    {
+      "id": "number_280",
+      "kind": "number",
+      "number": 280,
+      "digits": "280",
+      "spanish": "doscientos ochenta",
+      "english": [
+        "280"
+      ],
+      "accepted_spanish": [
+        "doscientos ochenta"
+      ],
+      "audio": "audio/numbers/number_280.mp3"
+    },
+    {
+      "id": "number_290",
+      "kind": "number",
+      "number": 290,
+      "digits": "290",
+      "spanish": "doscientos noventa",
+      "english": [
+        "290"
+      ],
+      "accepted_spanish": [
+        "doscientos noventa"
+      ],
+      "audio": "audio/numbers/number_290.mp3"
+    },
+    {
+      "id": "number_299",
+      "kind": "number",
+      "number": 299,
+      "digits": "299",
+      "spanish": "doscientos noventa y nueve",
+      "english": [
+        "299"
+      ],
+      "accepted_spanish": [
+        "doscientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_299.mp3"
+    },
+    {
+      "id": "number_300",
+      "kind": "number",
+      "number": 300,
+      "digits": "300",
+      "spanish": "trescientos",
+      "english": [
+        "300"
+      ],
+      "accepted_spanish": [
+        "trescientos"
+      ],
+      "audio": "audio/numbers/number_300.mp3"
+    },
+    {
+      "id": "number_301",
+      "kind": "number",
+      "number": 301,
+      "digits": "301",
+      "spanish": "trescientos uno",
+      "english": [
+        "301"
+      ],
+      "accepted_spanish": [
+        "trescientos uno"
+      ],
+      "audio": "audio/numbers/number_301.mp3"
+    },
+    {
+      "id": "number_305",
+      "kind": "number",
+      "number": 305,
+      "digits": "305",
+      "spanish": "trescientos cinco",
+      "english": [
+        "305"
+      ],
+      "accepted_spanish": [
+        "trescientos cinco"
+      ],
+      "audio": "audio/numbers/number_305.mp3"
+    },
+    {
+      "id": "number_310",
+      "kind": "number",
+      "number": 310,
+      "digits": "310",
+      "spanish": "trescientos diez",
+      "english": [
+        "310"
+      ],
+      "accepted_spanish": [
+        "trescientos diez"
+      ],
+      "audio": "audio/numbers/number_310.mp3"
+    },
+    {
+      "id": "number_311",
+      "kind": "number",
+      "number": 311,
+      "digits": "311",
+      "spanish": "trescientos once",
+      "english": [
+        "311"
+      ],
+      "accepted_spanish": [
+        "trescientos once"
+      ],
+      "audio": "audio/numbers/number_311.mp3"
+    },
+    {
+      "id": "number_315",
+      "kind": "number",
+      "number": 315,
+      "digits": "315",
+      "spanish": "trescientos quince",
+      "english": [
+        "315"
+      ],
+      "accepted_spanish": [
+        "trescientos quince"
+      ],
+      "audio": "audio/numbers/number_315.mp3"
+    },
+    {
+      "id": "number_316",
+      "kind": "number",
+      "number": 316,
+      "digits": "316",
+      "spanish": "trescientos dieciséis",
+      "english": [
+        "316"
+      ],
+      "accepted_spanish": [
+        "trescientos dieciséis",
+        "trescientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_316.mp3"
+    },
+    {
+      "id": "number_320",
+      "kind": "number",
+      "number": 320,
+      "digits": "320",
+      "spanish": "trescientos veinte",
+      "english": [
+        "320"
+      ],
+      "accepted_spanish": [
+        "trescientos veinte"
+      ],
+      "audio": "audio/numbers/number_320.mp3"
+    },
+    {
+      "id": "number_321",
+      "kind": "number",
+      "number": 321,
+      "digits": "321",
+      "spanish": "trescientos veintiuno",
+      "english": [
+        "321"
+      ],
+      "accepted_spanish": [
+        "trescientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_321.mp3"
+    },
+    {
+      "id": "number_322",
+      "kind": "number",
+      "number": 322,
+      "digits": "322",
+      "spanish": "trescientos veintidós",
+      "english": [
+        "322"
+      ],
+      "accepted_spanish": [
+        "trescientos veintidós",
+        "trescientos veintidos"
+      ],
+      "audio": "audio/numbers/number_322.mp3"
+    },
+    {
+      "id": "number_326",
+      "kind": "number",
+      "number": 326,
+      "digits": "326",
+      "spanish": "trescientos veintiséis",
+      "english": [
+        "326"
+      ],
+      "accepted_spanish": [
+        "trescientos veintiséis",
+        "trescientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_326.mp3"
+    },
+    {
+      "id": "number_330",
+      "kind": "number",
+      "number": 330,
+      "digits": "330",
+      "spanish": "trescientos treinta",
+      "english": [
+        "330"
+      ],
+      "accepted_spanish": [
+        "trescientos treinta"
+      ],
+      "audio": "audio/numbers/number_330.mp3"
+    },
+    {
+      "id": "number_331",
+      "kind": "number",
+      "number": 331,
+      "digits": "331",
+      "spanish": "trescientos treinta y uno",
+      "english": [
+        "331"
+      ],
+      "accepted_spanish": [
+        "trescientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_331.mp3"
+    },
+    {
+      "id": "number_342",
+      "kind": "number",
+      "number": 342,
+      "digits": "342",
+      "spanish": "trescientos cuarenta y dos",
+      "english": [
+        "342"
+      ],
+      "accepted_spanish": [
+        "trescientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_342.mp3"
+    },
+    {
+      "id": "number_357",
+      "kind": "number",
+      "number": 357,
+      "digits": "357",
+      "spanish": "trescientos cincuenta y siete",
+      "english": [
+        "357"
+      ],
+      "accepted_spanish": [
+        "trescientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_357.mp3"
+    },
+    {
+      "id": "number_368",
+      "kind": "number",
+      "number": 368,
+      "digits": "368",
+      "spanish": "trescientos sesenta y ocho",
+      "english": [
+        "368"
+      ],
+      "accepted_spanish": [
+        "trescientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_368.mp3"
+    },
+    {
+      "id": "number_379",
+      "kind": "number",
+      "number": 379,
+      "digits": "379",
+      "spanish": "trescientos setenta y nueve",
+      "english": [
+        "379"
+      ],
+      "accepted_spanish": [
+        "trescientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_379.mp3"
+    },
+    {
+      "id": "number_380",
+      "kind": "number",
+      "number": 380,
+      "digits": "380",
+      "spanish": "trescientos ochenta",
+      "english": [
+        "380"
+      ],
+      "accepted_spanish": [
+        "trescientos ochenta"
+      ],
+      "audio": "audio/numbers/number_380.mp3"
+    },
+    {
+      "id": "number_390",
+      "kind": "number",
+      "number": 390,
+      "digits": "390",
+      "spanish": "trescientos noventa",
+      "english": [
+        "390"
+      ],
+      "accepted_spanish": [
+        "trescientos noventa"
+      ],
+      "audio": "audio/numbers/number_390.mp3"
+    },
+    {
+      "id": "number_399",
+      "kind": "number",
+      "number": 399,
+      "digits": "399",
+      "spanish": "trescientos noventa y nueve",
+      "english": [
+        "399"
+      ],
+      "accepted_spanish": [
+        "trescientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_399.mp3"
+    },
+    {
+      "id": "number_400",
+      "kind": "number",
+      "number": 400,
+      "digits": "400",
+      "spanish": "cuatrocientos",
+      "english": [
+        "400"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos"
+      ],
+      "audio": "audio/numbers/number_400.mp3"
+    },
+    {
+      "id": "number_401",
+      "kind": "number",
+      "number": 401,
+      "digits": "401",
+      "spanish": "cuatrocientos uno",
+      "english": [
+        "401"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos uno"
+      ],
+      "audio": "audio/numbers/number_401.mp3"
+    },
+    {
+      "id": "number_405",
+      "kind": "number",
+      "number": 405,
+      "digits": "405",
+      "spanish": "cuatrocientos cinco",
+      "english": [
+        "405"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos cinco"
+      ],
+      "audio": "audio/numbers/number_405.mp3"
+    },
+    {
+      "id": "number_410",
+      "kind": "number",
+      "number": 410,
+      "digits": "410",
+      "spanish": "cuatrocientos diez",
+      "english": [
+        "410"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos diez"
+      ],
+      "audio": "audio/numbers/number_410.mp3"
+    },
+    {
+      "id": "number_411",
+      "kind": "number",
+      "number": 411,
+      "digits": "411",
+      "spanish": "cuatrocientos once",
+      "english": [
+        "411"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos once"
+      ],
+      "audio": "audio/numbers/number_411.mp3"
+    },
+    {
+      "id": "number_415",
+      "kind": "number",
+      "number": 415,
+      "digits": "415",
+      "spanish": "cuatrocientos quince",
+      "english": [
+        "415"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos quince"
+      ],
+      "audio": "audio/numbers/number_415.mp3"
+    },
+    {
+      "id": "number_416",
+      "kind": "number",
+      "number": 416,
+      "digits": "416",
+      "spanish": "cuatrocientos dieciséis",
+      "english": [
+        "416"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos dieciséis",
+        "cuatrocientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_416.mp3"
+    },
+    {
+      "id": "number_420",
+      "kind": "number",
+      "number": 420,
+      "digits": "420",
+      "spanish": "cuatrocientos veinte",
+      "english": [
+        "420"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos veinte"
+      ],
+      "audio": "audio/numbers/number_420.mp3"
+    },
+    {
+      "id": "number_421",
+      "kind": "number",
+      "number": 421,
+      "digits": "421",
+      "spanish": "cuatrocientos veintiuno",
+      "english": [
+        "421"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_421.mp3"
+    },
+    {
+      "id": "number_422",
+      "kind": "number",
+      "number": 422,
+      "digits": "422",
+      "spanish": "cuatrocientos veintidós",
+      "english": [
+        "422"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos veintidós",
+        "cuatrocientos veintidos"
+      ],
+      "audio": "audio/numbers/number_422.mp3"
+    },
+    {
+      "id": "number_426",
+      "kind": "number",
+      "number": 426,
+      "digits": "426",
+      "spanish": "cuatrocientos veintiséis",
+      "english": [
+        "426"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos veintiséis",
+        "cuatrocientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_426.mp3"
+    },
+    {
+      "id": "number_430",
+      "kind": "number",
+      "number": 430,
+      "digits": "430",
+      "spanish": "cuatrocientos treinta",
+      "english": [
+        "430"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos treinta"
+      ],
+      "audio": "audio/numbers/number_430.mp3"
+    },
+    {
+      "id": "number_431",
+      "kind": "number",
+      "number": 431,
+      "digits": "431",
+      "spanish": "cuatrocientos treinta y uno",
+      "english": [
+        "431"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_431.mp3"
+    },
+    {
+      "id": "number_442",
+      "kind": "number",
+      "number": 442,
+      "digits": "442",
+      "spanish": "cuatrocientos cuarenta y dos",
+      "english": [
+        "442"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_442.mp3"
+    },
+    {
+      "id": "number_457",
+      "kind": "number",
+      "number": 457,
+      "digits": "457",
+      "spanish": "cuatrocientos cincuenta y siete",
+      "english": [
+        "457"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_457.mp3"
+    },
+    {
+      "id": "number_468",
+      "kind": "number",
+      "number": 468,
+      "digits": "468",
+      "spanish": "cuatrocientos sesenta y ocho",
+      "english": [
+        "468"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_468.mp3"
+    },
+    {
+      "id": "number_479",
+      "kind": "number",
+      "number": 479,
+      "digits": "479",
+      "spanish": "cuatrocientos setenta y nueve",
+      "english": [
+        "479"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_479.mp3"
+    },
+    {
+      "id": "number_480",
+      "kind": "number",
+      "number": 480,
+      "digits": "480",
+      "spanish": "cuatrocientos ochenta",
+      "english": [
+        "480"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos ochenta"
+      ],
+      "audio": "audio/numbers/number_480.mp3"
+    },
+    {
+      "id": "number_490",
+      "kind": "number",
+      "number": 490,
+      "digits": "490",
+      "spanish": "cuatrocientos noventa",
+      "english": [
+        "490"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos noventa"
+      ],
+      "audio": "audio/numbers/number_490.mp3"
+    },
+    {
+      "id": "number_499",
+      "kind": "number",
+      "number": 499,
+      "digits": "499",
+      "spanish": "cuatrocientos noventa y nueve",
+      "english": [
+        "499"
+      ],
+      "accepted_spanish": [
+        "cuatrocientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_499.mp3"
+    },
+    {
+      "id": "number_500",
+      "kind": "number",
+      "number": 500,
+      "digits": "500",
+      "spanish": "quinientos",
+      "english": [
+        "500"
+      ],
+      "accepted_spanish": [
+        "quinientos"
+      ],
+      "audio": "audio/numbers/number_500.mp3"
+    },
+    {
+      "id": "number_501",
+      "kind": "number",
+      "number": 501,
+      "digits": "501",
+      "spanish": "quinientos uno",
+      "english": [
+        "501"
+      ],
+      "accepted_spanish": [
+        "quinientos uno"
+      ],
+      "audio": "audio/numbers/number_501.mp3"
+    },
+    {
+      "id": "number_505",
+      "kind": "number",
+      "number": 505,
+      "digits": "505",
+      "spanish": "quinientos cinco",
+      "english": [
+        "505"
+      ],
+      "accepted_spanish": [
+        "quinientos cinco"
+      ],
+      "audio": "audio/numbers/number_505.mp3"
+    },
+    {
+      "id": "number_510",
+      "kind": "number",
+      "number": 510,
+      "digits": "510",
+      "spanish": "quinientos diez",
+      "english": [
+        "510"
+      ],
+      "accepted_spanish": [
+        "quinientos diez"
+      ],
+      "audio": "audio/numbers/number_510.mp3"
+    },
+    {
+      "id": "number_511",
+      "kind": "number",
+      "number": 511,
+      "digits": "511",
+      "spanish": "quinientos once",
+      "english": [
+        "511"
+      ],
+      "accepted_spanish": [
+        "quinientos once"
+      ],
+      "audio": "audio/numbers/number_511.mp3"
+    },
+    {
+      "id": "number_515",
+      "kind": "number",
+      "number": 515,
+      "digits": "515",
+      "spanish": "quinientos quince",
+      "english": [
+        "515"
+      ],
+      "accepted_spanish": [
+        "quinientos quince"
+      ],
+      "audio": "audio/numbers/number_515.mp3"
+    },
+    {
+      "id": "number_516",
+      "kind": "number",
+      "number": 516,
+      "digits": "516",
+      "spanish": "quinientos dieciséis",
+      "english": [
+        "516"
+      ],
+      "accepted_spanish": [
+        "quinientos dieciséis",
+        "quinientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_516.mp3"
+    },
+    {
+      "id": "number_520",
+      "kind": "number",
+      "number": 520,
+      "digits": "520",
+      "spanish": "quinientos veinte",
+      "english": [
+        "520"
+      ],
+      "accepted_spanish": [
+        "quinientos veinte"
+      ],
+      "audio": "audio/numbers/number_520.mp3"
+    },
+    {
+      "id": "number_521",
+      "kind": "number",
+      "number": 521,
+      "digits": "521",
+      "spanish": "quinientos veintiuno",
+      "english": [
+        "521"
+      ],
+      "accepted_spanish": [
+        "quinientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_521.mp3"
+    },
+    {
+      "id": "number_522",
+      "kind": "number",
+      "number": 522,
+      "digits": "522",
+      "spanish": "quinientos veintidós",
+      "english": [
+        "522"
+      ],
+      "accepted_spanish": [
+        "quinientos veintidós",
+        "quinientos veintidos"
+      ],
+      "audio": "audio/numbers/number_522.mp3"
+    },
+    {
+      "id": "number_526",
+      "kind": "number",
+      "number": 526,
+      "digits": "526",
+      "spanish": "quinientos veintiséis",
+      "english": [
+        "526"
+      ],
+      "accepted_spanish": [
+        "quinientos veintiséis",
+        "quinientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_526.mp3"
+    },
+    {
+      "id": "number_530",
+      "kind": "number",
+      "number": 530,
+      "digits": "530",
+      "spanish": "quinientos treinta",
+      "english": [
+        "530"
+      ],
+      "accepted_spanish": [
+        "quinientos treinta"
+      ],
+      "audio": "audio/numbers/number_530.mp3"
+    },
+    {
+      "id": "number_531",
+      "kind": "number",
+      "number": 531,
+      "digits": "531",
+      "spanish": "quinientos treinta y uno",
+      "english": [
+        "531"
+      ],
+      "accepted_spanish": [
+        "quinientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_531.mp3"
+    },
+    {
+      "id": "number_542",
+      "kind": "number",
+      "number": 542,
+      "digits": "542",
+      "spanish": "quinientos cuarenta y dos",
+      "english": [
+        "542"
+      ],
+      "accepted_spanish": [
+        "quinientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_542.mp3"
+    },
+    {
+      "id": "number_557",
+      "kind": "number",
+      "number": 557,
+      "digits": "557",
+      "spanish": "quinientos cincuenta y siete",
+      "english": [
+        "557"
+      ],
+      "accepted_spanish": [
+        "quinientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_557.mp3"
+    },
+    {
+      "id": "number_568",
+      "kind": "number",
+      "number": 568,
+      "digits": "568",
+      "spanish": "quinientos sesenta y ocho",
+      "english": [
+        "568"
+      ],
+      "accepted_spanish": [
+        "quinientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_568.mp3"
+    },
+    {
+      "id": "number_579",
+      "kind": "number",
+      "number": 579,
+      "digits": "579",
+      "spanish": "quinientos setenta y nueve",
+      "english": [
+        "579"
+      ],
+      "accepted_spanish": [
+        "quinientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_579.mp3"
+    },
+    {
+      "id": "number_580",
+      "kind": "number",
+      "number": 580,
+      "digits": "580",
+      "spanish": "quinientos ochenta",
+      "english": [
+        "580"
+      ],
+      "accepted_spanish": [
+        "quinientos ochenta"
+      ],
+      "audio": "audio/numbers/number_580.mp3"
+    },
+    {
+      "id": "number_590",
+      "kind": "number",
+      "number": 590,
+      "digits": "590",
+      "spanish": "quinientos noventa",
+      "english": [
+        "590"
+      ],
+      "accepted_spanish": [
+        "quinientos noventa"
+      ],
+      "audio": "audio/numbers/number_590.mp3"
+    },
+    {
+      "id": "number_599",
+      "kind": "number",
+      "number": 599,
+      "digits": "599",
+      "spanish": "quinientos noventa y nueve",
+      "english": [
+        "599"
+      ],
+      "accepted_spanish": [
+        "quinientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_599.mp3"
+    },
+    {
+      "id": "number_600",
+      "kind": "number",
+      "number": 600,
+      "digits": "600",
+      "spanish": "seiscientos",
+      "english": [
+        "600"
+      ],
+      "accepted_spanish": [
+        "seiscientos"
+      ],
+      "audio": "audio/numbers/number_600.mp3"
+    },
+    {
+      "id": "number_601",
+      "kind": "number",
+      "number": 601,
+      "digits": "601",
+      "spanish": "seiscientos uno",
+      "english": [
+        "601"
+      ],
+      "accepted_spanish": [
+        "seiscientos uno"
+      ],
+      "audio": "audio/numbers/number_601.mp3"
+    },
+    {
+      "id": "number_605",
+      "kind": "number",
+      "number": 605,
+      "digits": "605",
+      "spanish": "seiscientos cinco",
+      "english": [
+        "605"
+      ],
+      "accepted_spanish": [
+        "seiscientos cinco"
+      ],
+      "audio": "audio/numbers/number_605.mp3"
+    },
+    {
+      "id": "number_610",
+      "kind": "number",
+      "number": 610,
+      "digits": "610",
+      "spanish": "seiscientos diez",
+      "english": [
+        "610"
+      ],
+      "accepted_spanish": [
+        "seiscientos diez"
+      ],
+      "audio": "audio/numbers/number_610.mp3"
+    },
+    {
+      "id": "number_611",
+      "kind": "number",
+      "number": 611,
+      "digits": "611",
+      "spanish": "seiscientos once",
+      "english": [
+        "611"
+      ],
+      "accepted_spanish": [
+        "seiscientos once"
+      ],
+      "audio": "audio/numbers/number_611.mp3"
+    },
+    {
+      "id": "number_615",
+      "kind": "number",
+      "number": 615,
+      "digits": "615",
+      "spanish": "seiscientos quince",
+      "english": [
+        "615"
+      ],
+      "accepted_spanish": [
+        "seiscientos quince"
+      ],
+      "audio": "audio/numbers/number_615.mp3"
+    },
+    {
+      "id": "number_616",
+      "kind": "number",
+      "number": 616,
+      "digits": "616",
+      "spanish": "seiscientos dieciséis",
+      "english": [
+        "616"
+      ],
+      "accepted_spanish": [
+        "seiscientos dieciséis",
+        "seiscientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_616.mp3"
+    },
+    {
+      "id": "number_620",
+      "kind": "number",
+      "number": 620,
+      "digits": "620",
+      "spanish": "seiscientos veinte",
+      "english": [
+        "620"
+      ],
+      "accepted_spanish": [
+        "seiscientos veinte"
+      ],
+      "audio": "audio/numbers/number_620.mp3"
+    },
+    {
+      "id": "number_621",
+      "kind": "number",
+      "number": 621,
+      "digits": "621",
+      "spanish": "seiscientos veintiuno",
+      "english": [
+        "621"
+      ],
+      "accepted_spanish": [
+        "seiscientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_621.mp3"
+    },
+    {
+      "id": "number_622",
+      "kind": "number",
+      "number": 622,
+      "digits": "622",
+      "spanish": "seiscientos veintidós",
+      "english": [
+        "622"
+      ],
+      "accepted_spanish": [
+        "seiscientos veintidós",
+        "seiscientos veintidos"
+      ],
+      "audio": "audio/numbers/number_622.mp3"
+    },
+    {
+      "id": "number_626",
+      "kind": "number",
+      "number": 626,
+      "digits": "626",
+      "spanish": "seiscientos veintiséis",
+      "english": [
+        "626"
+      ],
+      "accepted_spanish": [
+        "seiscientos veintiséis",
+        "seiscientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_626.mp3"
+    },
+    {
+      "id": "number_630",
+      "kind": "number",
+      "number": 630,
+      "digits": "630",
+      "spanish": "seiscientos treinta",
+      "english": [
+        "630"
+      ],
+      "accepted_spanish": [
+        "seiscientos treinta"
+      ],
+      "audio": "audio/numbers/number_630.mp3"
+    },
+    {
+      "id": "number_631",
+      "kind": "number",
+      "number": 631,
+      "digits": "631",
+      "spanish": "seiscientos treinta y uno",
+      "english": [
+        "631"
+      ],
+      "accepted_spanish": [
+        "seiscientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_631.mp3"
+    },
+    {
+      "id": "number_642",
+      "kind": "number",
+      "number": 642,
+      "digits": "642",
+      "spanish": "seiscientos cuarenta y dos",
+      "english": [
+        "642"
+      ],
+      "accepted_spanish": [
+        "seiscientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_642.mp3"
+    },
+    {
+      "id": "number_657",
+      "kind": "number",
+      "number": 657,
+      "digits": "657",
+      "spanish": "seiscientos cincuenta y siete",
+      "english": [
+        "657"
+      ],
+      "accepted_spanish": [
+        "seiscientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_657.mp3"
+    },
+    {
+      "id": "number_668",
+      "kind": "number",
+      "number": 668,
+      "digits": "668",
+      "spanish": "seiscientos sesenta y ocho",
+      "english": [
+        "668"
+      ],
+      "accepted_spanish": [
+        "seiscientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_668.mp3"
+    },
+    {
+      "id": "number_679",
+      "kind": "number",
+      "number": 679,
+      "digits": "679",
+      "spanish": "seiscientos setenta y nueve",
+      "english": [
+        "679"
+      ],
+      "accepted_spanish": [
+        "seiscientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_679.mp3"
+    },
+    {
+      "id": "number_680",
+      "kind": "number",
+      "number": 680,
+      "digits": "680",
+      "spanish": "seiscientos ochenta",
+      "english": [
+        "680"
+      ],
+      "accepted_spanish": [
+        "seiscientos ochenta"
+      ],
+      "audio": "audio/numbers/number_680.mp3"
+    },
+    {
+      "id": "number_690",
+      "kind": "number",
+      "number": 690,
+      "digits": "690",
+      "spanish": "seiscientos noventa",
+      "english": [
+        "690"
+      ],
+      "accepted_spanish": [
+        "seiscientos noventa"
+      ],
+      "audio": "audio/numbers/number_690.mp3"
+    },
+    {
+      "id": "number_699",
+      "kind": "number",
+      "number": 699,
+      "digits": "699",
+      "spanish": "seiscientos noventa y nueve",
+      "english": [
+        "699"
+      ],
+      "accepted_spanish": [
+        "seiscientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_699.mp3"
+    },
+    {
+      "id": "number_700",
+      "kind": "number",
+      "number": 700,
+      "digits": "700",
+      "spanish": "setecientos",
+      "english": [
+        "700"
+      ],
+      "accepted_spanish": [
+        "setecientos"
+      ],
+      "audio": "audio/numbers/number_700.mp3"
+    },
+    {
+      "id": "number_701",
+      "kind": "number",
+      "number": 701,
+      "digits": "701",
+      "spanish": "setecientos uno",
+      "english": [
+        "701"
+      ],
+      "accepted_spanish": [
+        "setecientos uno"
+      ],
+      "audio": "audio/numbers/number_701.mp3"
+    },
+    {
+      "id": "number_705",
+      "kind": "number",
+      "number": 705,
+      "digits": "705",
+      "spanish": "setecientos cinco",
+      "english": [
+        "705"
+      ],
+      "accepted_spanish": [
+        "setecientos cinco"
+      ],
+      "audio": "audio/numbers/number_705.mp3"
+    },
+    {
+      "id": "number_710",
+      "kind": "number",
+      "number": 710,
+      "digits": "710",
+      "spanish": "setecientos diez",
+      "english": [
+        "710"
+      ],
+      "accepted_spanish": [
+        "setecientos diez"
+      ],
+      "audio": "audio/numbers/number_710.mp3"
+    },
+    {
+      "id": "number_711",
+      "kind": "number",
+      "number": 711,
+      "digits": "711",
+      "spanish": "setecientos once",
+      "english": [
+        "711"
+      ],
+      "accepted_spanish": [
+        "setecientos once"
+      ],
+      "audio": "audio/numbers/number_711.mp3"
+    },
+    {
+      "id": "number_715",
+      "kind": "number",
+      "number": 715,
+      "digits": "715",
+      "spanish": "setecientos quince",
+      "english": [
+        "715"
+      ],
+      "accepted_spanish": [
+        "setecientos quince"
+      ],
+      "audio": "audio/numbers/number_715.mp3"
+    },
+    {
+      "id": "number_716",
+      "kind": "number",
+      "number": 716,
+      "digits": "716",
+      "spanish": "setecientos dieciséis",
+      "english": [
+        "716"
+      ],
+      "accepted_spanish": [
+        "setecientos dieciséis",
+        "setecientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_716.mp3"
+    },
+    {
+      "id": "number_720",
+      "kind": "number",
+      "number": 720,
+      "digits": "720",
+      "spanish": "setecientos veinte",
+      "english": [
+        "720"
+      ],
+      "accepted_spanish": [
+        "setecientos veinte"
+      ],
+      "audio": "audio/numbers/number_720.mp3"
+    },
+    {
+      "id": "number_721",
+      "kind": "number",
+      "number": 721,
+      "digits": "721",
+      "spanish": "setecientos veintiuno",
+      "english": [
+        "721"
+      ],
+      "accepted_spanish": [
+        "setecientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_721.mp3"
+    },
+    {
+      "id": "number_722",
+      "kind": "number",
+      "number": 722,
+      "digits": "722",
+      "spanish": "setecientos veintidós",
+      "english": [
+        "722"
+      ],
+      "accepted_spanish": [
+        "setecientos veintidós",
+        "setecientos veintidos"
+      ],
+      "audio": "audio/numbers/number_722.mp3"
+    },
+    {
+      "id": "number_726",
+      "kind": "number",
+      "number": 726,
+      "digits": "726",
+      "spanish": "setecientos veintiséis",
+      "english": [
+        "726"
+      ],
+      "accepted_spanish": [
+        "setecientos veintiséis",
+        "setecientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_726.mp3"
+    },
+    {
+      "id": "number_730",
+      "kind": "number",
+      "number": 730,
+      "digits": "730",
+      "spanish": "setecientos treinta",
+      "english": [
+        "730"
+      ],
+      "accepted_spanish": [
+        "setecientos treinta"
+      ],
+      "audio": "audio/numbers/number_730.mp3"
+    },
+    {
+      "id": "number_731",
+      "kind": "number",
+      "number": 731,
+      "digits": "731",
+      "spanish": "setecientos treinta y uno",
+      "english": [
+        "731"
+      ],
+      "accepted_spanish": [
+        "setecientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_731.mp3"
+    },
+    {
+      "id": "number_742",
+      "kind": "number",
+      "number": 742,
+      "digits": "742",
+      "spanish": "setecientos cuarenta y dos",
+      "english": [
+        "742"
+      ],
+      "accepted_spanish": [
+        "setecientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_742.mp3"
+    },
+    {
+      "id": "number_757",
+      "kind": "number",
+      "number": 757,
+      "digits": "757",
+      "spanish": "setecientos cincuenta y siete",
+      "english": [
+        "757"
+      ],
+      "accepted_spanish": [
+        "setecientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_757.mp3"
+    },
+    {
+      "id": "number_768",
+      "kind": "number",
+      "number": 768,
+      "digits": "768",
+      "spanish": "setecientos sesenta y ocho",
+      "english": [
+        "768"
+      ],
+      "accepted_spanish": [
+        "setecientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_768.mp3"
+    },
+    {
+      "id": "number_779",
+      "kind": "number",
+      "number": 779,
+      "digits": "779",
+      "spanish": "setecientos setenta y nueve",
+      "english": [
+        "779"
+      ],
+      "accepted_spanish": [
+        "setecientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_779.mp3"
+    },
+    {
+      "id": "number_780",
+      "kind": "number",
+      "number": 780,
+      "digits": "780",
+      "spanish": "setecientos ochenta",
+      "english": [
+        "780"
+      ],
+      "accepted_spanish": [
+        "setecientos ochenta"
+      ],
+      "audio": "audio/numbers/number_780.mp3"
+    },
+    {
+      "id": "number_790",
+      "kind": "number",
+      "number": 790,
+      "digits": "790",
+      "spanish": "setecientos noventa",
+      "english": [
+        "790"
+      ],
+      "accepted_spanish": [
+        "setecientos noventa"
+      ],
+      "audio": "audio/numbers/number_790.mp3"
+    },
+    {
+      "id": "number_799",
+      "kind": "number",
+      "number": 799,
+      "digits": "799",
+      "spanish": "setecientos noventa y nueve",
+      "english": [
+        "799"
+      ],
+      "accepted_spanish": [
+        "setecientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_799.mp3"
+    },
+    {
+      "id": "number_800",
+      "kind": "number",
+      "number": 800,
+      "digits": "800",
+      "spanish": "ochocientos",
+      "english": [
+        "800"
+      ],
+      "accepted_spanish": [
+        "ochocientos"
+      ],
+      "audio": "audio/numbers/number_800.mp3"
+    },
+    {
+      "id": "number_801",
+      "kind": "number",
+      "number": 801,
+      "digits": "801",
+      "spanish": "ochocientos uno",
+      "english": [
+        "801"
+      ],
+      "accepted_spanish": [
+        "ochocientos uno"
+      ],
+      "audio": "audio/numbers/number_801.mp3"
+    },
+    {
+      "id": "number_805",
+      "kind": "number",
+      "number": 805,
+      "digits": "805",
+      "spanish": "ochocientos cinco",
+      "english": [
+        "805"
+      ],
+      "accepted_spanish": [
+        "ochocientos cinco"
+      ],
+      "audio": "audio/numbers/number_805.mp3"
+    },
+    {
+      "id": "number_810",
+      "kind": "number",
+      "number": 810,
+      "digits": "810",
+      "spanish": "ochocientos diez",
+      "english": [
+        "810"
+      ],
+      "accepted_spanish": [
+        "ochocientos diez"
+      ],
+      "audio": "audio/numbers/number_810.mp3"
+    },
+    {
+      "id": "number_811",
+      "kind": "number",
+      "number": 811,
+      "digits": "811",
+      "spanish": "ochocientos once",
+      "english": [
+        "811"
+      ],
+      "accepted_spanish": [
+        "ochocientos once"
+      ],
+      "audio": "audio/numbers/number_811.mp3"
+    },
+    {
+      "id": "number_815",
+      "kind": "number",
+      "number": 815,
+      "digits": "815",
+      "spanish": "ochocientos quince",
+      "english": [
+        "815"
+      ],
+      "accepted_spanish": [
+        "ochocientos quince"
+      ],
+      "audio": "audio/numbers/number_815.mp3"
+    },
+    {
+      "id": "number_816",
+      "kind": "number",
+      "number": 816,
+      "digits": "816",
+      "spanish": "ochocientos dieciséis",
+      "english": [
+        "816"
+      ],
+      "accepted_spanish": [
+        "ochocientos dieciséis",
+        "ochocientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_816.mp3"
+    },
+    {
+      "id": "number_820",
+      "kind": "number",
+      "number": 820,
+      "digits": "820",
+      "spanish": "ochocientos veinte",
+      "english": [
+        "820"
+      ],
+      "accepted_spanish": [
+        "ochocientos veinte"
+      ],
+      "audio": "audio/numbers/number_820.mp3"
+    },
+    {
+      "id": "number_821",
+      "kind": "number",
+      "number": 821,
+      "digits": "821",
+      "spanish": "ochocientos veintiuno",
+      "english": [
+        "821"
+      ],
+      "accepted_spanish": [
+        "ochocientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_821.mp3"
+    },
+    {
+      "id": "number_822",
+      "kind": "number",
+      "number": 822,
+      "digits": "822",
+      "spanish": "ochocientos veintidós",
+      "english": [
+        "822"
+      ],
+      "accepted_spanish": [
+        "ochocientos veintidós",
+        "ochocientos veintidos"
+      ],
+      "audio": "audio/numbers/number_822.mp3"
+    },
+    {
+      "id": "number_826",
+      "kind": "number",
+      "number": 826,
+      "digits": "826",
+      "spanish": "ochocientos veintiséis",
+      "english": [
+        "826"
+      ],
+      "accepted_spanish": [
+        "ochocientos veintiséis",
+        "ochocientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_826.mp3"
+    },
+    {
+      "id": "number_830",
+      "kind": "number",
+      "number": 830,
+      "digits": "830",
+      "spanish": "ochocientos treinta",
+      "english": [
+        "830"
+      ],
+      "accepted_spanish": [
+        "ochocientos treinta"
+      ],
+      "audio": "audio/numbers/number_830.mp3"
+    },
+    {
+      "id": "number_831",
+      "kind": "number",
+      "number": 831,
+      "digits": "831",
+      "spanish": "ochocientos treinta y uno",
+      "english": [
+        "831"
+      ],
+      "accepted_spanish": [
+        "ochocientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_831.mp3"
+    },
+    {
+      "id": "number_842",
+      "kind": "number",
+      "number": 842,
+      "digits": "842",
+      "spanish": "ochocientos cuarenta y dos",
+      "english": [
+        "842"
+      ],
+      "accepted_spanish": [
+        "ochocientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_842.mp3"
+    },
+    {
+      "id": "number_857",
+      "kind": "number",
+      "number": 857,
+      "digits": "857",
+      "spanish": "ochocientos cincuenta y siete",
+      "english": [
+        "857"
+      ],
+      "accepted_spanish": [
+        "ochocientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_857.mp3"
+    },
+    {
+      "id": "number_868",
+      "kind": "number",
+      "number": 868,
+      "digits": "868",
+      "spanish": "ochocientos sesenta y ocho",
+      "english": [
+        "868"
+      ],
+      "accepted_spanish": [
+        "ochocientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_868.mp3"
+    },
+    {
+      "id": "number_879",
+      "kind": "number",
+      "number": 879,
+      "digits": "879",
+      "spanish": "ochocientos setenta y nueve",
+      "english": [
+        "879"
+      ],
+      "accepted_spanish": [
+        "ochocientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_879.mp3"
+    },
+    {
+      "id": "number_880",
+      "kind": "number",
+      "number": 880,
+      "digits": "880",
+      "spanish": "ochocientos ochenta",
+      "english": [
+        "880"
+      ],
+      "accepted_spanish": [
+        "ochocientos ochenta"
+      ],
+      "audio": "audio/numbers/number_880.mp3"
+    },
+    {
+      "id": "number_890",
+      "kind": "number",
+      "number": 890,
+      "digits": "890",
+      "spanish": "ochocientos noventa",
+      "english": [
+        "890"
+      ],
+      "accepted_spanish": [
+        "ochocientos noventa"
+      ],
+      "audio": "audio/numbers/number_890.mp3"
+    },
+    {
+      "id": "number_899",
+      "kind": "number",
+      "number": 899,
+      "digits": "899",
+      "spanish": "ochocientos noventa y nueve",
+      "english": [
+        "899"
+      ],
+      "accepted_spanish": [
+        "ochocientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_899.mp3"
+    },
+    {
+      "id": "number_900",
+      "kind": "number",
+      "number": 900,
+      "digits": "900",
+      "spanish": "novecientos",
+      "english": [
+        "900"
+      ],
+      "accepted_spanish": [
+        "novecientos"
+      ],
+      "audio": "audio/numbers/number_900.mp3"
+    },
+    {
+      "id": "number_901",
+      "kind": "number",
+      "number": 901,
+      "digits": "901",
+      "spanish": "novecientos uno",
+      "english": [
+        "901"
+      ],
+      "accepted_spanish": [
+        "novecientos uno"
+      ],
+      "audio": "audio/numbers/number_901.mp3"
+    },
+    {
+      "id": "number_905",
+      "kind": "number",
+      "number": 905,
+      "digits": "905",
+      "spanish": "novecientos cinco",
+      "english": [
+        "905"
+      ],
+      "accepted_spanish": [
+        "novecientos cinco"
+      ],
+      "audio": "audio/numbers/number_905.mp3"
+    },
+    {
+      "id": "number_910",
+      "kind": "number",
+      "number": 910,
+      "digits": "910",
+      "spanish": "novecientos diez",
+      "english": [
+        "910"
+      ],
+      "accepted_spanish": [
+        "novecientos diez"
+      ],
+      "audio": "audio/numbers/number_910.mp3"
+    },
+    {
+      "id": "number_911",
+      "kind": "number",
+      "number": 911,
+      "digits": "911",
+      "spanish": "novecientos once",
+      "english": [
+        "911"
+      ],
+      "accepted_spanish": [
+        "novecientos once"
+      ],
+      "audio": "audio/numbers/number_911.mp3"
+    },
+    {
+      "id": "number_915",
+      "kind": "number",
+      "number": 915,
+      "digits": "915",
+      "spanish": "novecientos quince",
+      "english": [
+        "915"
+      ],
+      "accepted_spanish": [
+        "novecientos quince"
+      ],
+      "audio": "audio/numbers/number_915.mp3"
+    },
+    {
+      "id": "number_916",
+      "kind": "number",
+      "number": 916,
+      "digits": "916",
+      "spanish": "novecientos dieciséis",
+      "english": [
+        "916"
+      ],
+      "accepted_spanish": [
+        "novecientos dieciséis",
+        "novecientos dieciseis"
+      ],
+      "audio": "audio/numbers/number_916.mp3"
+    },
+    {
+      "id": "number_920",
+      "kind": "number",
+      "number": 920,
+      "digits": "920",
+      "spanish": "novecientos veinte",
+      "english": [
+        "920"
+      ],
+      "accepted_spanish": [
+        "novecientos veinte"
+      ],
+      "audio": "audio/numbers/number_920.mp3"
+    },
+    {
+      "id": "number_921",
+      "kind": "number",
+      "number": 921,
+      "digits": "921",
+      "spanish": "novecientos veintiuno",
+      "english": [
+        "921"
+      ],
+      "accepted_spanish": [
+        "novecientos veintiuno"
+      ],
+      "audio": "audio/numbers/number_921.mp3"
+    },
+    {
+      "id": "number_922",
+      "kind": "number",
+      "number": 922,
+      "digits": "922",
+      "spanish": "novecientos veintidós",
+      "english": [
+        "922"
+      ],
+      "accepted_spanish": [
+        "novecientos veintidós",
+        "novecientos veintidos"
+      ],
+      "audio": "audio/numbers/number_922.mp3"
+    },
+    {
+      "id": "number_926",
+      "kind": "number",
+      "number": 926,
+      "digits": "926",
+      "spanish": "novecientos veintiséis",
+      "english": [
+        "926"
+      ],
+      "accepted_spanish": [
+        "novecientos veintiséis",
+        "novecientos veintiseis"
+      ],
+      "audio": "audio/numbers/number_926.mp3"
+    },
+    {
+      "id": "number_930",
+      "kind": "number",
+      "number": 930,
+      "digits": "930",
+      "spanish": "novecientos treinta",
+      "english": [
+        "930"
+      ],
+      "accepted_spanish": [
+        "novecientos treinta"
+      ],
+      "audio": "audio/numbers/number_930.mp3"
+    },
+    {
+      "id": "number_931",
+      "kind": "number",
+      "number": 931,
+      "digits": "931",
+      "spanish": "novecientos treinta y uno",
+      "english": [
+        "931"
+      ],
+      "accepted_spanish": [
+        "novecientos treinta y uno"
+      ],
+      "audio": "audio/numbers/number_931.mp3"
+    },
+    {
+      "id": "number_942",
+      "kind": "number",
+      "number": 942,
+      "digits": "942",
+      "spanish": "novecientos cuarenta y dos",
+      "english": [
+        "942"
+      ],
+      "accepted_spanish": [
+        "novecientos cuarenta y dos"
+      ],
+      "audio": "audio/numbers/number_942.mp3"
+    },
+    {
+      "id": "number_957",
+      "kind": "number",
+      "number": 957,
+      "digits": "957",
+      "spanish": "novecientos cincuenta y siete",
+      "english": [
+        "957"
+      ],
+      "accepted_spanish": [
+        "novecientos cincuenta y siete"
+      ],
+      "audio": "audio/numbers/number_957.mp3"
+    },
+    {
+      "id": "number_968",
+      "kind": "number",
+      "number": 968,
+      "digits": "968",
+      "spanish": "novecientos sesenta y ocho",
+      "english": [
+        "968"
+      ],
+      "accepted_spanish": [
+        "novecientos sesenta y ocho"
+      ],
+      "audio": "audio/numbers/number_968.mp3"
+    },
+    {
+      "id": "number_979",
+      "kind": "number",
+      "number": 979,
+      "digits": "979",
+      "spanish": "novecientos setenta y nueve",
+      "english": [
+        "979"
+      ],
+      "accepted_spanish": [
+        "novecientos setenta y nueve"
+      ],
+      "audio": "audio/numbers/number_979.mp3"
+    },
+    {
+      "id": "number_980",
+      "kind": "number",
+      "number": 980,
+      "digits": "980",
+      "spanish": "novecientos ochenta",
+      "english": [
+        "980"
+      ],
+      "accepted_spanish": [
+        "novecientos ochenta"
+      ],
+      "audio": "audio/numbers/number_980.mp3"
+    },
+    {
+      "id": "number_990",
+      "kind": "number",
+      "number": 990,
+      "digits": "990",
+      "spanish": "novecientos noventa",
+      "english": [
+        "990"
+      ],
+      "accepted_spanish": [
+        "novecientos noventa"
+      ],
+      "audio": "audio/numbers/number_990.mp3"
+    },
+    {
+      "id": "number_999",
+      "kind": "number",
+      "number": 999,
+      "digits": "999",
+      "spanish": "novecientos noventa y nueve",
+      "english": [
+        "999"
+      ],
+      "accepted_spanish": [
+        "novecientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_999.mp3"
+    },
+    {
+      "id": "number_1000",
+      "kind": "number",
+      "number": 1000,
+      "digits": "1000",
+      "spanish": "mil",
+      "english": [
+        "1000"
+      ],
+      "accepted_spanish": [
+        "mil"
+      ],
+      "audio": "audio/numbers/number_1000.mp3"
+    },
+    {
+      "id": "number_1001",
+      "kind": "number",
+      "number": 1001,
+      "digits": "1001",
+      "spanish": "mil uno",
+      "english": [
+        "1001"
+      ],
+      "accepted_spanish": [
+        "mil uno"
+      ],
+      "audio": "audio/numbers/number_1001.mp3"
+    },
+    {
+      "id": "number_1005",
+      "kind": "number",
+      "number": 1005,
+      "digits": "1005",
+      "spanish": "mil cinco",
+      "english": [
+        "1005"
+      ],
+      "accepted_spanish": [
+        "mil cinco"
+      ],
+      "audio": "audio/numbers/number_1005.mp3"
+    },
+    {
+      "id": "number_1010",
+      "kind": "number",
+      "number": 1010,
+      "digits": "1010",
+      "spanish": "mil diez",
+      "english": [
+        "1010"
+      ],
+      "accepted_spanish": [
+        "mil diez"
+      ],
+      "audio": "audio/numbers/number_1010.mp3"
+    },
+    {
+      "id": "number_1015",
+      "kind": "number",
+      "number": 1015,
+      "digits": "1015",
+      "spanish": "mil quince",
+      "english": [
+        "1015"
+      ],
+      "accepted_spanish": [
+        "mil quince"
+      ],
+      "audio": "audio/numbers/number_1015.mp3"
+    },
+    {
+      "id": "number_1021",
+      "kind": "number",
+      "number": 1021,
+      "digits": "1021",
+      "spanish": "mil veintiuno",
+      "english": [
+        "1021"
+      ],
+      "accepted_spanish": [
+        "mil veintiuno"
+      ],
+      "audio": "audio/numbers/number_1021.mp3"
+    },
+    {
+      "id": "number_1100",
+      "kind": "number",
+      "number": 1100,
+      "digits": "1100",
+      "spanish": "mil cien",
+      "english": [
+        "1100"
+      ],
+      "accepted_spanish": [
+        "mil cien"
+      ],
+      "audio": "audio/numbers/number_1100.mp3"
+    },
+    {
+      "id": "number_1101",
+      "kind": "number",
+      "number": 1101,
+      "digits": "1101",
+      "spanish": "mil ciento uno",
+      "english": [
+        "1101"
+      ],
+      "accepted_spanish": [
+        "mil ciento uno"
+      ],
+      "audio": "audio/numbers/number_1101.mp3"
+    },
+    {
+      "id": "number_1500",
+      "kind": "number",
+      "number": 1500,
+      "digits": "1500",
+      "spanish": "mil quinientos",
+      "english": [
+        "1500"
+      ],
+      "accepted_spanish": [
+        "mil quinientos"
+      ],
+      "audio": "audio/numbers/number_1500.mp3"
+    },
+    {
+      "id": "number_1999",
+      "kind": "number",
+      "number": 1999,
+      "digits": "1999",
+      "spanish": "mil novecientos noventa y nueve",
+      "english": [
+        "1999"
+      ],
+      "accepted_spanish": [
+        "mil novecientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_1999.mp3"
+    },
+    {
+      "id": "number_2000",
+      "kind": "number",
+      "number": 2000,
+      "digits": "2000",
+      "spanish": "dos mil",
+      "english": [
+        "2000"
+      ],
+      "accepted_spanish": [
+        "dos mil"
+      ],
+      "audio": "audio/numbers/number_2000.mp3"
+    },
+    {
+      "id": "number_3000",
+      "kind": "number",
+      "number": 3000,
+      "digits": "3000",
+      "spanish": "tres mil",
+      "english": [
+        "3000"
+      ],
+      "accepted_spanish": [
+        "tres mil"
+      ],
+      "audio": "audio/numbers/number_3000.mp3"
+    },
+    {
+      "id": "number_5000",
+      "kind": "number",
+      "number": 5000,
+      "digits": "5000",
+      "spanish": "cinco mil",
+      "english": [
+        "5000"
+      ],
+      "accepted_spanish": [
+        "cinco mil"
+      ],
+      "audio": "audio/numbers/number_5000.mp3"
+    },
+    {
+      "id": "number_9000",
+      "kind": "number",
+      "number": 9000,
+      "digits": "9000",
+      "spanish": "nueve mil",
+      "english": [
+        "9000"
+      ],
+      "accepted_spanish": [
+        "nueve mil"
+      ],
+      "audio": "audio/numbers/number_9000.mp3"
+    },
+    {
+      "id": "number_10000",
+      "kind": "number",
+      "number": 10000,
+      "digits": "10000",
+      "spanish": "diez mil",
+      "english": [
+        "10000"
+      ],
+      "accepted_spanish": [
+        "diez mil"
+      ],
+      "audio": "audio/numbers/number_10000.mp3"
+    },
+    {
+      "id": "number_11000",
+      "kind": "number",
+      "number": 11000,
+      "digits": "11000",
+      "spanish": "once mil",
+      "english": [
+        "11000"
+      ],
+      "accepted_spanish": [
+        "once mil"
+      ],
+      "audio": "audio/numbers/number_11000.mp3"
+    },
+    {
+      "id": "number_15000",
+      "kind": "number",
+      "number": 15000,
+      "digits": "15000",
+      "spanish": "quince mil",
+      "english": [
+        "15000"
+      ],
+      "accepted_spanish": [
+        "quince mil"
+      ],
+      "audio": "audio/numbers/number_15000.mp3"
+    },
+    {
+      "id": "number_16000",
+      "kind": "number",
+      "number": 16000,
+      "digits": "16000",
+      "spanish": "dieciséis mil",
+      "english": [
+        "16000"
+      ],
+      "accepted_spanish": [
+        "dieciséis mil",
+        "dieciseis mil"
+      ],
+      "audio": "audio/numbers/number_16000.mp3"
+    },
+    {
+      "id": "number_21000",
+      "kind": "number",
+      "number": 21000,
+      "digits": "21000",
+      "spanish": "veintiún mil",
+      "english": [
+        "21000"
+      ],
+      "accepted_spanish": [
+        "veintiún mil",
+        "veintiun mil"
+      ],
+      "audio": "audio/numbers/number_21000.mp3"
+    },
+    {
+      "id": "number_22000",
+      "kind": "number",
+      "number": 22000,
+      "digits": "22000",
+      "spanish": "veintidós mil",
+      "english": [
+        "22000"
+      ],
+      "accepted_spanish": [
+        "veintidós mil",
+        "veintidos mil"
+      ],
+      "audio": "audio/numbers/number_22000.mp3"
+    },
+    {
+      "id": "number_26000",
+      "kind": "number",
+      "number": 26000,
+      "digits": "26000",
+      "spanish": "veintiséis mil",
+      "english": [
+        "26000"
+      ],
+      "accepted_spanish": [
+        "veintiséis mil",
+        "veintiseis mil"
+      ],
+      "audio": "audio/numbers/number_26000.mp3"
+    },
+    {
+      "id": "number_31000",
+      "kind": "number",
+      "number": 31000,
+      "digits": "31000",
+      "spanish": "treinta y un mil",
+      "english": [
+        "31000"
+      ],
+      "accepted_spanish": [
+        "treinta y un mil"
+      ],
+      "audio": "audio/numbers/number_31000.mp3"
+    },
+    {
+      "id": "number_42000",
+      "kind": "number",
+      "number": 42000,
+      "digits": "42000",
+      "spanish": "cuarenta y dos mil",
+      "english": [
+        "42000"
+      ],
+      "accepted_spanish": [
+        "cuarenta y dos mil"
+      ],
+      "audio": "audio/numbers/number_42000.mp3"
+    },
+    {
+      "id": "number_57000",
+      "kind": "number",
+      "number": 57000,
+      "digits": "57000",
+      "spanish": "cincuenta y siete mil",
+      "english": [
+        "57000"
+      ],
+      "accepted_spanish": [
+        "cincuenta y siete mil"
+      ],
+      "audio": "audio/numbers/number_57000.mp3"
+    },
+    {
+      "id": "number_68000",
+      "kind": "number",
+      "number": 68000,
+      "digits": "68000",
+      "spanish": "sesenta y ocho mil",
+      "english": [
+        "68000"
+      ],
+      "accepted_spanish": [
+        "sesenta y ocho mil"
+      ],
+      "audio": "audio/numbers/number_68000.mp3"
+    },
+    {
+      "id": "number_79000",
+      "kind": "number",
+      "number": 79000,
+      "digits": "79000",
+      "spanish": "setenta y nueve mil",
+      "english": [
+        "79000"
+      ],
+      "accepted_spanish": [
+        "setenta y nueve mil"
+      ],
+      "audio": "audio/numbers/number_79000.mp3"
+    },
+    {
+      "id": "number_99999",
+      "kind": "number",
+      "number": 99999,
+      "digits": "99999",
+      "spanish": "noventa y nueve mil novecientos noventa y nueve",
+      "english": [
+        "99999"
+      ],
+      "accepted_spanish": [
+        "noventa y nueve mil novecientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_99999.mp3"
+    },
+    {
+      "id": "number_100000",
+      "kind": "number",
+      "number": 100000,
+      "digits": "100000",
+      "spanish": "cien mil",
+      "english": [
+        "100000"
+      ],
+      "accepted_spanish": [
+        "cien mil"
+      ],
+      "audio": "audio/numbers/number_100000.mp3"
+    },
+    {
+      "id": "number_101000",
+      "kind": "number",
+      "number": 101000,
+      "digits": "101000",
+      "spanish": "ciento un mil",
+      "english": [
+        "101000"
+      ],
+      "accepted_spanish": [
+        "ciento un mil"
+      ],
+      "audio": "audio/numbers/number_101000.mp3"
+    },
+    {
+      "id": "number_110000",
+      "kind": "number",
+      "number": 110000,
+      "digits": "110000",
+      "spanish": "ciento diez mil",
+      "english": [
+        "110000"
+      ],
+      "accepted_spanish": [
+        "ciento diez mil"
+      ],
+      "audio": "audio/numbers/number_110000.mp3"
+    },
+    {
+      "id": "number_121000",
+      "kind": "number",
+      "number": 121000,
+      "digits": "121000",
+      "spanish": "ciento veintiún mil",
+      "english": [
+        "121000"
+      ],
+      "accepted_spanish": [
+        "ciento veintiún mil",
+        "ciento veintiun mil"
+      ],
+      "audio": "audio/numbers/number_121000.mp3"
+    },
+    {
+      "id": "number_200000",
+      "kind": "number",
+      "number": 200000,
+      "digits": "200000",
+      "spanish": "doscientos mil",
+      "english": [
+        "200000"
+      ],
+      "accepted_spanish": [
+        "doscientos mil"
+      ],
+      "audio": "audio/numbers/number_200000.mp3"
+    },
+    {
+      "id": "number_250000",
+      "kind": "number",
+      "number": 250000,
+      "digits": "250000",
+      "spanish": "doscientos cincuenta mil",
+      "english": [
+        "250000"
+      ],
+      "accepted_spanish": [
+        "doscientos cincuenta mil"
+      ],
+      "audio": "audio/numbers/number_250000.mp3"
+    },
+    {
+      "id": "number_310000",
+      "kind": "number",
+      "number": 310000,
+      "digits": "310000",
+      "spanish": "trescientos diez mil",
+      "english": [
+        "310000"
+      ],
+      "accepted_spanish": [
+        "trescientos diez mil"
+      ],
+      "audio": "audio/numbers/number_310000.mp3"
+    },
+    {
+      "id": "number_500000",
+      "kind": "number",
+      "number": 500000,
+      "digits": "500000",
+      "spanish": "quinientos mil",
+      "english": [
+        "500000"
+      ],
+      "accepted_spanish": [
+        "quinientos mil"
+      ],
+      "audio": "audio/numbers/number_500000.mp3"
+    },
+    {
+      "id": "number_999999",
+      "kind": "number",
+      "number": 999999,
+      "digits": "999999",
+      "spanish": "novecientos noventa y nueve mil novecientos noventa y nueve",
+      "english": [
+        "999999"
+      ],
+      "accepted_spanish": [
+        "novecientos noventa y nueve mil novecientos noventa y nueve"
+      ],
+      "audio": "audio/numbers/number_999999.mp3"
+    },
+    {
+      "id": "number_1000000",
+      "kind": "number",
+      "number": 1000000,
+      "digits": "1000000",
+      "spanish": "un millón",
+      "english": [
+        "1000000"
+      ],
+      "accepted_spanish": [
+        "un millón",
+        "un millon"
+      ],
+      "audio": "audio/numbers/number_1000000.mp3"
+    }
+  ]
+}

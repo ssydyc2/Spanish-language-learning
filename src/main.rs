@@ -12,6 +12,7 @@ use dialoguer::{theme::ColorfulTheme, Input, Select};
 use rand::seq::SliceRandom;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
+use serde_json::{Map, Value};
 
 const DEFAULT_DATA_PATH: &str = "data/vocabulary.json";
 const DEFAULT_API_KEY_FILE: &str = "seven_eleven_key";
@@ -108,6 +109,8 @@ struct MenuOption {
 struct Vocabulary {
     version: u32,
     items: Vec<VocabItem>,
+    #[serde(flatten)]
+    extra: Map<String, Value>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -117,6 +120,8 @@ struct VocabItem {
     spanish: String,
     english: Vec<String>,
     audio: Option<PathBuf>,
+    #[serde(flatten)]
+    extra: Map<String, Value>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -124,6 +129,7 @@ struct VocabItem {
 enum ItemKind {
     Word,
     Sentence,
+    Number,
 }
 
 #[derive(Debug, Serialize)]
@@ -753,7 +759,7 @@ fn audio_output_path(data_path: &Path, output_dir: &Path, item: &VocabItem) -> P
 }
 
 fn relative_to_data_file(data_path: &Path, output_file: &Path) -> PathBuf {
-    let data_dir = data_path.parent().unwrap_or_else(|| Path::new("."));
+    let data_dir = asset_data_dir(data_path);
     pathdiff::diff_paths(output_file, data_dir).unwrap_or_else(|| output_file.to_path_buf())
 }
 
@@ -761,11 +767,18 @@ fn resolve_from_data_file(data_path: &Path, audio: &Path) -> PathBuf {
     if audio.is_absolute() {
         audio.to_path_buf()
     } else {
-        data_path
-            .parent()
-            .unwrap_or_else(|| Path::new("."))
-            .join(audio)
+        asset_data_dir(data_path).join(audio)
     }
+}
+
+fn asset_data_dir(data_path: &Path) -> &Path {
+    let parent = data_path.parent().unwrap_or_else(|| Path::new("."));
+    if parent.file_name().and_then(|name| name.to_str()) == Some("courses") {
+        if let Some(data_dir) = parent.parent() {
+            return data_dir;
+        }
+    }
+    parent
 }
 
 #[cfg(test)]
@@ -800,6 +813,7 @@ mod tests {
             spanish: "hola".to_string(),
             english: vec!["hello".to_string()],
             audio: Some(PathBuf::from("audio/custom-hola.mp3")),
+            extra: Map::new(),
         };
 
         assert_eq!(
@@ -820,6 +834,7 @@ mod tests {
             spanish: "hola".to_string(),
             english: vec!["hello".to_string()],
             audio: None,
+            extra: Map::new(),
         };
 
         assert_eq!(
@@ -836,6 +851,82 @@ mod tests {
                 DrillMode::EnglishToSpanish,
                 DrillMode::AudioToSpanish
             ]
+        );
+    }
+
+    #[test]
+    fn number_items_can_be_loaded_with_extra_course_fields() {
+        let item: VocabItem = serde_json::from_str(
+            r#"{
+                "id": "number_42",
+                "kind": "number",
+                "number": 42,
+                "digits": "42",
+                "spanish": "cuarenta y dos",
+                "english": ["42"],
+                "accepted_spanish": ["cuarenta y dos"],
+                "audio": "audio/numbers/number_42.mp3"
+            }"#,
+        )
+        .expect("number item should deserialize");
+
+        assert!(matches!(item.kind, ItemKind::Number));
+        assert_eq!(item.spanish, "cuarenta y dos");
+        assert_eq!(item.extra.get("digits"), Some(&Value::from("42")));
+    }
+
+    #[test]
+    fn vocabulary_serialization_preserves_course_fields() {
+        let mut vocabulary_extra = Map::new();
+        vocabulary_extra.insert(
+            "lessons".to_string(),
+            Value::Array(vec![Value::from("number rules")]),
+        );
+
+        let mut item_extra = Map::new();
+        item_extra.insert("digits".to_string(), Value::from("42"));
+        item_extra.insert(
+            "accepted_spanish".to_string(),
+            Value::Array(vec![Value::from("cuarenta y dos")]),
+        );
+
+        let vocabulary = Vocabulary {
+            version: 1,
+            items: vec![VocabItem {
+                id: "number_42".to_string(),
+                kind: ItemKind::Number,
+                spanish: "cuarenta y dos".to_string(),
+                english: vec!["42".to_string()],
+                audio: Some(PathBuf::from("audio/numbers/number_42.mp3")),
+                extra: item_extra,
+            }],
+            extra: vocabulary_extra,
+        };
+
+        let serialized = serde_json::to_value(&vocabulary).expect("serialize vocabulary");
+        assert!(serialized.get("lessons").is_some());
+        assert_eq!(
+            serialized["items"][0].get("digits"),
+            Some(&Value::from("42"))
+        );
+        assert!(serialized["items"][0].get("accepted_spanish").is_some());
+    }
+
+    #[test]
+    fn course_audio_paths_resolve_from_godot_data_root() {
+        let data_path = Path::new("godot/data/courses/numbers.json");
+        let audio = Path::new("audio/numbers/number_42.mp3");
+
+        assert_eq!(
+            resolve_from_data_file(data_path, audio),
+            PathBuf::from("godot/data/audio/numbers/number_42.mp3")
+        );
+        assert_eq!(
+            relative_to_data_file(
+                data_path,
+                Path::new("godot/data/audio/numbers/number_42.mp3")
+            ),
+            PathBuf::from("audio/numbers/number_42.mp3")
         );
     }
 

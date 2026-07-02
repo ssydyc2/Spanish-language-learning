@@ -41,6 +41,14 @@ The API key file is passed in explicitly and is ignored by Git. Audio files are 
 
 By default, `generate-audio` reuses existing audio files. Pass `--overwrite` when you intentionally want to regenerate them.
 
+Generate the Godot number-course audio:
+
+```sh
+cargo run -- --data godot/data/courses/numbers.json generate-audio --api-key-file seven_eleven_key
+```
+
+The number course stores audio paths under `godot/data/audio/numbers/` so the teacher's number lesson can use the same generated MP3 files for explanation examples and listening drills.
+
 ## Godot village prototype
 
 The new game-first prototype lives in `godot/` and is intended to become the main implementation for the village learning experience.
@@ -55,7 +63,9 @@ It currently includes:
 - data-driven walkable areas so the player stays on roads/open floor regions
 - enterable school, cafe, and library scenes
 - a scholar inside the library who opens a simple Spanish quiz
+- a teacher inside the school who opens course study, starting with a Spanish numbers course
 - vocabulary and audio copied from `data/vocabulary.json` and `data/audio/`
+- a number-course data file at `godot/data/courses/numbers.json`
 
 Open it with Godot 4:
 
@@ -80,3 +90,4 @@ The app logic is intentionally small and data-driven:
 - `godot/scripts/Main.gd`: village maps, player movement, camera, portals, NPC interaction
 - `godot/scripts/VirtualJoystick.gd`: mobile movement control
 - `godot/scripts/QuizPanel.gd`: scholar quiz UI and vocabulary loading
+- `godot/scripts/NumberLessonPanel.gd`: teacher number rules and number drills
