@@ -5,12 +5,10 @@ use std::{
     process::{Command, Stdio},
 };
 
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{bail, Context, Result};
 use clap::{Parser, Subcommand};
 use console::style;
 use dialoguer::{theme::ColorfulTheme, Input, Select};
-use rand::seq::SliceRandom;
-use rand::Rng;
 use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
 
@@ -19,13 +17,12 @@ const DEFAULT_API_KEY_FILE: &str = "seven_eleven_key";
 const DEFAULT_VOICE_ID: &str = "JBFqnCBsd6RMkjVDRZzb";
 const DEFAULT_MODEL_ID: &str = "eleven_multilingual_v2";
 const DEFAULT_OUTPUT_FORMAT: &str = "mp3_44100_128";
-const QUIZ_RULE_WIDTH: usize = 56;
 
 #[derive(Parser, Debug)]
 #[command(
     name = "spanish",
     version,
-    about = "A focused Spanish practice CLI with text and audio drills.",
+    about = "Spanish Quest asset helper for vocabulary lists and generated audio.",
     arg_required_else_help = false
 )]
 struct Cli {
@@ -39,9 +36,7 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Commands {
-    /// Start a random quiz prompt.
-    Quiz,
-    /// Show the current vocabulary data.
+    /// Show the complete vocabulary data.
     List,
     /// Generate missing Spanish audio files with ElevenLabs.
     GenerateAudio {
@@ -72,30 +67,10 @@ enum Commands {
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
-enum DrillMode {
-    SpanishToEnglish,
-    EnglishToSpanish,
-    AudioToSpanish,
-}
-
-struct QuizPrompt<'a> {
-    item: &'a VocabItem,
-    mode: DrillMode,
-}
-
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum MenuChoice {
-    Quiz,
     ListWords,
     GenerateAudio,
     Exit,
-}
-
-#[derive(Copy, Clone)]
-enum PromptAccent {
-    Spanish,
-    English,
-    Audio,
 }
 
 struct MenuOption {
@@ -132,6 +107,16 @@ enum ItemKind {
     Number,
 }
 
+impl ItemKind {
+    fn as_str(&self) -> &'static str {
+        match self {
+            Self::Word => "word",
+            Self::Sentence => "sentence",
+            Self::Number => "number",
+        }
+    }
+}
+
 #[derive(Debug, Serialize)]
 struct SpeechRequest<'a> {
     text: &'a str,
@@ -150,7 +135,6 @@ fn main() -> Result<()> {
 
 fn run_command(command: Commands, data_path: &Path) -> Result<()> {
     match command {
-        Commands::Quiz => run_quiz_session(data_path),
         Commands::List => list_items(data_path),
         Commands::GenerateAudio {
             api_key_file,
@@ -176,7 +160,6 @@ fn run_interactive(data_path: &Path) -> Result<()> {
 
     loop {
         match select_menu_choice()? {
-            MenuChoice::Quiz => run_quiz_session(data_path)?,
             MenuChoice::ListWords => list_items(data_path)?,
             MenuChoice::GenerateAudio => {
                 let api_key_file = prompt_api_key_file()?;
@@ -211,8 +194,7 @@ fn print_interactive_header(data_path: &Path) {
     );
     println!(
         "{}",
-        style("Choose a path below. Each quiz prompt randomizes both the item and drill type.")
-            .dim()
+        style("Choose a utility below to inspect vocabulary or generate audio assets.").dim()
     );
 }
 
@@ -268,16 +250,10 @@ fn prompt_api_key_file() -> Result<String> {
 fn menu_options() -> Vec<MenuOption> {
     vec![
         MenuOption {
-            choice: MenuChoice::Quiz,
-            icon: "▣",
-            title: "Quiz",
-            description: "Keep practicing random prompts until Ctrl+D",
-        },
-        MenuOption {
             choice: MenuChoice::ListWords,
             icon: "▤",
-            title: "List words",
-            description: "Review every saved word and sentence",
+            title: "List all",
+            description: "Print every saved word, sentence, number, and audio path",
         },
         MenuOption {
             choice: MenuChoice::GenerateAudio,
@@ -289,7 +265,7 @@ fn menu_options() -> Vec<MenuOption> {
             choice: MenuChoice::Exit,
             icon: "□",
             title: "Exit",
-            description: "Leave the study session",
+            description: "Leave the asset helper",
         },
     ]
 }
@@ -348,145 +324,11 @@ fn parse_menu_choice(input: &str, options: &[MenuOption]) -> Option<MenuChoice> 
         })
         .map(|option| option.choice)
         .or_else(|| match input.as_str() {
-            "practice" => Some(MenuChoice::Quiz),
-            "list" | "words" | "vocabulary" => Some(MenuChoice::ListWords),
+            "list" | "words" | "vocabulary" | "all" => Some(MenuChoice::ListWords),
             "audio" | "generate" => Some(MenuChoice::GenerateAudio),
             "q" | "quit" => Some(MenuChoice::Exit),
             _ => None,
         })
-}
-
-fn run_quiz_session(data_path: &Path) -> Result<()> {
-    println!();
-    println!("{}", style("Quiz session").bold().cyan());
-    println!("{}", style("Press Ctrl+D to return to the menu.").dim());
-
-    loop {
-        match run_quiz_prompt(data_path)? {
-            QuizOutcome::Answered => println!(),
-            QuizOutcome::Interrupted => {
-                println!();
-                println!("{}", style("Returning to menu.").dim());
-                return Ok(());
-            }
-        }
-    }
-}
-
-enum QuizOutcome {
-    Answered,
-    Interrupted,
-}
-
-fn run_quiz_prompt(data_path: &Path) -> Result<QuizOutcome> {
-    let vocabulary = read_vocabulary(data_path)?;
-    let mut rng = rand::thread_rng();
-    let prompt = pick_prompt(&vocabulary, &mut rng)
-        .ok_or_else(|| anyhow!("no vocabulary items found in {}", data_path.display()))?;
-    let item = prompt.item;
-
-    print_quiz_header();
-
-    let expected_answers = match prompt.mode {
-        DrillMode::SpanishToEnglish => {
-            print_drill_instruction("Translate to English", "Read the Spanish prompt below.");
-            print_quiz_prompt("Spanish", &item.spanish, PromptAccent::Spanish);
-            item.english.iter().map(String::as_str).collect::<Vec<_>>()
-        }
-        DrillMode::EnglishToSpanish => {
-            print_drill_instruction("Translate to Spanish", "Use the English meaning below.");
-            print_quiz_prompt(
-                "English",
-                item.english
-                    .first()
-                    .context("item has no English translation")?,
-                PromptAccent::English,
-            );
-            vec![item.spanish.as_str()]
-        }
-        DrillMode::AudioToSpanish => {
-            print_drill_instruction("Listen and type the Spanish", "Audio will play now.");
-            print_quiz_prompt("Audio", "Playing Spanish audio...", PromptAccent::Audio);
-            play_item_audio(data_path, item)?;
-            vec![item.spanish.as_str()]
-        }
-    };
-
-    let Some(answer) = read_quiz_answer()? else {
-        return Ok(QuizOutcome::Interrupted);
-    };
-
-    if is_correct(&answer, &expected_answers) {
-        println!();
-        println!("{}", style("Correct!").green().bold());
-    } else {
-        println!();
-        println!("{}", style("Not quite.").red().bold());
-        println!(
-            "{} {}",
-            style("Spanish:").yellow().bold(),
-            style(&item.spanish).yellow().bold()
-        );
-        println!(
-            "{} {}",
-            style("English:").blue().bold(),
-            style(item.english.join(" / ")).blue().bold()
-        );
-    }
-
-    Ok(QuizOutcome::Answered)
-}
-
-fn read_quiz_answer() -> Result<Option<String>> {
-    print!("\n{} ", style("Your answer:").cyan().bold());
-    io::stdout().flush().context("failed to flush prompt")?;
-
-    let mut answer = String::new();
-    match io::stdin().read_line(&mut answer) {
-        Ok(0) => Ok(None),
-        Ok(_) => Ok(Some(answer)),
-        Err(error) => Err(error).context("failed to read answer"),
-    }
-}
-
-fn print_quiz_header() {
-    println!();
-    println!("{}", style("SPANISH PRACTICE").cyan().bold());
-    println!("{}", style("=".repeat(QUIZ_RULE_WIDTH)).cyan().bold());
-}
-
-fn print_drill_instruction(title: &str, hint: &str) {
-    println!();
-    println!("{}", style(title.to_uppercase()).magenta().bold());
-    println!("{}", style(hint).dim());
-}
-
-fn print_quiz_prompt(label: &str, text: &str, accent: PromptAccent) {
-    println!();
-    println!("{}", style(format!("{} prompt", label)).bold());
-    println!("{}", style("-".repeat(QUIZ_RULE_WIDTH)).dim());
-    println!();
-    for line in emphasized_prompt_lines(text) {
-        println!("  {}", style_prompt_line(&line, accent));
-    }
-    println!();
-    println!("{}", style("-".repeat(QUIZ_RULE_WIDTH)).dim());
-}
-
-fn emphasized_prompt_lines(text: &str) -> Vec<String> {
-    text.split_whitespace()
-        .collect::<Vec<_>>()
-        .chunks(4)
-        .map(|chunk| chunk.join(" "))
-        .collect()
-}
-
-fn style_prompt_line(line: &str, accent: PromptAccent) -> console::StyledObject<&str> {
-    match accent {
-        PromptAccent::Spanish => style(line).yellow().bold(),
-        PromptAccent::English => style(line).blue().bold(),
-        PromptAccent::Audio => style(line).green().bold(),
-    }
 }
 
 fn list_items(data_path: &Path) -> Result<()> {
@@ -505,12 +347,19 @@ fn list_items(data_path: &Path) -> Result<()> {
             .unwrap_or_else(|| "no audio yet".to_string());
 
         println!(
-            "- {} [{}] -> {} ({})",
+            "- {} [{}; {}] -> {} ({})",
             item.spanish,
             item.id,
+            item.kind.as_str(),
             item.english.join(" / "),
             audio
         );
+
+        if !item.extra.is_empty() {
+            let extra =
+                serde_json::to_string(&item.extra).context("failed to serialize item metadata")?;
+            println!("  extra: {extra}");
+        }
     }
 
     Ok(())
@@ -647,82 +496,6 @@ fn read_api_key(path: &Path) -> Result<String> {
     Ok(key)
 }
 
-fn pick_prompt<'a, R: Rng + ?Sized>(
-    vocabulary: &'a Vocabulary,
-    rng: &mut R,
-) -> Option<QuizPrompt<'a>> {
-    let item = vocabulary.items.choose(rng)?;
-    let mode = pick_mode_for_item(item, rng);
-    Some(QuizPrompt { item, mode })
-}
-
-fn pick_mode_for_item<R: Rng + ?Sized>(item: &VocabItem, rng: &mut R) -> DrillMode {
-    *available_drill_modes(item)
-        .choose(rng)
-        .expect("mode list is never empty")
-}
-
-fn available_drill_modes(item: &VocabItem) -> Vec<DrillMode> {
-    let mut modes = vec![DrillMode::SpanishToEnglish, DrillMode::EnglishToSpanish];
-    if item.audio.is_some() {
-        modes.push(DrillMode::AudioToSpanish);
-    }
-    modes
-}
-
-fn play_item_audio(data_path: &Path, item: &VocabItem) -> Result<()> {
-    let audio = item
-        .audio
-        .as_ref()
-        .ok_or_else(|| anyhow!("{} does not have audio yet", item.id))?;
-    let audio_path = resolve_from_data_file(data_path, audio);
-
-    if !audio_path.exists() {
-        bail!("audio file does not exist: {}", audio_path.display());
-    }
-
-    play_audio(&audio_path)
-}
-
-fn play_audio(path: &Path) -> Result<()> {
-    let candidates: &[(&str, &[&str])] = if cfg!(target_os = "macos") {
-        &[("afplay", &[])]
-    } else if cfg!(target_os = "windows") {
-        &[("powershell", &["-NoProfile", "-Command", "Start-Process"])]
-    } else {
-        &[("ffplay", &["-nodisp", "-autoexit"]), ("mpg123", &[])]
-    };
-
-    for (program, args) in candidates {
-        let status = Command::new(program).args(*args).arg(path).status();
-
-        if let Ok(status) = status {
-            if status.success() {
-                return Ok(());
-            }
-        }
-    }
-
-    bail!(
-        "could not play audio automatically; open this file manually: {}",
-        path.display()
-    )
-}
-
-fn is_correct(answer: &str, expected_answers: &[&str]) -> bool {
-    let answer = normalize_answer(answer);
-    expected_answers
-        .iter()
-        .any(|expected| answer == normalize_answer(expected))
-}
-
-fn normalize_answer(input: &str) -> String {
-    input
-        .trim()
-        .trim_matches(|c: char| matches!(c, '.' | ',' | '!' | '?' | '¡' | '¿'))
-        .to_lowercase()
-}
-
 fn curl_quote(input: &str) -> String {
     let mut output = String::from("\"");
     for ch in input.chars() {
@@ -786,13 +559,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn answer_matching_is_case_and_punctuation_insensitive() {
-        assert!(is_correct(" Hello! ", &["hello"]));
-        assert!(is_correct("¿hola?", &["hola"]));
-        assert!(!is_correct("goodbye", &["hello"]));
-    }
-
-    #[test]
     fn file_stems_are_stable() {
         assert_eq!(safe_file_stem("Hola, mundo!"), "hola-mundo");
     }
@@ -823,34 +589,6 @@ mod tests {
                 &item
             ),
             PathBuf::from("data/audio/custom-hola.mp3")
-        );
-    }
-
-    #[test]
-    fn audio_drill_is_only_available_when_item_has_audio() {
-        let mut item = VocabItem {
-            id: "hola".to_string(),
-            kind: ItemKind::Word,
-            spanish: "hola".to_string(),
-            english: vec!["hello".to_string()],
-            audio: None,
-            extra: Map::new(),
-        };
-
-        assert_eq!(
-            available_drill_modes(&item),
-            vec![DrillMode::SpanishToEnglish, DrillMode::EnglishToSpanish]
-        );
-
-        item.audio = Some(PathBuf::from("audio/hola.mp3"));
-
-        assert_eq!(
-            available_drill_modes(&item),
-            vec![
-                DrillMode::SpanishToEnglish,
-                DrillMode::EnglishToSpanish,
-                DrillMode::AudioToSpanish
-            ]
         );
     }
 
@@ -937,25 +675,17 @@ mod tests {
             .map(format_menu_option)
             .collect::<Vec<_>>();
 
-        assert!(labels.iter().any(|label| label.contains("Quiz")));
-        assert!(labels.iter().any(|label| label.contains("List words")));
+        assert!(labels.iter().any(|label| label.contains("List all")));
         assert!(labels.iter().any(|label| label.contains("Generate audio")));
         assert!(labels.iter().any(|label| label.contains("Exit")));
-        assert!(labels.iter().any(|label| label.contains("Ctrl+D")));
     }
 
     #[test]
     fn menu_choices_accept_numbers_and_action_names() {
         let options = menu_options();
 
-        assert_eq!(parse_menu_choice("1", &options), Some(MenuChoice::Quiz));
-        assert_eq!(parse_menu_choice("quiz", &options), Some(MenuChoice::Quiz));
         assert_eq!(
-            parse_menu_choice("practice", &options),
-            Some(MenuChoice::Quiz)
-        );
-        assert_eq!(
-            parse_menu_choice("2", &options),
+            parse_menu_choice("1", &options),
             Some(MenuChoice::ListWords)
         );
         assert_eq!(
@@ -963,15 +693,17 @@ mod tests {
             Some(MenuChoice::ListWords)
         );
         assert_eq!(
-            parse_menu_choice("3", &options),
+            parse_menu_choice("2", &options),
             Some(MenuChoice::GenerateAudio)
         );
         assert_eq!(
             parse_menu_choice("generate-audio", &options),
             Some(MenuChoice::GenerateAudio)
         );
-        assert_eq!(parse_menu_choice("4", &options), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("3", &options), Some(MenuChoice::Exit));
         assert_eq!(parse_menu_choice("quit", &options), Some(MenuChoice::Exit));
+        assert_eq!(parse_menu_choice("quiz", &options), None);
+        assert_eq!(parse_menu_choice("practice", &options), None);
         assert_eq!(parse_menu_choice("wat", &options), None);
     }
 }
