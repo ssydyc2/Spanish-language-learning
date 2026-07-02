@@ -1,12 +1,13 @@
 # Spanish Quest
 
-Spanish Quest contains a Rust CLI for vocabulary practice and a Godot 4 village-learning game prototype.
+Spanish Quest contains a Godot 4 village-learning game prototype, iOS-ready mobile assets, and a small Rust CLI for maintaining vocabulary/audio data.
 
 ## Rust CLI
 
-The first data file lives at `data/vocabulary.json` and currently contains:
+The Rust CLI is an asset helper, not a quiz app. It only:
 
-- `hola` -> `hello` / `hi`
+- prints the complete vocabulary/course list
+- generates missing ElevenLabs MP3 files and updates the JSON metadata
 
 ## Commands
 
@@ -16,19 +17,13 @@ Open the interactive menu:
 cargo run --
 ```
 
-From the menu, choose quiz, list words, generate audio, or exit.
+From the menu, choose list all, generate audio, or exit.
 The menu uses arrow-key selection, color, and short descriptions for each action.
 
-List vocabulary:
+List every vocabulary item, including Spanish text, ID, type, English meaning, audio path, and any extra JSON metadata:
 
 ```sh
 cargo run -- list
-```
-
-For each prompt, the quiz first chooses a random word or sentence, then chooses one random drill mode available for that item: Spanish to English, English to Spanish, or audio to Spanish when audio exists. Quiz mode keeps going until you press Ctrl+D.
-
-```sh
-cargo run -- quiz
 ```
 
 Generate ElevenLabs audio:
@@ -51,7 +46,7 @@ The number course stores audio paths under `godot/data/audio/numbers/` so the te
 
 ## Godot village prototype
 
-The new game-first prototype lives in `godot/` and is intended to become the main implementation for the village learning experience.
+The game-first prototype lives in `godot/` and is intended to become the main implementation for the village learning experience.
 
 It currently includes:
 
@@ -91,3 +86,13 @@ The app logic is intentionally small and data-driven:
 - `godot/scripts/VirtualJoystick.gd`: mobile movement control
 - `godot/scripts/QuizPanel.gd`: scholar quiz UI and vocabulary loading
 - `godot/scripts/NumberLessonPanel.gd`: teacher number rules and number drills
+
+## iOS/mobile assets
+
+The repo also contains iOS-oriented Godot assets:
+
+- mobile joystick/tap controls in `godot/scripts/VirtualJoystick.gd`
+- iOS app icon sizes under `godot/icons/`, including `app_1024x1024.png`
+- mobile-friendly Godot project assets under `godot/`
+
+Use Godot 4's iOS export workflow from the `godot/` project when preparing an iPhone or iPad build.
